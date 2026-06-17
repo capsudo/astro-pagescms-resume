@@ -51,6 +51,7 @@ Pages CMS reads and writes same JSON files Astro uses to render website.
 .
 ├── .pages.yml
 ├── astro.config.mjs
+├── components.json
 ├── package.json
 ├── flake.lock
 ├── flake.nix
@@ -65,6 +66,8 @@ Pages CMS reads and writes same JSON files Astro uses to render website.
 │   ├── generate-markdown-files.mjs
 │   └── load-content.mjs
 ├── src/
+│   ├── components/
+│   │   └── ui/
 │   ├── content/
 │   │   ├── identity.json
 │   │   ├── experiences/
@@ -89,6 +92,7 @@ Pages CMS reads and writes same JSON files Astro uses to render website.
 - [tsconfig.json](./tsconfig.json): TypeScript config for Astro.
 - [flake.nix](./flake.nix): Nix development shell.
 - [flake.lock](./flake.lock): pinned Nixpkgs revision for reproducible shell.
+- [components.json](./components.json): shadcn/ui CLI metadata and aliases.
 
 ### Content
 
@@ -106,8 +110,17 @@ Each collection item is a JSON file. `slug` is stable ID used by other content f
 ### Website Code
 
 - [src/pages/index.astro](./src/pages/index.astro): main resume page.
+- [src/components/ui](./src/components/ui): small shadcn-style Astro UI components.
 - [src/lib/data.ts](./src/lib/data.ts): loads and sorts JSON content for Astro.
-- [src/styles/global.css](./src/styles/global.css): site styling.
+- [src/styles/global.css](./src/styles/global.css): Tailwind import, shadcn CSS tokens, site styling.
+
+### shadcn/ui
+
+This project uses shadcn/ui as a design convention, not as runtime dependency.
+
+[components.json](./components.json) is mostly used as information, but it can be used by shadcn CLI. It tells future shadcn CLI commands where components, aliases, CSS file, CSS variables, and icon library are configured.
+
+React shadcn components are not used but instead local Astro components in [src/components/ui](./src/components/ui), this is simpler for this Astro static page,
 
 ### Generated Content
 

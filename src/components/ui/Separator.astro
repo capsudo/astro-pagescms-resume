@@ -1,0 +1,9 @@
+---
+type Props = {
+  class?: string;
+};
+
+const { class: className = "" } = Astro.props;
+---
+
+<div class:list={["h-px w-full bg-border", className]} aria-hidden="true"></div>
