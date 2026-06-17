@@ -24,10 +24,24 @@ npm run generate:markdown
 npm run generate:blog-data
 ```
 
+## Pages CMS
+
+[.pages.yml](./.pages.yml) is Pages CMS configuration file.
+
+It tells Pages CMS:
+
+- where editable content lives
+- which fields each content type has
+- how collections are named in CMS UI
+- where uploaded media should be stored
+
+Pages CMS reads and writes same JSON files Astro uses to render website.
+
 ## Project Structure
 
 ```text
 .
+├── .pages.yml
 ├── astro.config.mjs
 ├── package.json
 ├── generated/
@@ -49,7 +63,7 @@ npm run generate:blog-data
 │   │   ├── projects/
 │   │   └── stack/
 │   ├── lib/
-│   │   └── resume-data.ts
+│   │   └── data.ts
 │   ├── pages/
 │   │   └── index.astro
 │   └── styles/
@@ -60,6 +74,7 @@ npm run generate:blog-data
 ### Root Config
 
 - [astro.config.mjs](./astro.config.mjs): Astro config. Site builds as static output.
+- [.pages.yml](./.pages.yml): Pages CMS schema and collection config.
 - [package.json](./package.json): npm scripts and dependencies.
 - [tsconfig.json](./tsconfig.json): TypeScript config for Astro.
 
@@ -79,7 +94,7 @@ Each collection item is a JSON file. `slug` is stable ID used by other content f
 ### Website Code
 
 - [src/pages/index.astro](./src/pages/index.astro): main resume page.
-- [src/lib/resume-data.ts](./src/lib/resume-data.ts): loads and sorts JSON content for Astro.
+- [src/lib/data.ts](./src/lib/data.ts): loads and sorts JSON content for Astro.
 - [src/styles/global.css](./src/styles/global.css): site styling.
 
 ### Generated Content
