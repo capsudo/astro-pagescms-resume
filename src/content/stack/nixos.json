@@ -1,0 +1,10 @@
+{
+  "name": "NixOS",
+  "slug": "nixos",
+  "iconUrl": "https://cdn.simpleicons.org/nixos/5277C3",
+  "twitterUsername": "nixos_org",
+  "githubUsername": "NixOS",
+  "redditUsername": "NixOS",
+  "githubProjectUrl": "https://github.com/NixOS/nixpkgs",
+  "sortOrder": 10
+}

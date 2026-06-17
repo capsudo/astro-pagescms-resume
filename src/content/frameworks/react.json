@@ -1,0 +1,10 @@
+{
+  "name": "React",
+  "slug": "react",
+  "iconUrl": "https://cdn.simpleicons.org/react/087EA4",
+  "twitterUsername": "reactjs",
+  "githubUsername": "facebook",
+  "redditUsername": "reactjs",
+  "githubProjectUrl": "https://github.com/facebook/react",
+  "sortOrder": 40
+}

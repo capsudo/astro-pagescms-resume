@@ -1,0 +1,128 @@
+import identityDataFromJson from "../content/identity.json";
+
+export type TechnologyCategoryName = "frameworks" | "languages" | "stack";
+
+export type Identity = {
+  name: string;
+  headline: string;
+  shortDescription: string;
+  longDescription: string;
+  email: string;
+  phone: string;
+  location: string;
+  githubUsername: string;
+  redditUsername: string;
+  twitterUsername: string;
+  availability: string;
+  profileImageUrl: string;
+};
+
+export type Technology = {
+  name: string;
+  slug: string;
+  iconUrl: string;
+  twitterUsername: string;
+  githubUsername: string;
+  redditUsername: string;
+  githubProjectUrl: string;
+  sortOrder: number;
+};
+
+export type Project = {
+  name: string;
+  slug: string;
+  periodStartDate: string;
+  periodEndDate: string;
+  company: string;
+  description: string;
+  languageSlugs: string[];
+  frameworkSlugs: string[];
+  stackSlugs: string[];
+  projectUrl: string;
+  featured: boolean;
+  sortOrder: number;
+};
+
+export type Experience = {
+  name: string;
+  slug: string;
+  location: string;
+  periodStartDate: string;
+  periodEndDate: string;
+  company: string;
+  description: string;
+  sortOrder: number;
+};
+
+type JsonModule<T> = {
+  default: T;
+};
+
+type TechnologyGroup = {
+  categoryLabel: string;
+  categoryName: TechnologyCategoryName;
+  items: Technology[];
+};
+
+const frameworkJsonModules = import.meta.glob<JsonModule<Technology>>("../content/frameworks/*.json", { eager: true });
+const languageJsonModules = import.meta.glob<JsonModule<Technology>>("../content/languages/*.json", { eager: true });
+const stackJsonModules = import.meta.glob<JsonModule<Technology>>("../content/stack/*.json", { eager: true });
+const projectJsonModules = import.meta.glob<JsonModule<Project>>("../content/projects/*.json", { eager: true });
+const experienceJsonModules = import.meta.glob<JsonModule<Experience>>("../content/experiences/*.json", { eager: true });
+
+// JSON imports keep Pages CMS and Astro reading same source files.
+function convertJsonModuleRecordToSortedArray<T extends { name: string; sortOrder: number }>(jsonModuleRecord: Record<string, JsonModule<T>>): T[] {
+  return Object.values(jsonModuleRecord)
+    .map((jsonModule) => jsonModule.default)
+    .sort((leftItem, rightItem) => leftItem.sortOrder - rightItem.sortOrder || leftItem.name.localeCompare(rightItem.name));
+}
+
+export const identity = identityDataFromJson as Identity;
+export const frameworks = convertJsonModuleRecordToSortedArray(frameworkJsonModules);
+export const languages = convertJsonModuleRecordToSortedArray(languageJsonModules);
+export const stack = convertJsonModuleRecordToSortedArray(stackJsonModules);
+export const projects = convertJsonModuleRecordToSortedArray(projectJsonModules);
+export const experiences = convertJsonModuleRecordToSortedArray(experienceJsonModules);
+
+export const technologyGroups: TechnologyGroup[] = [
+  {
+    categoryLabel: "Frameworks",
+    categoryName: "frameworks",
+    items: frameworks,
+  },
+  {
+    categoryLabel: "Languages",
+    categoryName: "languages",
+    items: languages,
+  },
+  {
+    categoryLabel: "Stack",
+    categoryName: "stack",
+    items: stack,
+  },
+];
+
+const technologiesBySlug = new Map<string, Technology>(
+  [...frameworks, ...languages, ...stack].map((technology) => [technology.slug, technology]),
+);
+
+export function findTechnologyBySlug(technologySlug: string): Technology | undefined {
+  return technologiesBySlug.get(technologySlug);
+}
+
+export function createReadablePeriodLabel(periodStartDate: string, periodEndDate: string): string {
+  const readableStartDate = createReadableMonthYearLabel(periodStartDate);
+  const readableEndDate = periodEndDate ? createReadableMonthYearLabel(periodEndDate) : "Present";
+
+  return `${readableStartDate} - ${readableEndDate}`;
+}
+
+function createReadableMonthYearLabel(dateValue: string): string {
+  const parsedDate = new Date(`${dateValue}T00:00:00Z`);
+
+  return new Intl.DateTimeFormat("en", {
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(parsedDate);
+}

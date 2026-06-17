@@ -1,0 +1,10 @@
+{
+  "name": "Dart",
+  "slug": "dart",
+  "iconUrl": "https://cdn.simpleicons.org/dart/0175C2",
+  "twitterUsername": "dart_lang",
+  "githubUsername": "dart-lang",
+  "redditUsername": "dartlang",
+  "githubProjectUrl": "https://github.com/dart-lang/sdk",
+  "sortOrder": 20
+}

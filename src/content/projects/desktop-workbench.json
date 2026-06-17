@@ -1,0 +1,14 @@
+{
+  "name": "Desktop workbench",
+  "slug": "desktop-workbench",
+  "periodStartDate": "2024-08-01",
+  "periodEndDate": "2025-02-01",
+  "company": "Open source",
+  "description": "GNOME-friendly desktop utility for keeping local developer scripts visible, searchable, and repeatable.",
+  "languageSlugs": ["typescript-javascript", "python"],
+  "frameworkSlugs": ["expressjs", "react", "redux"],
+  "stackSlugs": ["gnome", "nixos"],
+  "projectUrl": "",
+  "featured": false,
+  "sortOrder": 30
+}

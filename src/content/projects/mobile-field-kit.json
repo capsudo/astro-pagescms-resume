@@ -1,0 +1,14 @@
+{
+  "name": "Mobile field kit",
+  "slug": "mobile-field-kit",
+  "periodStartDate": "2025-03-01",
+  "periodEndDate": "2025-12-01",
+  "company": "Client work",
+  "description": "Offline-first mobile workflow for structured field notes, device sync, and fast review loops.",
+  "languageSlugs": ["dart", "typescript-javascript"],
+  "frameworkSlugs": ["flutter", "firebase"],
+  "stackSlugs": ["vscode"],
+  "projectUrl": "",
+  "featured": true,
+  "sortOrder": 20
+}

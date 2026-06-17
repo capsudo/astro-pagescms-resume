@@ -1,0 +1,184 @@
+---
+import {
+  createReadablePeriodLabel,
+  experiences,
+  findTechnologyBySlug,
+  identity,
+  projects,
+  technologyGroups,
+  type Project,
+} from "../lib/resume-data";
+import "../styles/global.css";
+
+const contactLinks = [
+  {
+    label: "Email",
+    value: identity.email,
+    href: `mailto:${identity.email}`,
+  },
+  {
+    label: "GitHub",
+    value: `@${identity.githubUsername}`,
+    href: `https://github.com/${identity.githubUsername}`,
+  },
+  {
+    label: "Twitter",
+    value: `@${identity.twitterUsername}`,
+    href: `https://twitter.com/${identity.twitterUsername}`,
+  },
+  {
+    label: "Reddit",
+    value: `u/${identity.redditUsername}`,
+    href: `https://www.reddit.com/user/${identity.redditUsername}`,
+  },
+];
+
+const featuredProjects = projects.filter((project) => project.featured);
+const supportingProjects = projects.filter((project) => !project.featured);
+
+function collectProjectTechnologies(project: Project) {
+  const allTechnologySlugs = [...project.languageSlugs, ...project.frameworkSlugs, ...project.stackSlugs];
+
+  return allTechnologySlugs
+    .map((technologySlug) => findTechnologyBySlug(technologySlug))
+    .filter((technology) => Boolean(technology));
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={identity.shortDescription} />
+    <title>{identity.name} - Resume</title>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="resume-header" aria-label="Resume identity">
+        <div class="resume-mark" aria-hidden="true">
+          <span>AC</span>
+        </div>
+        <div class="resume-heading">
+          <p class="eyebrow">{identity.availability}</p>
+          <h1>{identity.name}</h1>
+          <p class="headline">{identity.headline}</p>
+          <p class="summary">{identity.shortDescription}</p>
+        </div>
+        <address class="contact-panel">
+          <span>{identity.location}</span>
+          <span>{identity.phone}</span>
+          {contactLinks.map((contactLink) => (
+            <a href={contactLink.href}>{contactLink.value}</a>
+          ))}
+        </address>
+      </header>
+
+      <section class="profile-band" aria-labelledby="profile-title">
+        <div>
+          <p class="section-kicker">Profile</p>
+          <h2 id="profile-title">Builder with product taste and systems patience.</h2>
+        </div>
+        <p>{identity.longDescription}</p>
+      </section>
+
+      <div class="resume-layout">
+        <section class="main-column" aria-labelledby="projects-title">
+          <div class="section-heading">
+            <p class="section-kicker">Selected work</p>
+            <h2 id="projects-title">Projects</h2>
+          </div>
+
+          <div class="project-list">
+            {featuredProjects.map((project) => (
+              <article class="project-card">
+                <div class="card-topline">
+                  <span>{project.company}</span>
+                  <time>{createReadablePeriodLabel(project.periodStartDate, project.periodEndDate)}</time>
+                </div>
+                <h3>
+                  {project.projectUrl ? <a href={project.projectUrl}>{project.name}</a> : project.name}
+                </h3>
+                <p>{project.description}</p>
+                <ul class="technology-pill-list" aria-label={`${project.name} technologies`}>
+                  {collectProjectTechnologies(project).map((technology) => (
+                    <li>
+                      <span class="tiny-icon-shell">
+                        <img src={technology?.iconUrl} alt="" loading="lazy" />
+                      </span>
+                      {technology?.name}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+
+          {supportingProjects.length > 0 && (
+            <div class="compact-project-list" aria-label="Additional projects">
+              {supportingProjects.map((project) => (
+                <article>
+                  <div>
+                    <h3>{project.name}</h3>
+                    <p>{project.company} · {createReadablePeriodLabel(project.periodStartDate, project.periodEndDate)}</p>
+                  </div>
+                  <p>{project.description}</p>
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
+
+        <aside class="side-column" aria-label="Resume details">
+          <section aria-labelledby="experience-title">
+            <div class="section-heading">
+              <p class="section-kicker">Timeline</p>
+              <h2 id="experience-title">Experience</h2>
+            </div>
+            <div class="timeline-list">
+              {experiences.map((experience) => (
+                <article>
+                  <span class="timeline-dot" aria-hidden="true"></span>
+                  <div>
+                    <p class="card-topline">
+                      <span>{experience.company}</span>
+                      <time>{createReadablePeriodLabel(experience.periodStartDate, experience.periodEndDate)}</time>
+                    </p>
+                    <h3>{experience.name}</h3>
+                    <p class="muted">{experience.location}</p>
+                    <p>{experience.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="tools-title">
+            <div class="section-heading">
+              <p class="section-kicker">Tools</p>
+              <h2 id="tools-title">Stack</h2>
+            </div>
+            <div class="technology-groups">
+              {technologyGroups.map((technologyGroup) => (
+                <section aria-labelledby={`${technologyGroup.categoryName}-title`}>
+                  <h3 id={`${technologyGroup.categoryName}-title`}>{technologyGroup.categoryLabel}</h3>
+                  <ul>
+                    {technologyGroup.items.map((technology) => (
+                      <li>
+                        <a href={technology.githubProjectUrl}>
+                          <span class="icon-shell">
+                            <img src={technology.iconUrl} alt="" loading="lazy" />
+                          </span>
+                          <span>{technology.name}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          </section>
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>

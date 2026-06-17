@@ -1,0 +1,14 @@
+{
+  "name": "Resume operating system",
+  "slug": "resume-operating-system",
+  "periodStartDate": "2026-06-01",
+  "periodEndDate": "",
+  "company": "Personal",
+  "description": "Astro resume backed by Git content, Pages CMS, generated profile markdown, and portable about-page data for the blog.",
+  "languageSlugs": ["typescript-javascript"],
+  "frameworkSlugs": ["astro", "react"],
+  "stackSlugs": ["vscode", "nixos"],
+  "projectUrl": "https://github.com/capsudo/resume",
+  "featured": true,
+  "sortOrder": 10
+}
