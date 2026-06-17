@@ -17,14 +17,29 @@ Build static site:
 npm run build
 ```
 
+Generate derived files:
+
+```bash
+npm run generate:markdown
+npm run generate:blog-data
+```
+
 ## Project Structure
 
 ```text
 .
 ├── astro.config.mjs
 ├── package.json
+├── generated/
+│   ├── bios/
+│   ├── blog/
+│   └── github-profile/
 ├── public/
 │   └── media/
+├── scripts/
+│   ├── generate-blog-about-data.mjs
+│   ├── generate-markdown-files.mjs
+│   └── load-content.mjs
 ├── src/
 │   ├── content/
 │   │   ├── identity.json
@@ -66,6 +81,31 @@ Each collection item is a JSON file. `slug` is stable ID used by other content f
 - [src/pages/index.astro](./src/pages/index.astro): main resume page.
 - [src/lib/resume-data.ts](./src/lib/resume-data.ts): loads and sorts JSON content for Astro.
 - [src/styles/global.css](./src/styles/global.css): site styling.
+
+### Generated Content
+
+[generated](./generated) contains files derived from source content used outside the resume:
+
+- [generated/github-profile](./generated/github-profile): generated [GitHub profile README](https://github.com/capsudo/capsudo/README.md)
+- [generated/bios](./generated/bios): short bio files for social profiles
+- [generated/blog](./generated/blog): JSON data for [blog](https://github.com/capsudo/capsudo.github.io) about page
+
+Generation scripts live in [scripts](./scripts).
+
+- [load-content.mjs](./scripts/load-content.mjs): shared Node content loader
+- [generate-markdown-files.mjs](./scripts/generate-markdown-files.mjs): writes markdown/profile bio outputs
+- [generate-blog-about-data.mjs](./scripts/generate-blog-about-data.mjs): writes blog about-page JSON
+
+### TypeScript And MJS
+
+Website code uses TypeScript because Astro/Vite can type-check it and support helpers like `import.meta.glob`.
+
+Standalone scripts use `.mjs` because they run directly with Node, without TypeScript compile step.
+
+Short version:
+
+- `src/**/*.ts`: Astro website code
+- `scripts/**/*.mjs`: plain Node scripts
 
 ### Media
 
