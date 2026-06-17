@@ -4,6 +4,14 @@ Astro resume website backed by JSON content files and editable through Pages CMS
 
 ## Development
 
+Enter Nix shell:
+
+```bash
+nix develop
+```
+
+The shell provides Node, npm, and Git from pinned Nixpkgs.
+
 ```bash
 npm install
 npm run dev -- --host 127.0.0.1
@@ -44,6 +52,8 @@ Pages CMS reads and writes same JSON files Astro uses to render website.
 ├── .pages.yml
 ├── astro.config.mjs
 ├── package.json
+├── flake.lock
+├── flake.nix
 ├── generated/
 │   ├── bios/
 │   ├── blog/
@@ -77,6 +87,8 @@ Pages CMS reads and writes same JSON files Astro uses to render website.
 - [.pages.yml](./.pages.yml): Pages CMS schema and collection config.
 - [package.json](./package.json): npm scripts and dependencies.
 - [tsconfig.json](./tsconfig.json): TypeScript config for Astro.
+- [flake.nix](./flake.nix): Nix development shell.
+- [flake.lock](./flake.lock): pinned Nixpkgs revision for reproducible shell.
 
 ### Content
 
