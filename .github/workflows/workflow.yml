@@ -1,0 +1,160 @@
+name: Sync generated content
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "src/content/**"
+      - "scripts/**"
+      - ".pages.yml"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/workflow.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GITHUB_USERNAME: ${{ github.repository_owner }}
+  GITHUB_PROFILE_TARGET_REPOSITORY: ${{ github.repository_owner }}/${{ github.repository_owner }}
+  GITHUB_PROFILE_TARGET_REPOSITORY_NAME: ${{ github.repository_owner }}
+  GITHUB_PROFILE_TARGET_PATH: README.md
+  BLOG_TARGET_REPOSITORY: ${{ github.repository_owner }}/${{ github.repository_owner }}.github.io
+  BLOG_TARGET_REPOSITORY_NAME: ${{ github.repository_owner }}.github.io
+  BLOG_TARGET_PATH: src/data/about-page-data.json
+
+jobs:
+  sync-generated-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout resume source
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate markdown files
+        run: npm run generate:markdown
+
+      - name: Generate blog about-page data
+        run: npm run generate:blog-data
+
+      # Short bio files are still manual copy-paste for now.
+      - name: Upload generated content artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-content
+          path: generated
+
+      - name: Check workflow configuration
+        env:
+          APP_CLIENT_ID: ${{ vars.APP_CLIENT_ID }}
+        run: |
+          echo "GitHub username is ${GITHUB_USERNAME}."
+          echo "GitHub profile target is ${GITHUB_PROFILE_TARGET_REPOSITORY}:${GITHUB_PROFILE_TARGET_PATH}."
+          echo "Blog target is ${BLOG_TARGET_REPOSITORY}:${BLOG_TARGET_PATH}."
+
+          if [ -n "${APP_CLIENT_ID}" ]; then
+            echo "GitHub App client ID is configured."
+          else
+            echo "Missing repository variable APP_CLIENT_ID."
+            echo "Set it in resume repo: Settings > Secrets and variables > Actions > Variables."
+            exit 1
+          fi
+
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: |
+            ${{ env.GITHUB_PROFILE_TARGET_REPOSITORY_NAME }}
+            ${{ env.BLOG_TARGET_REPOSITORY_NAME }}
+          permission-contents: write
+
+      - name: Checkout GitHub profile repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.GITHUB_PROFILE_TARGET_REPOSITORY }}
+          token: ${{ steps.app-token.outputs.token }}
+          path: target-github-profile
+
+      - name: Update GitHub profile README
+        run: |
+          cp generated/github-profile.md "target-github-profile/${GITHUB_PROFILE_TARGET_PATH}"
+
+      - name: Commit GitHub profile README
+        working-directory: target-github-profile
+        run: |
+          git config user.name "${{ steps.app-token.outputs.app-slug }}[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          target_branch="$(git branch --show-current)"
+
+          if [ -n "${target_branch}" ]; then
+            echo "GitHub profile target branch is ${target_branch}."
+          else
+            target_branch="$(git remote show origin | sed -n 's/.*HEAD branch: //p')"
+            if [ -n "${target_branch}" ]; then
+              git checkout "${target_branch}"
+            else
+              echo "Could not detect GitHub profile target branch."
+              exit 1
+            fi
+          fi
+
+          if [ -z "$(git status --porcelain -- "${GITHUB_PROFILE_TARGET_PATH}")" ]; then
+            echo "GitHub profile README already up to date."
+          else
+            git add "${GITHUB_PROFILE_TARGET_PATH}"
+            git commit -m "Update generated profile README"
+            git push origin "HEAD:${target_branch}"
+          fi
+
+      - name: Checkout blog repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.BLOG_TARGET_REPOSITORY }}
+          token: ${{ steps.app-token.outputs.token }}
+          path: target-blog
+
+      - name: Update blog about-page data
+        run: |
+          mkdir -p "target-blog/$(dirname "${BLOG_TARGET_PATH}")"
+          cp generated/blog-about-page-data.json "target-blog/${BLOG_TARGET_PATH}"
+
+      - name: Commit blog about-page data
+        working-directory: target-blog
+        run: |
+          git config user.name "${{ steps.app-token.outputs.app-slug }}[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          target_branch="$(git branch --show-current)"
+
+          if [ -n "${target_branch}" ]; then
+            echo "Blog target branch is ${target_branch}."
+          else
+            target_branch="$(git remote show origin | sed -n 's/.*HEAD branch: //p')"
+            if [ -n "${target_branch}" ]; then
+              git checkout "${target_branch}"
+            else
+              echo "Could not detect blog target branch."
+              exit 1
+            fi
+          fi
+
+          if [ -z "$(git status --porcelain -- "${BLOG_TARGET_PATH}")" ]; then
+            echo "Blog about-page data already up to date."
+          else
+            git add "${BLOG_TARGET_PATH}"
+            git commit -m "Update generated about-page data"
+            git push origin "HEAD:${target_branch}"
+          fi

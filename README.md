@@ -90,6 +90,30 @@ Netlify deploys are visible at <https://app.netlify.com/projects/capsudo/deploys
 Note: This repo uses `master` as production branch, if Netlify defaults to `main`, change **Production branch** to `master`. This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/capsudo/configuration/deploys#branches-and-deploy-contexts).
 
 
+### GitHub App Sync Setup (optional)
+
+This repo contains a workflow that pushes [generated content](#generated-content) to required repos. It uses GitHub App token instead of personal access token. To get this token a GitHub App needs to be setup:
+
+1. Go to <https://github.com/settings/apps/new>.
+2. Name it something like `resume-sync`.
+3. Disable webhook if GitHub allows it, or leave webhook URL empty if not needed.
+4. Set repository permission **Contents** to **Read and write**.
+5. Keep default **Metadata** read permission.
+6. Install the app on selected repositories:
+   - `capsudo/resume`
+   - `capsudo/capsudo`
+   - `capsudo/capsudo.github.io`
+7. Generate a private key and download the `.pem` file.
+
+Add repository variables and secrets in `capsudo/resume`:
+
+1. Go to `Settings > Secrets and variables > Actions`.
+2. Add repository variable `APP_CLIENT_ID` with GitHub App client ID.
+3. Add repository secret `APP_PRIVATE_KEY` with full `.pem` private key content.
+
+_Note: using GitHub App token instead of personal access token lets one app push generated files to selected repos with narrow permissions._
+
+
 ## Pages CMS
 
 Page CMS is the "UI admin page" where the content can be updated. It's accessible at <https://app.pagescms.org/capsudo/resume/master>
@@ -103,34 +127,40 @@ It uses [.pages.yml](./.pages.yml) to:
 
 Each update on Page CMS produces a commit that modifies the JSON data. This itself triggers:
 - Netlify deploy
-- Github worfkow that produce generated content
+- GitHub workflow that produces and syncs generated content
 
 
 ## Generated Content
 
 This repo also contains content generated from the same JSON data. It produces markdown files and data used by another astro site page (blog/about page).
 
-Those files can be generated locally (see [Development](#development)) but are built automatically by the github workflow [build-generated-content.yml](.github/workflows/build-generated-content.yml).
+Those files can be generated locally (see [Development](#development)) but are built automatically by the GitHub workflow [workflow.yml](.github/workflows/workflow.yml).
 
-This workflow produces files are visible/downloadable from the workflow run page ["github.com/capsudo/resume/actions/runs/1234"](https://github.com/capsudo/resume/actions/workflows/build-generated-content.yml) as an artifact named generated-content.
+This workflow:
+
+1. Generates markdown files.
+2. Generates blog about-page JSON.
+3. Uploads all generated files as workflow artifact named `generated-content`.
+4. Pushes [generated/github-profile.md](./generated/github-profile.md) to `capsudo/capsudo` as `README.md`.
+5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to `capsudo/capsudo.github.io` as `src/data/about-page-data.json`.
+
+Note: Generated files are visible/downloadable from the workflow run page <https://github.com/capsudo/resume/actions/workflows/workflow.yml>.
+
 
 ### Markdown files
 
 Long bio visible on top of [Github user page](https://github.com/capsudo)
-- [generated/github-profile](./generated/github-profile.md) => [GitHub "README" profile](https://github.com/capsudo/capsudo/README.md)
-
-Copy paste that raw markdown to the README and commit.
+- [generated/github-profile](./generated/github-profile.md) => pushed automatically to [GitHub "profile" README](https://github.com/capsudo/capsudo/README.md)
 
 Short bios for social profiles:
-- [generated/github-bio](./generated/github-bio.md) => [Github](https://github.com/settings/profile)
-- [generated/twitter-bio](./generated/twitter-bio.md) => [Twitter](https://x.com/settings/profile)
-- [generated/reddit-bio](./generated/reddit-bio.md) => [Reddit](https://www.reddit.com/settings/profile)
-
-Copy-paste the output to respective websites profile pages.
+- [generated/github-bio](./generated/github-bio.md) => copy-paste it to [Github settings profile](https://github.com/settings/profile)
+- [generated/twitter-bio](./generated/twitter-bio.md) => copy-paste it to [Twitter settings profile](https://x.com/settings/profile)
+- [generated/reddit-bio](./generated/reddit-bio.md) => copy-paste it to [Reddit settings profile](https://www.reddit.com/settings/profile)
 
 ### Blog About page data
 
-- [generated/blog-about-page-data.json](./generated/blog-about-page-data.json): JSON data for [blog](https://github.com/capsudo/capsudo.github.io)'s About page
+JSON data for [blog](https://github.com/capsudo/capsudo.github.io)'s About page:
+- [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) => pushed automatically to [github.com/capsudo/capsudo.github.io/src/data/about-page-data.json](https://github.com/capsudo/capsudo.github.io/src/data/about-page-data.json).
 
 ## Project Structure
 
