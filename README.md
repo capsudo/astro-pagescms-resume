@@ -44,13 +44,12 @@ git commit -m "Describe change"
 git push
 ```
 
-### Set GitHub Workflow Scope
+### Set GitHub Workflow Scope (optional)
 
 This repo contains GitHub Actions workflow files under [.github/workflows](./.github/workflows).
 
-GitHub rejects pushes that create or update workflow files unless current GitHub auth token has `workflow` scope. If push fails with message like `refusing to allow an OAuth App to create or update workflow`, refresh auth from Nix shell:
+If using git through GitHub authentication, GitHub will reject pushes that create or update workflow files unless current GitHub auth token has `workflow` scope. If push fails with message like `refusing to allow an OAuth App to create or update workflow`, refresh auth from Nix shell:
 
-> No need to `gh login` if already logged globally.
 
 ```bash
 nix develop
@@ -58,6 +57,8 @@ npm run github:scope
 ```
 
 _`gh` is provided by [flake.nix](./flake.nix), so it does not need to be installed globally._
+
+> No need to `gh login` again.
 
 ### Link Netlify site
 
@@ -89,6 +90,21 @@ Netlify deploys are visible at <https://app.netlify.com/projects/astro-pagescms-
 > This repo uses `master` as production branch, if Netlify defaults to `main`, change **Production branch** to `master`.  
 > This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/astro-pagescms-resume/configuration/deploys#branches-and-deploy-contexts).
 
+### Edit content in Pages CMS
+
+Page CMS is the "UI admin page" where the content can be updated. It's accessible at <https://app.pagescms.org/capsudo/astro-pagescms-resume/master>
+
+Pages CMS reads and writes same JSON files Astro uses to render website.
+
+It uses [.pages.yml](./.pages.yml) to:
+- derive the collections and fields to display: content.name/label/fields
+- find/load the data (editable content): content.type/path/format
+- where uploaded media should be stored: media.output
+
+Each update on Page CMS produces a commit that modifies the JSON data. This itself triggers:
+- Netlify deploy
+- GitHub workflow that produces and syncs generated content
+
 ### GitHub App Sync Setup (optional)
 
 This repo contains a workflow that pushes [generated content](#generated-content) to required repos. It uses GitHub App token instead of personal access token. To get this token a GitHub App needs to be setup:
@@ -112,24 +128,9 @@ Add repository variables and secrets in `capsudo/astro-pagescms-resume`:
 
 > Using GitHub App token instead of personal access token lets one app push generated files to selected repos with narrow permissions.
 
-### Edit content in Pages CMS
-
-Page CMS is the "UI admin page" where the content can be updated. It's accessible at <https://app.pagescms.org/capsudo/astro-pagescms-resume/master>
-
-Pages CMS reads and writes same JSON files Astro uses to render website.
-
-It uses [.pages.yml](./.pages.yml) to:
-- derive the collections and fields to display: content.name/label/fields
-- find/load the data (editable content): content.type/path/format
-- where uploaded media should be stored: media.output
-
-Each update on Page CMS produces a commit that modifies the JSON data. This itself triggers:
-- Netlify deploy
-- GitHub workflow that produces and syncs generated content
-
 ## Generated Content
 
-This repo also contains content generated from the same JSON data. It produces markdown files and JSON data used by another blog page (external).  
+This repo also produces content generated from the same JSON data: markdown files and JSON data used by another blog page (external).  
 This allows to quickly update in one go all your public info defined in Pages CMS.
 
 ### Markdown files
