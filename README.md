@@ -1,6 +1,6 @@
-# Resume
+# Astro Pages CMS Resume
 
-Astro resume website backed by JSON content files and editable through Pages CMS, plus external generated content using the same data.
+Astro resume website backed by JSON content files and editable through [Pages CMS](https://pagescms.org), plus external generated content using the same data.
 
 ## Development
 
@@ -34,7 +34,7 @@ npm run generate:blog-data
 
 ## Deployment
 
-The "main" site (resume) is deployed to Netlify as a static Astro site.
+This site is deployed via Netlify as a static Astro site.
 
 Deploys are handled by Netlify CI/CD from GitHub. Normal deploy workflow:
 
@@ -85,9 +85,9 @@ npm run netlify:admin
 
 ### Deploys
 
-Netlify deploys are visible at <https://app.netlify.com/projects/capsudo/deploys>.
+Netlify deploys are visible at <https://app.netlify.com/projects/astro-pagescms-resume/deploys>.
 
-Note: This repo uses `master` as production branch, if Netlify defaults to `main`, change **Production branch** to `master`. This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/capsudo/configuration/deploys#branches-and-deploy-contexts).
+Note: This repo uses `master` as production branch, if Netlify defaults to `main`, change **Production branch** to `master`. This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/astro-pagescms-resume/configuration/deploys#branches-and-deploy-contexts).
 
 
 ### GitHub App Sync Setup (optional)
@@ -95,17 +95,17 @@ Note: This repo uses `master` as production branch, if Netlify defaults to `main
 This repo contains a workflow that pushes [generated content](#generated-content) to required repos. It uses GitHub App token instead of personal access token. To get this token a GitHub App needs to be setup:
 
 1. Go to <https://github.com/settings/apps/new>.
-2. Name it something like `resume-sync`.
+2. Name it something like `astro-pagescms-resume-sync`.
 3. Disable webhook if GitHub allows it, or leave webhook URL empty if not needed.
 4. Set repository permission **Contents** to **Read and write**.
 5. Keep default **Metadata** read permission.
 6. Install the app on selected repositories:
-   - `capsudo/resume`
+   - `capsudo/astro-pagescms-resume`
    - `capsudo/capsudo`
    - `capsudo/capsudo.github.io`
 7. Generate a private key and download the `.pem` file.
 
-Add repository variables and secrets in `capsudo/resume`:
+Add repository variables and secrets in `capsudo/astro-pagescms-resume`:
 
 1. Go to `Settings > Secrets and variables > Actions`.
 2. Add repository variable `APP_CLIENT_ID` with GitHub App client ID.
@@ -116,7 +116,7 @@ _Note: using GitHub App token instead of personal access token lets one app push
 
 ## Pages CMS
 
-Page CMS is the "UI admin page" where the content can be updated. It's accessible at <https://app.pagescms.org/capsudo/resume/master>
+Page CMS is the "UI admin page" where the content can be updated. It's accessible at <https://app.pagescms.org/capsudo/astro-pagescms-resume/master>
 
 Pages CMS reads and writes same JSON files Astro uses to render website.
 
@@ -144,7 +144,7 @@ This workflow:
 4. Pushes [generated/github-profile.md](./generated/github-profile.md) to `capsudo/capsudo` as `README.md`.
 5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to `capsudo/capsudo.github.io` as `src/data/about-page-data.json`.
 
-Note: Generated files are visible/downloadable from the workflow run page <https://github.com/capsudo/resume/actions/workflows/workflow.yml>.
+Note: Generated files are visible/downloadable from the workflow run page <https://github.com/capsudo/astro-pagescms-resume/actions/workflows/workflow.yml>.
 
 
 ### Markdown files
