@@ -1,10 +1,12 @@
 {
-  "name": "GNOME",
-  "slug": "gnome",
-  "iconUrl": "https://cdn.simpleicons.org/gnome/4A86CF",
-  "twitterUsername": "gnome",
-  "githubUsername": "GNOME",
-  "redditUsername": "gnome",
-  "githubProjectUrl": "https://github.com/GNOME",
-  "sortOrder": 20
+  "technology": {
+    "name": "GNOME",
+    "slug": "gnome",
+    "iconUrl": "https://cdn.simpleicons.org/gnome/4A86CF",
+    "twitterUsername": "gnome",
+    "githubUsername": "GNOME",
+    "redditUsername": "gnome",
+    "githubProjectUrl": "https://github.com/GNOME",
+    "sortOrder": 20
+  }
 }

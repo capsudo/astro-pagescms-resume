@@ -1,10 +1,12 @@
 {
-  "name": "Express.js",
-  "slug": "expressjs",
-  "iconUrl": "https://cdn.simpleicons.org/express/000000",
-  "twitterUsername": "expressjs",
-  "githubUsername": "expressjs",
-  "redditUsername": "node",
-  "githubProjectUrl": "https://github.com/expressjs/express",
-  "sortOrder": 30
+  "technology": {
+    "name": "Express.js",
+    "slug": "expressjs",
+    "iconUrl": "https://cdn.simpleicons.org/express/000000",
+    "twitterUsername": "expressjs",
+    "githubUsername": "expressjs",
+    "redditUsername": "node",
+    "githubProjectUrl": "https://github.com/expressjs/express",
+    "sortOrder": 30
+  }
 }

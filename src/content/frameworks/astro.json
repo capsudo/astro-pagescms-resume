@@ -1,10 +1,12 @@
 {
-  "name": "Astro",
-  "slug": "astro",
-  "iconUrl": "https://cdn.simpleicons.org/astro/BC52EE",
-  "twitterUsername": "astrodotbuild",
-  "githubUsername": "withastro",
-  "redditUsername": "astrojs",
-  "githubProjectUrl": "https://github.com/withastro/astro",
-  "sortOrder": 5
+  "technology": {
+    "name": "Astro",
+    "slug": "astro",
+    "iconUrl": "https://cdn.simpleicons.org/astro/BC52EE",
+    "twitterUsername": "astrodotbuild",
+    "githubUsername": "withastro",
+    "redditUsername": "astrojs",
+    "githubProjectUrl": "https://github.com/withastro/astro",
+    "sortOrder": 5
+  }
 }

@@ -1,10 +1,12 @@
 {
-  "name": "Flutter",
-  "slug": "flutter",
-  "iconUrl": "https://cdn.simpleicons.org/flutter/02569B",
-  "twitterUsername": "flutterdev",
-  "githubUsername": "flutter",
-  "redditUsername": "FlutterDev",
-  "githubProjectUrl": "https://github.com/flutter/flutter",
-  "sortOrder": 10
+  "technology": {
+    "name": "Flutter",
+    "slug": "flutter",
+    "iconUrl": "https://cdn.simpleicons.org/flutter/02569B",
+    "twitterUsername": "flutterdev",
+    "githubUsername": "flutter",
+    "redditUsername": "FlutterDev",
+    "githubProjectUrl": "https://github.com/flutter/flutter",
+    "sortOrder": 10
+  }
 }

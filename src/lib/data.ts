@@ -32,6 +32,10 @@ export type Technology = {
   sortOrder: number;
 };
 
+export type TechnologyContent = Technology | {
+  technology: Technology;
+};
+
 export type Project = {
   name: string;
   slug: string;
@@ -68,9 +72,9 @@ type TechnologyGroup = {
   items: Technology[];
 };
 
-const frameworkJsonModules = import.meta.glob<JsonModule<Technology>>("../content/frameworks/*.json", { eager: true });
-const languageJsonModules = import.meta.glob<JsonModule<Technology>>("../content/languages/*.json", { eager: true });
-const stackJsonModules = import.meta.glob<JsonModule<Technology>>("../content/stack/*.json", { eager: true });
+const frameworkJsonModules = import.meta.glob<JsonModule<TechnologyContent>>("../content/frameworks/*.json", { eager: true });
+const languageJsonModules = import.meta.glob<JsonModule<TechnologyContent>>("../content/languages/*.json", { eager: true });
+const stackJsonModules = import.meta.glob<JsonModule<TechnologyContent>>("../content/stack/*.json", { eager: true });
 const projectJsonModules = import.meta.glob<JsonModule<Project>>("../content/projects/*.json", { eager: true });
 const experienceJsonModules = import.meta.glob<JsonModule<Experience>>("../content/experiences/*.json", { eager: true });
 
@@ -81,11 +85,25 @@ function convertJsonModuleRecordToSortedArray<T extends { name: string; sortOrde
     .sort((leftItem, rightItem) => leftItem.sortOrder - rightItem.sortOrder || leftItem.name.localeCompare(rightItem.name));
 }
 
+function convertTechnologyJsonModuleRecordToSortedArray(jsonModuleRecord: Record<string, JsonModule<TechnologyContent>>): Technology[] {
+  return Object.values(jsonModuleRecord)
+    .map((jsonModule) => normalizeTechnologyContent(jsonModule.default))
+    .sort((leftItem, rightItem) => leftItem.sortOrder - rightItem.sortOrder || leftItem.name.localeCompare(rightItem.name));
+}
+
+function normalizeTechnologyContent(technologyContent: TechnologyContent): Technology {
+  if ("technology" in technologyContent) {
+    return technologyContent.technology;
+  }
+
+  return technologyContent;
+}
+
 export const identity = identityDataFromJson as Identity;
 export const social = socialDataFromJson as Social;
-export const frameworks = convertJsonModuleRecordToSortedArray(frameworkJsonModules);
-export const languages = convertJsonModuleRecordToSortedArray(languageJsonModules);
-export const stack = convertJsonModuleRecordToSortedArray(stackJsonModules);
+export const frameworks = convertTechnologyJsonModuleRecordToSortedArray(frameworkJsonModules);
+export const languages = convertTechnologyJsonModuleRecordToSortedArray(languageJsonModules);
+export const stack = convertTechnologyJsonModuleRecordToSortedArray(stackJsonModules);
 export const projects = convertJsonModuleRecordToSortedArray(projectJsonModules);
 export const experiences = convertJsonModuleRecordToSortedArray(experienceJsonModules);
 

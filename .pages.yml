@@ -2,6 +2,37 @@ media:
   input: public/media
   output: /media
 
+components:
+  technology:
+    type: object
+    label: Technology
+    fields:
+      - name: name
+        type: string
+        required: true
+      - name: slug
+        type: string
+        required: true
+        pattern: "^[a-z0-9-]+$"
+      - name: iconUrl
+        label: Icon URL
+        type: image
+      - name: twitterUsername
+        label: Twitter username
+        type: string
+      - name: githubUsername
+        label: GitHub username
+        type: string
+      - name: redditUsername
+        label: Reddit username
+        type: string
+      - name: githubProjectUrl
+        label: GitHub project URL
+        type: string
+      - name: sortOrder
+        label: Sort order
+        type: number
+
 content:
   - name: identity
     label: Identity
@@ -56,108 +87,39 @@ content:
     type: collection
     path: src/content/frameworks
     format: json
-    filename: "{slug}.json"
+    filename: "{fields.technology.slug}.json"
     view:
-      primary: name
-      sort: sortOrder
+      primary: technology.name
+      sort: technology.sortOrder
     fields:
-      - name: name
-        type: string
-        required: true
-      - name: slug
-        type: string
-        required: true
-        pattern: "^[a-z0-9-]+$"
-      - name: iconUrl
-        label: Icon URL
-        type: image
-      - name: twitterUsername
-        label: Twitter username
-        type: string
-      - name: githubUsername
-        label: GitHub username
-        type: string
-      - name: redditUsername
-        label: Reddit username
-        type: string
-      - name: githubProjectUrl
-        label: GitHub project URL
-        type: string
-      - name: sortOrder
-        label: Sort order
-        type: number
+      - name: technology
+        component: technology
 
   - name: languages
     label: Languages
     type: collection
     path: src/content/languages
     format: json
-    filename: "{slug}.json"
+    filename: "{fields.technology.slug}.json"
     view:
-      primary: name
-      sort: sortOrder
+      primary: technology.name
+      sort: technology.sortOrder
     fields:
-      - name: name
-        type: string
-        required: true
-      - name: slug
-        type: string
-        required: true
-        pattern: "^[a-z0-9-]+$"
-      - name: iconUrl
-        label: Icon URL
-        type: image
-      - name: twitterUsername
-        label: Twitter username
-        type: string
-      - name: githubUsername
-        label: GitHub username
-        type: string
-      - name: redditUsername
-        label: Reddit username
-        type: string
-      - name: githubProjectUrl
-        label: GitHub project URL
-        type: string
-      - name: sortOrder
-        label: Sort order
-        type: number
+      - name: technology
+        component: technology
 
   - name: stack
     label: Stack
     type: collection
     path: src/content/stack
     format: json
-    filename: "{slug}.json"
+    filename: "{fields.technology.slug}.json"
     view:
-      primary: name
-      sort: sortOrder
+      primary: technology.name
+      sort: technology.sortOrder
     fields:
-      - name: name
-        type: string
-        required: true
-      - name: slug
-        type: string
-        required: true
-        pattern: "^[a-z0-9-]+$"
-      - name: iconUrl
-        label: Icon URL
-        type: image
-      - name: twitterUsername
-        label: Twitter username
-        type: string
-      - name: githubUsername
-        label: GitHub username
-        type: string
-      - name: redditUsername
-        label: Reddit username
-        type: string
-      - name: githubProjectUrl
-        label: GitHub project URL
-        type: string
-      - name: sortOrder
-        label: Sort order
-        type: number
+      - name: technology
+        component: technology
 
   - name: projects
     label: Projects
@@ -192,27 +154,27 @@ content:
         options:
           collection: languages
           multiple: true
-          search: "name,slug"
-          value: "{slug}"
-          label: "{name}"
+          search: "fields.technology.name,fields.technology.slug"
+          value: "{fields.technology.slug}"
+          label: "{fields.technology.name}"
       - name: frameworkSlugs
         label: Frameworks
         type: reference
         options:
           collection: frameworks
           multiple: true
-          search: "name,slug"
-          value: "{slug}"
-          label: "{name}"
+          search: "fields.technology.name,fields.technology.slug"
+          value: "{fields.technology.slug}"
+          label: "{fields.technology.name}"
       - name: stackSlugs
         label: Stack
         type: reference
         options:
           collection: stack
           multiple: true
-          search: "name,slug"
-          value: "{slug}"
-          label: "{name}"
+          search: "fields.technology.name,fields.technology.slug"
+          value: "{fields.technology.slug}"
+          label: "{fields.technology.name}"
       - name: projectUrl
         label: Project URL
         type: string

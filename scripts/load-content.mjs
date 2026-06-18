@@ -7,9 +7,9 @@ const repositoryRootDirectory = new URL("..", import.meta.url);
 export async function loadCompleteContent() {
   const identity = await readJsonFile("src/content/identity.json");
   const social = await readJsonFile("src/content/social.json");
-  const frameworks = await readJsonDirectory("src/content/frameworks");
-  const languages = await readJsonDirectory("src/content/languages");
-  const stack = await readJsonDirectory("src/content/stack");
+  const frameworks = await readJsonDirectory("src/content/frameworks", normalizeTechnologyContent);
+  const languages = await readJsonDirectory("src/content/languages", normalizeTechnologyContent);
+  const stack = await readJsonDirectory("src/content/stack", normalizeTechnologyContent);
   const projects = await readJsonDirectory("src/content/projects");
   const experiences = await readJsonDirectory("src/content/experiences");
 
@@ -29,7 +29,7 @@ export async function loadCompleteContent() {
   };
 }
 
-async function readJsonDirectory(relativeDirectoryPath) {
+async function readJsonDirectory(relativeDirectoryPath, normalizeJsonObject = (jsonObject) => jsonObject) {
   const absoluteDirectoryUrl = new URL(`${relativeDirectoryPath}/`, repositoryRootDirectory);
   const directoryEntries = await readdir(absoluteDirectoryUrl, { withFileTypes: true });
   const jsonFileNames = directoryEntries
@@ -38,8 +38,13 @@ async function readJsonDirectory(relativeDirectoryPath) {
   const jsonObjects = await Promise.all(
     jsonFileNames.map((jsonFileName) => readJsonFile(join(relativeDirectoryPath, jsonFileName))),
   );
+  const normalizedJsonObjects = jsonObjects.map((jsonObject) => normalizeJsonObject(jsonObject));
 
-  return jsonObjects.sort((leftItem, rightItem) => leftItem.sortOrder - rightItem.sortOrder || leftItem.name.localeCompare(rightItem.name));
+  return normalizedJsonObjects.sort((leftItem, rightItem) => leftItem.sortOrder - rightItem.sortOrder || leftItem.name.localeCompare(rightItem.name));
+}
+
+function normalizeTechnologyContent(technologyContent) {
+  return technologyContent.technology ?? technologyContent;
 }
 
 async function readJsonFile(relativeFilePath) {

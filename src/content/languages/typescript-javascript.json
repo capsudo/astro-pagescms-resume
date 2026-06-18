@@ -1,10 +1,12 @@
 {
-  "name": "TypeScript / JavaScript",
-  "slug": "typescript-javascript",
-  "iconUrl": "https://cdn.simpleicons.org/typescript/3178C6",
-  "twitterUsername": "typescript",
-  "githubUsername": "microsoft",
-  "redditUsername": "typescript",
-  "githubProjectUrl": "https://github.com/microsoft/TypeScript",
-  "sortOrder": 10
+  "technology": {
+    "name": "TypeScript / JavaScript",
+    "slug": "typescript-javascript",
+    "iconUrl": "https://cdn.simpleicons.org/typescript/3178C6",
+    "twitterUsername": "typescript",
+    "githubUsername": "microsoft",
+    "redditUsername": "typescript",
+    "githubProjectUrl": "https://github.com/microsoft/TypeScript",
+    "sortOrder": 10
+  }
 }

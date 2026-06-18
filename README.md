@@ -92,18 +92,14 @@ Note: This repo uses `master` as production branch, if Netlify defaults to `main
 
 ## Pages CMS
 
-[.pages.yml](./.pages.yml) is Pages CMS configuration file.
-
-It tells Pages CMS:
-
-- where editable content lives
-- which fields each content type has
-- how collections are named in CMS UI
-- where uploaded media should be stored
+Page CMS is the "UI admin page" where the content can be updated. It's accessible at <https://app.pagescms.org/capsudo/resume/master>
 
 Pages CMS reads and writes same JSON files Astro uses to render website.
 
-Page CMS is accessible at <https://app.pagescms.org/capsudo/resume/master>
+It uses [.pages.yml](./.pages.yml) to:
+- derive the collections and fields to display: content.name/label/fields
+- find/load the data (editable content): content.type/path/format
+- where uploaded media should be stored: media.output
 
 Each update on Page CMS produces a commit that modifies the JSON data. This itself triggers:
 - Netlify deploy
@@ -204,6 +200,9 @@ Editable resume data lives in [src/content](./src/content).
 
 Each collection item is a JSON file. `slug` is stable ID used by other content files.
 
+Note: Framework, language, and stack entries use a nested `technology` object because when using [components](https://pagescms.org/docs/configuration/components/), Pages CMS produces named object fields like `{ "technology": { "name": "React", "slug": "react" } }` instead if a flat `{ "name": "React", "slug": "react" }`.
+Astro and [Node loader](./scripts/load-content.mjs) normalize this nested CMS shape back to flat `Technology` objects.
+
 Note: Resume site uses public + private data. Generated content such as Blog's About page, social bios and Github profile use only public data.
 
 ### Website Code
@@ -233,7 +232,7 @@ React shadcn components are not used but instead local Astro components in [src/
 
 Generation scripts live in [scripts](./scripts).
 
-- [load-content.mjs](./scripts/load-content.mjs): shared Node content loader
+- [load-content.mjs](./scripts/load-content.mjs): Node content loader for [generated content](#generated-content).
 - [generate-markdown-files.mjs](./scripts/generate-markdown-files.mjs): writes markdown/profile bio outputs
 - [generate-blog-about-data.mjs](./scripts/generate-blog-about-data.mjs): writes blog about-page JSON
 

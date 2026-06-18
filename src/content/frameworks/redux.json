@@ -1,10 +1,12 @@
 {
-  "name": "Redux",
-  "slug": "redux",
-  "iconUrl": "https://cdn.simpleicons.org/redux/764ABC",
-  "twitterUsername": "reduxjs",
-  "githubUsername": "reduxjs",
-  "redditUsername": "reactjs",
-  "githubProjectUrl": "https://github.com/reduxjs/redux",
-  "sortOrder": 50
+  "technology": {
+    "name": "Redux",
+    "slug": "redux",
+    "iconUrl": "https://cdn.simpleicons.org/redux/764ABC",
+    "twitterUsername": "reduxjs",
+    "githubUsername": "reduxjs",
+    "redditUsername": "reactjs",
+    "githubProjectUrl": "https://github.com/reduxjs/redux",
+    "sortOrder": 50
+  }
 }

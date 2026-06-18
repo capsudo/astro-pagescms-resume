@@ -1,10 +1,12 @@
 {
-  "name": "Rust",
-  "slug": "rust",
-  "iconUrl": "https://cdn.simpleicons.org/rust/000000",
-  "twitterUsername": "rustlang",
-  "githubUsername": "rust-lang",
-  "redditUsername": "rust",
-  "githubProjectUrl": "https://github.com/rust-lang/rust",
-  "sortOrder": 30
+  "technology": {
+    "name": "Rust",
+    "slug": "rust",
+    "iconUrl": "https://cdn.simpleicons.org/rust/000000",
+    "twitterUsername": "rustlang",
+    "githubUsername": "rust-lang",
+    "redditUsername": "rust",
+    "githubProjectUrl": "https://github.com/rust-lang/rust",
+    "sortOrder": 30
+  }
 }
