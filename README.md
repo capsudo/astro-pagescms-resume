@@ -36,29 +36,7 @@ npm run generate:blog-data
 
 This site is deployed via Netlify as a static Astro site.
 
-Deploys are handled by Netlify CI/CD from GitHub. Normal deploy workflow:
-
-```bash
-git add .
-git commit -m "Describe change"
-git push
-```
-
-### Set GitHub Workflow Scope (optional)
-
-This repo contains GitHub Actions workflow files under [.github/workflows](./.github/workflows).
-
-If using git through GitHub authentication, GitHub will reject pushes that create or update workflow files unless current GitHub auth token has `workflow` scope. If push fails with message like `refusing to allow an OAuth App to create or update workflow`, refresh auth from Nix shell:
-
-
-```bash
-nix develop
-npm run github:scope
-```
-
-_`gh` is provided by [flake.nix](./flake.nix), so it does not need to be installed globally._
-
-> No need to `gh login` again.
+Deploys are handled by Netlify CI/CD from GitHub. This means that website is published everytime you push a commit to the production branch.
 
 ### Link Netlify site
 
@@ -75,9 +53,9 @@ npm run netlify:link
 
 _Netlify CLI is provided by [flake.nix](./flake.nix) so it does not need to be installed globally with npm._
 
-### Open the Netlify admin URL
+### Set production URL
 
-Site name, production URL, deploy hooks, and connected Git repository are configured in Netlify, not in `netlify.toml`.
+Site name, production URL, deploy hooks, and connected Git repository are configured in Netlify admin, not in `netlify.toml`.
 
 ```bash
 npm run netlify:admin
@@ -85,10 +63,10 @@ npm run netlify:admin
 
 ### Deploys
 
-Netlify deploys are visible at <https://app.netlify.com/projects/astro-pagescms-resume/deploys>.
+Netlify deploys are visible at <https://app.netlify.com/projects/capsudo/deploys>.
 
 > This repo uses `master` as production branch, if Netlify defaults to `main`, change **Production branch** to `master`.  
-> This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/astro-pagescms-resume/configuration/deploys#branches-and-deploy-contexts).
+> This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/capsudo/configuration/deploys#branches-and-deploy-contexts).
 
 ### Edit content in Pages CMS
 
@@ -162,6 +140,36 @@ This workflow:
 5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to `capsudo/capsudo.github.io` as `src/data/about-page-data.json`.
 
 > Generated files are visible/downloadable from the workflow run page <https://github.com/capsudo/astro-pagescms-resume/actions/workflows/workflow.yml>.
+
+## Troubleshooting
+
+### Check Netlify deploys
+
+Netlify deploys are visible at <https://app.netlify.com/projects/astro-pagescms-resume/deploys>.
+
+### Check Github workflow
+
+Github workflows are visible at <https://github.com/capsudo/astro-pagescms-resume/actions>.
+
+### Set Netlify production branch
+
+> This repo uses `master` as production branch, if Netlify defaults to `main`, change **Production branch** to `master`.  
+> This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/capsudo/configuration/deploys#branches-and-deploy-contexts).
+
+### Set GitHub Workflow Scope
+
+This repo contains GitHub Actions workflow files under [.github/workflows](./.github/workflows).
+
+If using git through GitHub authentication, GitHub will reject pushes that create or update workflow files unless current GitHub auth token has `workflow` scope. If push fails with message like `refusing to allow an OAuth App to create or update workflow`, refresh auth from Nix shell:
+
+```bash
+nix develop
+npm run github:scope
+```
+
+_`gh` is provided by [flake.nix](./flake.nix), so it does not need to be installed globally._
+
+> No need to `gh login` again.
 
 ## Project Structure
 
