@@ -1,4 +1,5 @@
 import identityDataFromJson from "../content/identity.json";
+import socialDataFromJson from "../content/social.json";
 
 export type TechnologyCategoryName = "frameworks" | "languages" | "stack";
 
@@ -10,11 +11,14 @@ export type Identity = {
   email: string;
   phone: string;
   location: string;
+  availability: string;
+  profileImageUrl: string;
+};
+
+export type Social = {
   githubUsername: string;
   redditUsername: string;
   twitterUsername: string;
-  availability: string;
-  profileImageUrl: string;
 };
 
 export type Technology = {
@@ -78,6 +82,7 @@ function convertJsonModuleRecordToSortedArray<T extends { name: string; sortOrde
 }
 
 export const identity = identityDataFromJson as Identity;
+export const social = socialDataFromJson as Social;
 export const frameworks = convertJsonModuleRecordToSortedArray(frameworkJsonModules);
 export const languages = convertJsonModuleRecordToSortedArray(languageJsonModules);
 export const stack = convertJsonModuleRecordToSortedArray(stackJsonModules);

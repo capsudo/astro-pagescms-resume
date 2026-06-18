@@ -2,21 +2,6 @@ media:
   input: public/media
   output: /media
 
-components:
-  technologySocialFields:
-    type: object
-    label: Social usernames
-    fields:
-      - name: twitterUsername
-        label: Twitter username
-        type: string
-      - name: githubUsername
-        label: GitHub username
-        type: string
-      - name: redditUsername
-        label: Reddit username
-        type: string
-
 content:
   - name: identity
     label: Identity
@@ -44,6 +29,18 @@ content:
         type: string
       - name: location
         type: string
+      - name: availability
+        type: string
+      - name: profileImageUrl
+        label: Profile image URL
+        type: image
+
+  - name: social
+    label: Social usernames
+    type: file
+    path: src/content/social.json
+    format: json
+    fields:
       - name: githubUsername
         label: GitHub username
         type: string
@@ -53,11 +50,6 @@ content:
       - name: twitterUsername
         label: Twitter username
         type: string
-      - name: availability
-        type: string
-      - name: profileImageUrl
-        label: Profile image URL
-        type: image
 
   - name: frameworks
     label: Frameworks

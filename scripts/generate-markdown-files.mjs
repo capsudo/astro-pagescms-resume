@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { writeFile } from "node:fs/promises";
 import { loadCompleteContent, createReadablePeriodLabel } from "./load-content.mjs";
 
 const outputDirectory = new URL("../generated/", import.meta.url);
@@ -16,7 +16,7 @@ await writeFile(new URL("github-bio.md", outputDirectory), githubBioMarkdown);
 
 console.log("Generated markdown files in generated/.");
 
-function createGithubProfileMarkdown({ identity, projects, experiences, technologiesBySlug }) {
+function createGithubProfileMarkdown({ identity, social, projects, experiences, technologiesBySlug }) {
   const projectLines = projects
     .slice(0, 4)
     .map((project) => {
@@ -50,9 +50,9 @@ ${experienceLines}
 
 ## Links
 
-- GitHub: https://github.com/${identity.githubUsername}
-- Twitter: https://twitter.com/${identity.twitterUsername}
-- Reddit: https://www.reddit.com/user/${identity.redditUsername}
+- GitHub: https://github.com/${social.githubUsername}
+- Twitter: https://twitter.com/${social.twitterUsername}
+- Reddit: https://www.reddit.com/user/${social.redditUsername}
 `;
 }
 

@@ -164,6 +164,7 @@ Copy-paste the output to respective websites profile pages.
 │   │   └── ui/
 │   ├── content/
 │   │   ├── identity.json
+│   │   ├── social.json
 │   │   ├── experiences/
 │   │   ├── frameworks/
 │   │   ├── languages/
@@ -193,14 +194,17 @@ Copy-paste the output to respective websites profile pages.
 
 Editable resume data lives in [src/content](./src/content).
 
-- [identity.json](./src/content/identity.json): name, description, contact info, location, social usernames
-- [experiences](./src/content/experiences): work timeline entries
-- [projects](./src/content/projects): project cards and project metadata
-- [frameworks](./src/content/frameworks): frameworks shown in stack and project tags
-- [languages](./src/content/languages): languages shown in stack and project tags
-- [stack](./src/content/stack): tools and desktop/dev environment items
+- [identity.json](./src/content/identity.json): resume identity, description, contact info, location [private]
+- [social.json](./src/content/social.json): social usernames [public]
+- [experiences](./src/content/experiences): work timeline entries [private]
+- [projects](./src/content/projects): project cards and project metadata [private]
+- [frameworks](./src/content/frameworks): frameworks shown in stack and project tags [public]
+- [languages](./src/content/languages): languages shown in stack and project tags [public]
+- [stack](./src/content/stack): tools and desktop/dev environment items [public]
 
 Each collection item is a JSON file. `slug` is stable ID used by other content files.
+
+Note: Resume site uses public + private data. Generated content such as Blog's About page, social bios and Github profile use only public data.
 
 ### Website Code
 
@@ -220,6 +224,12 @@ React shadcn components are not used but instead local Astro components in [src/
 ### Generated Content
 
 [generated](./generated) contains files derived from source content used outside the resume site, see [Generated Content](#generated-content)
+
+- [generated/github-profile.md](./generated/github-profile.md): generated GitHub profile README
+- [generated/github-bio.md](./generated/github-bio.md): short GitHub profile bio
+- [generated/twitter-bio.md](./generated/twitter-bio.md): short Twitter profile bio
+- [generated/reddit-bio.md](./generated/reddit-bio.md): short Reddit profile bio
+- [generated/blog-about-page-data.json](./generated/blog-about-page-data.json): public blog about-page data
 
 Generation scripts live in [scripts](./scripts).
 

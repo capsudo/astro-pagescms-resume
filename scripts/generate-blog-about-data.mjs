@@ -1,28 +1,37 @@
 import { mkdir, writeFile } from "node:fs/promises";
-import { loadCompleteContent, createReadablePeriodLabel } from "./load-content.mjs";
+import { loadCompleteContent } from "./load-content.mjs";
 
 const outputDirectory = new URL("../generated/", import.meta.url);
 const content = await loadCompleteContent();
 
-// Shape is intentionally boring JSON. Blog repo can consume or transform it.
+// Public export only. Do not add identity, projects, experiences, email, or phone.
 const blogAboutPageData = {
-  identity: content.identity,
-  technologies: {
-    frameworks: content.frameworks,
-    languages: content.languages,
-    stack: content.stack,
+  social: {
+    githubUsername: content.social.githubUsername,
+    redditUsername: content.social.redditUsername,
+    twitterUsername: content.social.twitterUsername,
   },
-  projects: content.projects.map((project) => ({
-    ...project,
-    periodLabel: createReadablePeriodLabel(project.periodStartDate, project.periodEndDate),
-  })),
-  experiences: content.experiences.map((experience) => ({
-    ...experience,
-    periodLabel: createReadablePeriodLabel(experience.periodStartDate, experience.periodEndDate),
-  })),
+  technologies: {
+    frameworks: content.frameworks.map(createPublicTechnologyData),
+    languages: content.languages.map(createPublicTechnologyData),
+    stack: content.stack.map(createPublicTechnologyData),
+  },
 };
 
 await mkdir(outputDirectory, { recursive: true });
 await writeFile(new URL("blog-about-page-data.json", outputDirectory), `${JSON.stringify(blogAboutPageData, null, 2)}\n`);
 
 console.log("Generated blog about-page data in generated/blog-about-page-data.json.");
+
+function createPublicTechnologyData(technology) {
+  return {
+    name: technology.name,
+    slug: technology.slug,
+    iconUrl: technology.iconUrl,
+    twitterUsername: technology.twitterUsername,
+    githubUsername: technology.githubUsername,
+    redditUsername: technology.redditUsername,
+    githubProjectUrl: technology.githubProjectUrl,
+    sortOrder: technology.sortOrder,
+  };
+}

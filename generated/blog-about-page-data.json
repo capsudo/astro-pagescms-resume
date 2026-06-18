@@ -1,17 +1,8 @@
 {
-  "identity": {
-    "name": "Adrien Courty",
-    "headline": "Product-minded software engineer",
-    "shortDescription": "I build calm, practical software across web, mobile, desktop, and open source systems.",
-    "longDescription": "I like tools that feel simple because the hard edges were handled with care. My work usually sits between product thinking, frontend craft, developer experience, and maintainable systems.",
-    "email": "adrien@example.com",
-    "phone": "+33 6 00 00 00 00",
-    "location": "Paris, France",
+  "social": {
     "githubUsername": "capsudo",
     "redditUsername": "capsudo",
-    "twitterUsername": "capsudo",
-    "availability": "Available for senior product engineering roles and focused freelance missions",
-    "profileImageUrl": ""
+    "twitterUsername": "capsudo"
   },
   "technologies": {
     "frameworks": [
@@ -160,102 +151,5 @@
         "sortOrder": 30
       }
     ]
-  },
-  "projects": [
-    {
-      "name": "Resume operating system",
-      "slug": "resume-operating-system",
-      "periodStartDate": "2026-06-01",
-      "periodEndDate": "",
-      "company": "Personal",
-      "description": "Astro resume backed by Git content, Pages CMS, generated profile markdown, and portable about-page data for the blog.",
-      "languageSlugs": [
-        "typescript-javascript"
-      ],
-      "frameworkSlugs": [
-        "astro",
-        "react"
-      ],
-      "stackSlugs": [
-        "vscode",
-        "nixos"
-      ],
-      "projectUrl": "https://github.com/capsudo/resume",
-      "featured": true,
-      "sortOrder": 10,
-      "periodLabel": "Jun 2026 - Present"
-    },
-    {
-      "name": "Mobile field kit",
-      "slug": "mobile-field-kit",
-      "periodStartDate": "2025-03-01",
-      "periodEndDate": "2025-12-01",
-      "company": "Client work",
-      "description": "Offline-first mobile workflow for structured field notes, device sync, and fast review loops.",
-      "languageSlugs": [
-        "dart",
-        "typescript-javascript"
-      ],
-      "frameworkSlugs": [
-        "flutter",
-        "firebase"
-      ],
-      "stackSlugs": [
-        "vscode"
-      ],
-      "projectUrl": "",
-      "featured": true,
-      "sortOrder": 20,
-      "periodLabel": "Mar 2025 - Dec 2025"
-    },
-    {
-      "name": "Desktop workbench",
-      "slug": "desktop-workbench",
-      "periodStartDate": "2024-08-01",
-      "periodEndDate": "2025-02-01",
-      "company": "Open source",
-      "description": "GNOME-friendly desktop utility for keeping local developer scripts visible, searchable, and repeatable.",
-      "languageSlugs": [
-        "typescript-javascript",
-        "python"
-      ],
-      "frameworkSlugs": [
-        "expressjs",
-        "react",
-        "redux"
-      ],
-      "stackSlugs": [
-        "gnome",
-        "nixos"
-      ],
-      "projectUrl": "",
-      "featured": false,
-      "sortOrder": 30,
-      "periodLabel": "Aug 2024 - Feb 2025"
-    }
-  ],
-  "experiences": [
-    {
-      "name": "Senior Product Engineer",
-      "slug": "senior-product-engineer",
-      "location": "Remote / Paris",
-      "periodStartDate": "2024-01-01",
-      "periodEndDate": "",
-      "company": "Independent",
-      "description": "Designed and shipped web and mobile products with small teams. Focused on product clarity, clean implementation paths, and maintainable delivery habits.",
-      "sortOrder": 10,
-      "periodLabel": "Jan 2024 - Present"
-    },
-    {
-      "name": "Frontend Systems Engineer",
-      "slug": "frontend-systems-engineer",
-      "location": "Paris, France",
-      "periodStartDate": "2021-05-01",
-      "periodEndDate": "2023-12-01",
-      "company": "Product studio",
-      "description": "Built interface systems, internal tools, and deployment flows for customer-facing applications. Helped teams reduce UI drift and release friction.",
-      "sortOrder": 20,
-      "periodLabel": "May 2021 - Dec 2023"
-    }
-  ]
+  }
 }
