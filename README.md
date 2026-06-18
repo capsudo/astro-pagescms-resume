@@ -1,6 +1,6 @@
 # Resume
 
-Astro resume website backed by JSON content files and editable through Pages CMS, plus external markdown files used in social profiles.
+Astro resume website backed by JSON content files and editable through Pages CMS, plus external generated content using the same data.
 
 ## Development
 
@@ -23,6 +23,13 @@ Build static site:
 
 ```bash
 npm run build
+```
+
+Build [Generated Content](#generated-content):
+
+```bash
+npm run generate:markdown
+npm run generate:blog-data
 ```
 
 ## Deployment
@@ -80,14 +87,8 @@ npm run netlify:admin
 
 Netlify deploys are visible at <https://app.netlify.com/projects/capsudo/deploys>.
 
-Note: This repo uses `master` as production branch, ff Netlify defaults to `main`, change **Production branch** to `master`. This is configured under <https://app.netlify.com/projects/capsudo/configuration/deploys#branches-and-deploy-contexts>.
+Note: This repo uses `master` as production branch, if Netlify defaults to `main`, change **Production branch** to `master`. This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/capsudo/configuration/deploys#branches-and-deploy-contexts).
 
-## Generate derived files
-
-```bash
-npm run generate:markdown
-npm run generate:blog-data
-```
 
 ## Pages CMS
 
@@ -102,6 +103,38 @@ It tells Pages CMS:
 
 Pages CMS reads and writes same JSON files Astro uses to render website.
 
+Page CMS is accessible at <https://app.pagescms.org/capsudo/resume/master>
+
+Each update on Page CMS produces a commit that modifies the JSON data. This itself triggers:
+- Netlify deploy
+- Github worfkow that produce generated content
+
+
+## Generated Content
+
+This repo also contains content generated from the same JSON data. It produces markdown files and data used by another astro site page (blog/about page).
+
+Those files can be generated locally (see [Development](#development)) but are built automatically by the github workflow [build-generated-content.yml](.github/workflows/build-generated-content.yml).
+
+
+### Markdown files
+
+Long bio visible on top of [Github user page](https://github.com/capsudo)
+- [generated/github-profile](./generated/github-profile.md) => [GitHub "README" profile](https://github.com/capsudo/capsudo/README.md)
+
+Copy paste that raw markdown to the README and commit.
+
+Short bios for social profiles:
+- [generated/github-bio](./generated/github-bio.md) => [Github](https://github.com/settings/profile)
+- [generated/twitter-bio](./generated/twitter-bio.md) => [Twitter](https://x.com/settings/profile)
+- [generated/reddit-bio](./generated/reddit-bio.md) => [Reddit](https://www.reddit.com/settings/profile)
+
+Copy-paste the output to respective websites profile pages.
+
+### Blog About page data
+
+- [generated/blog-about-page-data.json](./generated/blog-about-page-data.json): JSON data for [blog](https://github.com/capsudo/capsudo.github.io)'s About page
+
 ## Project Structure
 
 ```text
@@ -114,9 +147,11 @@ Pages CMS reads and writes same JSON files Astro uses to render website.
 ├── flake.lock
 ├── flake.nix
 ├── generated/
-│   ├── bios/
-│   ├── blog/
-│   └── github-profile/
+│   ├── github-profile.md
+│   ├── github-bio.md
+│   ├── twitter-bio.md
+│   ├── reddit-bio.md
+│   └── blog-about-page-data.json
 ├── public/
 │   └── media/
 ├── scripts/
@@ -183,11 +218,7 @@ React shadcn components are not used but instead local Astro components in [src/
 
 ### Generated Content
 
-[generated](./generated) contains files derived from source content used outside the resume:
-
-- [generated/github-profile](./generated/github-profile): generated [GitHub profile README](https://github.com/capsudo/capsudo/README.md)
-- [generated/bios](./generated/bios): short bio files for social profiles
-- [generated/blog](./generated/blog): JSON data for [blog](https://github.com/capsudo/capsudo.github.io) about page
+[generated](./generated) contains files derived from source content used outside the resume site, see [Generated Content](#generated-content)
 
 Generation scripts live in [scripts](./scripts).
 

@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { loadCompleteContent, createReadablePeriodLabel } from "./load-content.mjs";
 
-const outputDirectory = new URL("../generated/blog/", import.meta.url);
+const outputDirectory = new URL("../generated/", import.meta.url);
 const content = await loadCompleteContent();
 
 // Shape is intentionally boring JSON. Blog repo can consume or transform it.
@@ -23,6 +23,6 @@ const blogAboutPageData = {
 };
 
 await mkdir(outputDirectory, { recursive: true });
-await writeFile(new URL("about-page-data.json", outputDirectory), `${JSON.stringify(blogAboutPageData, null, 2)}\n`);
+await writeFile(new URL("blog-about-page-data.json", outputDirectory), `${JSON.stringify(blogAboutPageData, null, 2)}\n`);
 
-console.log("Generated blog about-page data in generated/blog/about-page-data.json.");
+console.log("Generated blog about-page data in generated/blog-about-page-data.json.");

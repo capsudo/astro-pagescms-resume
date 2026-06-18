@@ -9,12 +9,10 @@ const twitterBioMarkdown = createShortBioMarkdown(content, 160);
 const redditBioMarkdown = createShortBioMarkdown(content, 420);
 const githubBioMarkdown = createShortBioMarkdown(content, 300);
 
-await mkdir(new URL("github-profile/", outputDirectory), { recursive: true });
-await mkdir(new URL("bios/", outputDirectory), { recursive: true });
-await writeFile(new URL("github-profile/README.md", outputDirectory), githubProfileMarkdown);
-await writeFile(new URL("bios/twitter-bio.md", outputDirectory), twitterBioMarkdown);
-await writeFile(new URL("bios/reddit-bio.md", outputDirectory), redditBioMarkdown);
-await writeFile(new URL("bios/github-bio.md", outputDirectory), githubBioMarkdown);
+await writeFile(new URL("github-profile.md", outputDirectory), githubProfileMarkdown);
+await writeFile(new URL("twitter-bio.md", outputDirectory), twitterBioMarkdown);
+await writeFile(new URL("reddit-bio.md", outputDirectory), redditBioMarkdown);
+await writeFile(new URL("github-bio.md", outputDirectory), githubBioMarkdown);
 
 console.log("Generated markdown files in generated/.");
 
