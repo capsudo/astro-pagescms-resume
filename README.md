@@ -59,7 +59,6 @@ npm run github:scope
 
 _`gh` is provided by [flake.nix](./flake.nix), so it does not need to be installed globally._
 
-
 ### Link Netlify site
 
 Link this local repository to a Netlify site:
@@ -89,7 +88,6 @@ Netlify deploys are visible at <https://app.netlify.com/projects/astro-pagescms-
 
 Note: This repo uses `master` as production branch, if Netlify defaults to `main`, change **Production branch** to `master`. This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/astro-pagescms-resume/configuration/deploys#branches-and-deploy-contexts).
 
-
 ### GitHub App Sync Setup (optional)
 
 This repo contains a workflow that pushes [generated content](#generated-content) to required repos. It uses GitHub App token instead of personal access token. To get this token a GitHub App needs to be setup:
@@ -113,8 +111,7 @@ Add repository variables and secrets in `capsudo/astro-pagescms-resume`:
 
 _Note: using GitHub App token instead of personal access token lets one app push generated files to selected repos with narrow permissions._
 
-
-## Pages CMS
+### Edit content in Pages CMS
 
 Page CMS is the "UI admin page" where the content can be updated. It's accessible at <https://app.pagescms.org/capsudo/astro-pagescms-resume/master>
 
@@ -129,23 +126,9 @@ Each update on Page CMS produces a commit that modifies the JSON data. This itse
 - Netlify deploy
 - GitHub workflow that produces and syncs generated content
 
-
 ## Generated Content
 
 This repo also contains content generated from the same JSON data. It produces markdown files and data used by another astro site page (blog/about page).
-
-Those files can be generated locally (see [Development](#development)) but are built automatically by the GitHub workflow [workflow.yml](.github/workflows/workflow.yml).
-
-This workflow:
-
-1. Generates markdown files.
-2. Generates blog about-page JSON.
-3. Uploads all generated files as workflow artifact named `generated-content`.
-4. Pushes [generated/github-profile.md](./generated/github-profile.md) to `capsudo/capsudo` as `README.md`.
-5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to `capsudo/capsudo.github.io` as `src/data/about-page-data.json`.
-
-Note: Generated files are visible/downloadable from the workflow run page <https://github.com/capsudo/astro-pagescms-resume/actions/workflows/workflow.yml>.
-
 
 ### Markdown files
 
@@ -161,6 +144,21 @@ Short bios for social profiles:
 
 JSON data for [blog](https://github.com/capsudo/capsudo.github.io)'s About page:
 - [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) => pushed automatically to [github.com/capsudo/capsudo.github.io/src/data/about-page-data.json](https://github.com/capsudo/capsudo.github.io/src/data/about-page-data.json).
+
+### Content generation
+
+Those files can be generated locally (see [Development](#development)).
+They are also built automatically and pushed to respective repos by the GitHub workflow [workflow.yml](.github/workflows/workflow.yml).
+
+This workflow:
+
+1. Generates markdown files.
+2. Generates blog about-page JSON.
+3. Uploads all generated files as workflow artifact named `generated-content`.
+4. Pushes [generated/github-profile.md](./generated/github-profile.md) to `capsudo/capsudo` as `README.md`.
+5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to `capsudo/capsudo.github.io` as `src/data/about-page-data.json`.
+
+Note: Generated files are visible/downloadable from the workflow run page <https://github.com/capsudo/astro-pagescms-resume/actions/workflows/workflow.yml>.
 
 ## Project Structure
 
