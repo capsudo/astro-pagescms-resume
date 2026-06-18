@@ -4,10 +4,13 @@ Astro resume website backed by JSON content files and editable through [Pages CM
 
 ## Development
 
-Enter Nix shell:
+Clone, enter the Nix shell:
 
 ```bash
+git clone https://github.com/capsudo/astro-pagescms-resume
+cd astro-pagescms-resume
 nix develop
+
 ```
 
 The shell provides Node, npm, Git, GitHub CLI, and Netlify CLI from pinned Nixpkgs.
@@ -36,8 +39,6 @@ npm run generate:blog-data
 
 This site is deployed via Netlify as a static Astro site.
 
-Deploys are handled by Netlify CI/CD from GitHub. This means that website is published everytime you push a commit to the production branch.
-
 ### Link Netlify site
 
 Link this local repository to a Netlify site:
@@ -53,20 +54,13 @@ npm run netlify:link
 
 _Netlify CLI is provided by [flake.nix](./flake.nix) so it does not need to be installed globally with npm._
 
-### Set production URL
+### Push
 
-Site name, production URL, deploy hooks, and connected Git repository are configured in Netlify admin, not in `netlify.toml`.
+Deploys are handled by Netlify CI/CD from GitHub. This means that website is published everytime you push a commit to the production branch.
 
-```bash
-npm run netlify:admin
-```
+### Setup Pages CMS
 
-### Deploys
-
-Netlify deploys are visible at <https://app.netlify.com/projects/capsudo/deploys>.
-
-> This repo uses `master` as production branch, if Netlify defaults to `main`, change **Production branch** to `master`.  
-> This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/capsudo/configuration/deploys#branches-and-deploy-contexts).
+Open <https://app.pagescms.org> Click cog icon "Manage Github App" then give access to this repo 
 
 ### Edit content in Pages CMS
 
@@ -85,24 +79,32 @@ Each update on Page CMS produces a commit that modifies the JSON data. This itse
 
 ### GitHub App Sync Setup (optional)
 
-This repo contains a workflow that pushes [generated content](#generated-content) to required repos. It uses GitHub App token instead of personal access token. To get this token a GitHub App needs to be setup:
+This repo contains a workflow that pushes [generated content](#generated-content) to required repos. It uses GitHub App token instead of personal access token. To get this token a GitHub App needs to be installed.
 
+Create the GitHub App
 1. Go to <https://github.com/settings/apps/new>.
-2. Name it something like `astro-pagescms-resume-allow-push`.
-3. Disable webhook if GitHub allows it, or leave webhook URL empty if not needed.
+2. Name it something like `astro-pagescms-resume-allow-push`. Homepage URL = https://github.com/capsudo/astro-pagescms-resume
+3. Disable webhook if GitHub allows it (uncheck Active), or leave webhook URL empty if not needed.
 4. Set repository permission **Contents** to **Read and write**.
 5. Keep default **Metadata** read permission.
-6. Install the app on selected repositories:
+6. Click "Create Github App"
+7. Generate a private key and download the `.pem` file.
+8. Scroll up to the top of the [page](https://github.com/settings/apps/astro-pagescms-resume-allow-push) and copy the App `Client ID`.
+
+Install the GitHub App
+1. Click "Install the app" (left menu on the top)
+2. Chose current user
+3. Chose "Only select repositories" and select those repositories:
    - `capsudo/astro-pagescms-resume`
    - `capsudo/capsudo`
    - `capsudo/capsudo.github.io`
-7. Generate a private key and download the `.pem` file.
+4. Click Install.
 
 Add repository variables and secrets in `capsudo/astro-pagescms-resume`:
 
-1. Go to `Settings > Secrets and variables > Actions`.
-2. Add repository variable `APP_CLIENT_ID` with GitHub App client ID.
-3. Add repository secret `APP_PRIVATE_KEY` with full `.pem` private key content.
+1. Go to `Settings > Secrets and variables > Actions`. https://github.com/capsudo/astro-pagescms-resume/settings/secrets/actions 
+3. In "Secrets" tab click "Add repository secret" `APP_PRIVATE_KEY` with full `.pem` private key content.
+2. Select "Variables" tab then click "Add repository variable" `APP_CLIENT_ID` with GitHub App client ID.
 
 > Using GitHub App token instead of personal access token lets one app push generated files to selected repos with narrow permissions.
 
