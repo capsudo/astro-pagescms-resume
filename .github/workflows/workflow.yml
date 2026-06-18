@@ -1,4 +1,4 @@
-name: Sync generated content
+name: Generate and push content
 
 on:
   push:
@@ -26,7 +26,7 @@ env:
   BLOG_TARGET_PATH: src/data/about-page-data.json
 
 jobs:
-  sync-generated-content:
+  generate-and-push-content:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout resume source

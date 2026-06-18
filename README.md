@@ -88,7 +88,7 @@ Each update on Page CMS produces a commit that modifies the JSON data. This itse
 This repo contains a workflow that pushes [generated content](#generated-content) to required repos. It uses GitHub App token instead of personal access token. To get this token a GitHub App needs to be setup:
 
 1. Go to <https://github.com/settings/apps/new>.
-2. Name it something like `astro-pagescms-resume-sync`.
+2. Name it something like `astro-pagescms-resume-allow-push`.
 3. Disable webhook if GitHub allows it, or leave webhook URL empty if not needed.
 4. Set repository permission **Contents** to **Read and write**.
 5. Keep default **Metadata** read permission.
