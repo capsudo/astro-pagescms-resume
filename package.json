@@ -7,6 +7,7 @@
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro check && ASTRO_TELEMETRY_DISABLED=1 astro build",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "github:scope": "gh auth refresh -h github.com -s workflow",
     "netlify:login": "netlify login",
     "netlify:link": "netlify init",
     "netlify:admin": "netlify open",

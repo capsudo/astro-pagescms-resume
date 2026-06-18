@@ -37,6 +37,22 @@ git commit -m "Describe change"
 git push
 ```
 
+### Set GitHub Workflow Scope
+
+This repo contains GitHub Actions workflow files under [.github/workflows](./.github/workflows).
+
+GitHub rejects pushes that create or update workflow files unless current GitHub auth token has `workflow` scope. If push fails with message like `refusing to allow an OAuth App to create or update workflow`, refresh auth from Nix shell:
+
+Note: No need to `gh login` if already logged globally.
+
+```bash
+nix develop
+npm run github:scope
+```
+
+_`gh` is provided by [flake.nix](./flake.nix), so it does not need to be installed globally._
+
+
 ### Link Netlify site
 
 Link this local repository to a Netlify site:
