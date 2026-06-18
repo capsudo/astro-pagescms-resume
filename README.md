@@ -218,20 +218,20 @@ Note: Generated files are visible/downloadable from the workflow run page <https
 
 Editable resume data lives in [src/content](./src/content).
 
-- [identity.json](./src/content/identity.json): resume identity, description, contact info, location [private]
-- [social.json](./src/content/social.json): social usernames [public]
-- [experiences](./src/content/experiences): work timeline entries [private]
-- [projects](./src/content/projects): project cards and project metadata [private]
-- [frameworks](./src/content/frameworks): frameworks shown in stack and project tags [public]
-- [languages](./src/content/languages): languages shown in stack and project tags [public]
-- [stack](./src/content/stack): tools and desktop/dev environment items [public]
+- [identity.json](./src/content/identity.json): resume identity, description, contact info, location [personal]
+- [social.json](./src/content/social.json): social usernames [shareable]
+- [experiences](./src/content/experiences): work timeline entries [personal]
+- [projects](./src/content/projects): project cards and project metadata [personal]
+- [frameworks](./src/content/frameworks): frameworks shown in stack and project tags [shareable]
+- [languages](./src/content/languages): languages shown in stack and project tags [shareable]
+- [stack](./src/content/stack): tools and desktop/dev environment items [shareable]
 
 Each collection item is a JSON file. `slug` is stable ID used by other content files.
 
 Note: Framework, language, and stack entries use a nested `technology` object because when using [components](https://pagescms.org/docs/configuration/components/), Pages CMS produces named object fields like `{ "technology": { "name": "React", "slug": "react" } }` instead if a flat `{ "name": "React", "slug": "react" }`.
 Astro and [Node loader](./scripts/load-content.mjs) normalize this nested CMS shape back to flat `Technology` objects.
 
-Note: Resume site uses public + private data. Generated content such as Blog's About page, social bios and Github profile use only public data.
+Note: Resume site uses shareable + personal data. Generated content such as Blog's About page, social bios and Github profile use only shareable data. Beware that if you make this repo public your personal data will be exposed since the content lives here.
 
 ### Website Code
 
