@@ -89,8 +89,13 @@ content:
     format: json
     filename: "{fields.technology.slug}.json"
     view:
+      fields: [technology.name, technology.slug, technology.githubProjectUrl]
       primary: technology.name
-      sort: technology.sortOrder
+      sort: [technology.sortOrder, technology.name]
+      search: [technology.name, technology.slug]
+      default:
+        sort: technology.sortOrder
+        order: asc
     fields:
       - name: technology
         component: technology
@@ -102,8 +107,13 @@ content:
     format: json
     filename: "{fields.technology.slug}.json"
     view:
+      fields: [technology.name, technology.slug, technology.githubProjectUrl]
       primary: technology.name
-      sort: technology.sortOrder
+      sort: [technology.sortOrder, technology.name]
+      search: [technology.name, technology.slug]
+      default:
+        sort: technology.sortOrder
+        order: asc
     fields:
       - name: technology
         component: technology
@@ -115,8 +125,13 @@ content:
     format: json
     filename: "{fields.technology.slug}.json"
     view:
+      fields: [technology.name, technology.slug, technology.githubProjectUrl]
       primary: technology.name
-      sort: technology.sortOrder
+      sort: [technology.sortOrder, technology.name]
+      search: [technology.name, technology.slug]
+      default:
+        sort: technology.sortOrder
+        order: asc
     fields:
       - name: technology
         component: technology
