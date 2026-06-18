@@ -2,86 +2,49 @@
 
 Astro resume website backed by JSON content files and editable through [Pages CMS](https://pagescms.org), plus external generated content using the same data.
 
-## Development
+## Getting started
 
-Clone, enter the Nix shell:
+Fork, then
+
+**Clone and enter the Nix shell:**
 
 ```bash
 git clone https://github.com/capsudo/astro-pagescms-resume
 cd astro-pagescms-resume
 nix develop
-
 ```
 
-The shell provides Node, npm, Git, GitHub CLI, and Netlify CLI from pinned Nixpkgs.
-
-```bash
-npm install
-npm run dev -- --host 127.0.0.1
-```
-
-Open <http://127.0.0.1:4321/>.
-
-Build static site:
-
-```bash
-npm run build
-```
-
-Build [Generated Content](#generated-content):
-
-```bash
-npm run generate:markdown
-npm run generate:blog-data
-```
-
-## Deployment
-
-This site is deployed via Netlify as a static Astro site.
+The shell provides Node, npm, Git, GitHub CLI, and Netlify CLI.
 
 ### Link Netlify site
 
-Link this local repository to a Netlify site:
+This site is deployed via Netlify as a static Astro site.
+
+**Link this local repository to a Netlify site:**
 
 ```bash
 nix develop
 npm run netlify:login
 npm run netlify:link
 ```
+_Netlify CLI is provided by [flake.nix](./flake.nix) so it does not need to be installed globally with npm._
 
 > netlify:link can create a new site or connect to an existing one, set up continuous deployment from GitHub, and write local Netlify state under `.netlify/`.  
 > Use defaults when asked since [netlify.toml](./netlify.toml) already tells Netlify how to build the site.
 
-_Netlify CLI is provided by [flake.nix](./flake.nix) so it does not need to be installed globally with npm._
-
-### Push
-
-Deploys are handled by Netlify CI/CD from GitHub. This means that website is published everytime you push a commit to the production branch.
-
 ### Setup Pages CMS
 
-Open <https://app.pagescms.org> Click cog icon "Manage Github App" then give access to this repo 
+Page CMS is the "UI admin page" where the content can be updated.
 
-### Edit content in Pages CMS
-
-Page CMS is the "UI admin page" where the content can be updated. It's accessible at <https://app.pagescms.org/capsudo/astro-pagescms-resume/master>
-
-Pages CMS reads and writes same JSON files Astro uses to render website.
-
-It uses [.pages.yml](./.pages.yml) to:
-- derive the collections and fields to display: content.name/label/fields
-- find/load the data (editable content): content.type/path/format
-- where uploaded media should be stored: media.output
-
-Each update on Page CMS produces a commit that modifies the JSON data. This itself triggers:
-- Netlify deploy
-- GitHub workflow that produces and syncs generated content
+1. Go to <https://app.pagescms.org>
+2. Click cog icon "Manage Github App" then give access to this repo. It should open [Pages CMS admin](https://app.pagescms.org/capsudo/astro-pagescms-resume/master)
+3. Update content: change name (identity), add projects you worked on, etc...
 
 ### GitHub App Sync Setup (optional)
 
 This repo contains a workflow that pushes [generated content](#generated-content) to required repos. It uses GitHub App token instead of personal access token. To get this token a GitHub App needs to be installed.
 
-Create the GitHub App
+**Create the GitHub App**
 1. Go to <https://github.com/settings/apps/new>.
 2. Name it something like `astro-pagescms-resume-allow-push`. Homepage URL = https://github.com/capsudo/astro-pagescms-resume
 3. Disable webhook if GitHub allows it (uncheck Active), or leave webhook URL empty if not needed.
@@ -91,7 +54,7 @@ Create the GitHub App
 7. Generate a private key and download the `.pem` file.
 8. Scroll up to the top of the [page](https://github.com/settings/apps/astro-pagescms-resume-allow-push) and copy the App `Client ID`.
 
-Install the GitHub App
+**Install the GitHub App**
 1. Click "Install the app" (left menu on the top)
 2. Chose current user
 3. Chose "Only select repositories" and select those repositories:
@@ -100,9 +63,9 @@ Install the GitHub App
    - `capsudo/capsudo.github.io`
 4. Click Install.
 
-Add repository variables and secrets in `capsudo/astro-pagescms-resume`:
+**Add repository variables and secrets**
 
-1. Go to `Settings > Secrets and variables > Actions`. https://github.com/capsudo/astro-pagescms-resume/settings/secrets/actions 
+1. Go to [`Settings > Secrets and variables > Actions`](https://github.com/capsudo/astro-pagescms-resume/settings/secrets/actions)
 3. In "Secrets" tab click "Add repository secret" `APP_PRIVATE_KEY` with full `.pem` private key content.
 2. Select "Variables" tab then click "Add repository variable" `APP_CLIENT_ID` with GitHub App client ID.
 
@@ -125,7 +88,7 @@ Short bios for social profiles:
 
 ### Blog About page data
  
-JSON data for the About page of another astro site : [astro-pagecms-blog](https://github.com/capsudo/astro-pagecms-blog), hosted at <https://github.com/capsudo/capsudo.github.io>
+JSON data for the About page of another astro site : [astro-pagescms-blog](https://github.com/capsudo/astro-pagescms-blog), hosted at <https://github.com/capsudo/capsudo.github.io>
 - [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) => pushed automatically to [github.com/capsudo/capsudo.github.io/src/data/about-page-data.json](https://github.com/capsudo/capsudo.github.io/src/data/about-page-data.json).
 
 ### Content generation
@@ -142,6 +105,21 @@ This workflow:
 5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to `capsudo/capsudo.github.io` as `src/data/about-page-data.json`.
 
 > Generated files are visible/downloadable from the workflow run page <https://github.com/capsudo/astro-pagescms-resume/actions/workflows/workflow.yml>.
+
+## How it works
+
+Pages CMS reads and writes same JSON files Astro uses to render website.
+
+It uses [.pages.yml](./.pages.yml) to:
+- derive the collections and fields to display: content.name/label/fields
+- find/load the data (editable content): content.type/path/format
+- where uploaded media should be stored: media.output
+
+Each update on Page CMS produces a commit that modifies the JSON data. This itself triggers:
+- Netlify deploy
+- GitHub workflow that produces and syncs generated content
+
+Deploys are handled by Netlify CI/CD from GitHub. This means that website is published everytime a commit is pushed to the production branch.
 
 ## Troubleshooting
 
@@ -162,7 +140,9 @@ Github workflows are visible at <https://github.com/capsudo/astro-pagescms-resum
 
 This repo contains GitHub Actions workflow files under [.github/workflows](./.github/workflows).
 
-If using git through GitHub authentication, GitHub will reject pushes that create or update workflow files unless current GitHub auth token has `workflow` scope. If push fails with message like `refusing to allow an OAuth App to create or update workflow`, refresh auth from Nix shell:
+If using git through GitHub authentication, GitHub will reject pushes that create or update workflow files unless current GitHub auth token has `workflow` scope. If push fails with message like `refusing to allow an OAuth App to create or update workflow`, you need to refresh auth. 
+
+**Refresh auth:**
 
 ```bash
 nix develop
@@ -172,6 +152,32 @@ npm run github:scope
 _`gh` is provided by [flake.nix](./flake.nix), so it does not need to be installed globally._
 
 > No need to `gh login` again.
+
+## Local Development
+
+You can run the site locally but it's not of much use since you can't connect Pages CMS to it.
+
+**Run local server:**
+
+```bash
+npm install
+npm run dev -- --host 127.0.0.1
+```
+
+Open <http://127.0.0.1:4321/>.
+
+**Build static site:**
+
+```bash
+npm run build
+```
+
+**Build [Generated Content](#generated-content):**
+
+```bash
+npm run generate:markdown
+npm run generate:blog-data
+```
 
 ## Project Structure
 
