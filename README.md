@@ -116,6 +116,7 @@ This repo also contains content generated from the same JSON data. It produces m
 
 Those files can be generated locally (see [Development](#development)) but are built automatically by the github workflow [build-generated-content.yml](.github/workflows/build-generated-content.yml).
 
+This workflow produces files are visible/downloadable from the workflow run page ["github.com/capsudo/resume/actions/runs/1234"](https://github.com/capsudo/resume/actions/workflows/build-generated-content.yml) as an artifact named generated-content.
 
 ### Markdown files
 
