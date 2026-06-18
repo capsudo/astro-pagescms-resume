@@ -26,7 +26,9 @@
         {
           default = packages.mkShell {
             packages = [
+              packages.gh
               packages.git
+              packages.netlify-cli
               packages.nodejs_24
             ];
 
@@ -36,8 +38,10 @@
               export NPM_CONFIG_FUND=false
 
               echo "Resume dev shell"
+              echo "GitHub CLI: $(gh --version | head -n 1)"
               echo "Node: $(node --version)"
               echo "npm:  $(npm --version)"
+              echo "Netlify: $(netlify --version)"
               echo ""
               echo "Run: npm install"
               echo "Run: npm run dev -- --host 127.0.0.1"

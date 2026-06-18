@@ -1,6 +1,6 @@
 # Resume
 
-Astro resume website backed by JSON content files and editable through Pages CMS.
+Astro resume website backed by JSON content files and editable through Pages CMS, plus external markdown files used in social profiles.
 
 ## Development
 
@@ -10,7 +10,7 @@ Enter Nix shell:
 nix develop
 ```
 
-The shell provides Node, npm, and Git from pinned Nixpkgs.
+The shell provides Node, npm, Git, GitHub CLI, and Netlify CLI from pinned Nixpkgs.
 
 ```bash
 npm install
@@ -25,7 +25,48 @@ Build static site:
 npm run build
 ```
 
-Generate derived files:
+## Deployment
+
+The "main" site (resume) is deployed to Netlify as a static Astro site.
+
+Deploys are handled by Netlify CI/CD from GitHub. Normal deploy workflow:
+
+```bash
+git add .
+git commit -m "Describe change"
+git push
+```
+
+### Link Netlify site
+
+Link this local repository to a Netlify site:
+
+```bash
+nix develop
+npm run netlify:login
+npm run netlify:link
+```
+
+Note: It can create a new site or connect to an existing one, set up continuous deployment from GitHub, and write local Netlify state under `.netlify/`.
+Use defaults when asked since [netlify.toml](./netlify.toml) already tells Netlify how to build the site.
+
+_Netlify CLI is provided by [flake.nix](./flake.nix) so it does not need to be installed globally with npm._
+
+### Open the Netlify admin URL
+
+Site name, production URL, deploy hooks, and connected Git repository are configured in Netlify, not in `netlify.toml`.
+
+```bash
+npm run netlify:admin
+```
+
+### Deploys
+
+Netlify deploys are visible at <https://app.netlify.com/projects/capsudo/deploys>.
+
+Note: This repo uses `master` as production branch, ff Netlify defaults to `main`, change **Production branch** to `master`. This is configured under <https://app.netlify.com/projects/capsudo/configuration/deploys#branches-and-deploy-contexts>.
+
+## Generate derived files
 
 ```bash
 npm run generate:markdown
@@ -51,6 +92,7 @@ Pages CMS reads and writes same JSON files Astro uses to render website.
 .
 ├── .pages.yml
 ├── astro.config.mjs
+├── netlify.toml
 ├── components.json
 ├── package.json
 ├── flake.lock
@@ -87,6 +129,7 @@ Pages CMS reads and writes same JSON files Astro uses to render website.
 ### Root Config
 
 - [astro.config.mjs](./astro.config.mjs): Astro config. Site builds as static output.
+- [netlify.toml](./netlify.toml): Netlify build command and publish directory.
 - [.pages.yml](./.pages.yml): Pages CMS schema and collection config.
 - [package.json](./package.json): npm scripts and dependencies.
 - [tsconfig.json](./tsconfig.json): TypeScript config for Astro.
