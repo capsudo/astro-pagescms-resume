@@ -50,7 +50,7 @@ This repo contains GitHub Actions workflow files under [.github/workflows](./.gi
 
 GitHub rejects pushes that create or update workflow files unless current GitHub auth token has `workflow` scope. If push fails with message like `refusing to allow an OAuth App to create or update workflow`, refresh auth from Nix shell:
 
-Note: No need to `gh login` if already logged globally.
+> No need to `gh login` if already logged globally.
 
 ```bash
 nix develop
@@ -69,8 +69,8 @@ npm run netlify:login
 npm run netlify:link
 ```
 
-Note: It can create a new site or connect to an existing one, set up continuous deployment from GitHub, and write local Netlify state under `.netlify/`.
-Use defaults when asked since [netlify.toml](./netlify.toml) already tells Netlify how to build the site.
+> netlify:link can create a new site or connect to an existing one, set up continuous deployment from GitHub, and write local Netlify state under `.netlify/`.  
+> Use defaults when asked since [netlify.toml](./netlify.toml) already tells Netlify how to build the site.
 
 _Netlify CLI is provided by [flake.nix](./flake.nix) so it does not need to be installed globally with npm._
 
@@ -86,7 +86,8 @@ npm run netlify:admin
 
 Netlify deploys are visible at <https://app.netlify.com/projects/astro-pagescms-resume/deploys>.
 
-Note: This repo uses `master` as production branch, if Netlify defaults to `main`, change **Production branch** to `master`. This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/astro-pagescms-resume/configuration/deploys#branches-and-deploy-contexts).
+> This repo uses `master` as production branch, if Netlify defaults to `main`, change **Production branch** to `master`.  
+> This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/astro-pagescms-resume/configuration/deploys#branches-and-deploy-contexts).
 
 ### GitHub App Sync Setup (optional)
 
@@ -109,7 +110,7 @@ Add repository variables and secrets in `capsudo/astro-pagescms-resume`:
 2. Add repository variable `APP_CLIENT_ID` with GitHub App client ID.
 3. Add repository secret `APP_PRIVATE_KEY` with full `.pem` private key content.
 
-_Note: using GitHub App token instead of personal access token lets one app push generated files to selected repos with narrow permissions._
+> Using GitHub App token instead of personal access token lets one app push generated files to selected repos with narrow permissions.
 
 ### Edit content in Pages CMS
 
@@ -128,11 +129,12 @@ Each update on Page CMS produces a commit that modifies the JSON data. This itse
 
 ## Generated Content
 
-This repo also contains content generated from the same JSON data. It produces markdown files and data used by another astro site page (blog/about page).
+This repo also contains content generated from the same JSON data. It produces markdown files and JSON data used by another blog page (external).  
+This allows to quickly update in one go all your public info defined in Pages CMS.
 
 ### Markdown files
 
-Long bio visible on top of [Github user page](https://github.com/capsudo)
+Long bio visible on top of [Github user page](https://github.com/capsudo):
 - [generated/github-profile](./generated/github-profile.md) => pushed automatically to [GitHub "profile" README](https://github.com/capsudo/capsudo/README.md)
 
 Short bios for social profiles:
@@ -141,8 +143,8 @@ Short bios for social profiles:
 - [generated/reddit-bio](./generated/reddit-bio.md) => copy-paste it to [Reddit settings profile](https://www.reddit.com/settings/profile)
 
 ### Blog About page data
-
-JSON data for [blog](https://github.com/capsudo/capsudo.github.io)'s About page:
+ 
+JSON data for the About page of another astro site : [astro-pagecms-blog](https://github.com/capsudo/astro-pagecms-blog), hosted at <https://github.com/capsudo/capsudo.github.io>
 - [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) => pushed automatically to [github.com/capsudo/capsudo.github.io/src/data/about-page-data.json](https://github.com/capsudo/capsudo.github.io/src/data/about-page-data.json).
 
 ### Content generation
@@ -158,7 +160,7 @@ This workflow:
 4. Pushes [generated/github-profile.md](./generated/github-profile.md) to `capsudo/capsudo` as `README.md`.
 5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to `capsudo/capsudo.github.io` as `src/data/about-page-data.json`.
 
-Note: Generated files are visible/downloadable from the workflow run page <https://github.com/capsudo/astro-pagescms-resume/actions/workflows/workflow.yml>.
+> Generated files are visible/downloadable from the workflow run page <https://github.com/capsudo/astro-pagescms-resume/actions/workflows/workflow.yml>.
 
 ## Project Structure
 
@@ -226,12 +228,14 @@ Editable resume data lives in [src/content](./src/content).
 - [languages](./src/content/languages): languages shown in stack and project tags [shareable]
 - [stack](./src/content/stack): tools and desktop/dev environment items [shareable]
 
+> Deployed site uses shareable + personal data.  
+> Generated content such as Blog's About page, social bios and Github profile use only shareable data.  
+> Beware that if you make this repo public your personal data will be exposed since the content lives here.
+
 Each collection item is a JSON file. `slug` is stable ID used by other content files.
 
-Note: Framework, language, and stack entries use a nested `technology` object because when using [components](https://pagescms.org/docs/configuration/components/), Pages CMS produces named object fields like `{ "technology": { "name": "React", "slug": "react" } }` instead if a flat `{ "name": "React", "slug": "react" }`.
-Astro and [Node loader](./scripts/load-content.mjs) normalize this nested CMS shape back to flat `Technology` objects.
-
-Note: Resume site uses shareable + personal data. Generated content such as Blog's About page, social bios and Github profile use only shareable data. Beware that if you make this repo public your personal data will be exposed since the content lives here.
+>Framework, language, and stack entries use a nested `technology` object because when using [components](https://pagescms.org/docs/configuration/components/), Pages CMS produces named object fields like `{ "technology": { "name": "React", "slug": "react" } }` instead if a flat `{ "name": "React", "slug": "react" }`.  
+> Astro and [Node loader](./scripts/load-content.mjs) normalize this nested CMS shape back to flat `Technology` objects.
 
 ### Website Code
 
@@ -244,19 +248,19 @@ Note: Resume site uses shareable + personal data. Generated content such as Blog
 
 This project uses shadcn/ui as a design convention, not as runtime dependency.
 
-[components.json](./components.json) is mostly used as information, but it can be used by shadcn CLI. It tells future shadcn CLI commands where components, aliases, CSS file, CSS variables, and icon library are configured.
+> [components.json](./components.json) is mostly used as information, but it can be used by shadcn CLI. It tells future shadcn CLI commands where components, aliases, CSS file, CSS variables, and icon library are configured.
 
-React shadcn components are not used but instead local Astro components in [src/components/ui](./src/components/ui), this is simpler for this Astro static page,
+Local Astro components (in [src/components/ui](./src/components/ui)) are used instead of React shadcn components, this is simpler for this Astro static page.
 
 ### Generated Content
 
-[generated](./generated) contains files derived from source content used outside the resume site, see [Generated Content](#generated-content)
+[generated/](./generated) contains files derived from source content used outside the resume site, see [Generated Content](#generated-content).
 
 - [generated/github-profile.md](./generated/github-profile.md): generated GitHub profile README
 - [generated/github-bio.md](./generated/github-bio.md): short GitHub profile bio
 - [generated/twitter-bio.md](./generated/twitter-bio.md): short Twitter profile bio
 - [generated/reddit-bio.md](./generated/reddit-bio.md): short Reddit profile bio
-- [generated/blog-about-page-data.json](./generated/blog-about-page-data.json): public blog about-page data
+- [generated/blog-about-page-data.json](./generated/blog-about-page-data.json): public blog's About page data
 
 Generation scripts live in [scripts](./scripts).
 
@@ -264,7 +268,7 @@ Generation scripts live in [scripts](./scripts).
 - [generate-markdown-files.mjs](./scripts/generate-markdown-files.mjs): writes markdown/profile bio outputs
 - [generate-blog-about-data.mjs](./scripts/generate-blog-about-data.mjs): writes blog about-page JSON
 
-### TypeScript And MJS
+### TypeScript and MJS
 
 Website code uses TypeScript because Astro/Vite can type-check it and support helpers like `import.meta.glob`.
 
