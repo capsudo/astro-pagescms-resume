@@ -17,7 +17,6 @@ cd astro-pagescms-resume
 
 <details>
 <summary><strong>Fork and clone manually:</strong></summary>
-
 [![Fork this repo](https://img.shields.io/badge/Fork_this_repo-181717?logo=github&logoColor=white)](https://github.com/capsudo/astro-pagescms-resume/fork)
 
 Then:
@@ -91,7 +90,14 @@ You can now update content: change name (identity), add projects you worked on, 
 
 This repo contains a workflow that pushes [generated content](#generated-content) to required repos. It uses GitHub App token instead of personal access token. To get this token a GitHub App needs to be installed.
 
+**Create required repos**
+
+1. Create repo named `YOUR_GITHUB_USERNAME` (ie. repo URL = <https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME>).  
+
+2. Create repo named `YOUR_GITHUB_USERNAME.github.io` (ie. repo URL = <https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io>).
+
 **Create the GitHub App**
+
 1. Go to <https://github.com/settings/apps/new>.
 2. Name it something like `astro-pagescms-resume-allow-push`. Homepage URL = https://github.com/YOUR_GITHUB_USERNAME/astro-pagescms-resume
 3. Disable webhook if GitHub allows it (uncheck Active), or leave webhook URL empty if not needed.
@@ -102,6 +108,7 @@ This repo contains a workflow that pushes [generated content](#generated-content
 8. Scroll up to the top of the [page](https://github.com/settings/apps/astro-pagescms-resume-allow-push) and copy the App `Client ID`.
 
 **Install the GitHub App**
+
 1. Click "Install the app" (left menu on the top)
 2. Chose current user
 3. Chose "Only select repositories" and select those repositories:
@@ -125,19 +132,22 @@ This allows to quickly update in one go all your public info.
 
 ### Markdown files
 
-- Long bio visible on top of your [Github user page](..)  
-   => [github-profile](./generated/github-profile.md) is pushed automatically to [GitHub "profile" README](../YOUR_GITHUB_USERNAME/README.md)
-
 - Short bios for social profiles  
    => open [social-bios](./generated/social-bios.md) and copy-paste blocks to Github, Twitter and Reddit profiles
+
+- Long bio visible on top of your [Github user page](..)  
+   => [github-profile](./generated/github-profile.md) is pushed automatically to [GitHub "profile README"](../YOUR_GITHUB_USERNAME/README.md)
+
+   > Repo named YOUR_GITHUB_USERNAME must be setup, (ie. repo URL = <https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME>).  
+   See [GitHub profile README](https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme).
 
 ### JSON Data
 
 - [astro-pagescms-blog](../astro-pagescms-blog)'s About page content  
    => [blog-about-page-data.json](./generated/blog-about-page-data.json) pushed automatically to [GitHub Pages user site repo](../YOUR_GITHUB_USERNAME.github.io/src/data/about-page-data.json).
 
-> Blog must be setup as a [GitHub Pages user site](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages), (ie. repo named <https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io>).  
-See [astro-pagescms-blog's doc](https://github.com/capsudo/astro-pagescms-blog#github-page-user-site).
+   > Blog must be setup as a [GitHub Pages user site](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages), (ie. repo URL = <https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io>).  
+   See [astro-pagescms-blog's doc](https://github.com/capsudo/astro-pagescms-blog#github-page-user-site).
 
 ### Content generation
 
@@ -149,8 +159,8 @@ This workflow:
 1. Generates markdown files.
 2. Generates blog about-page JSON.
 3. Uploads all generated files as workflow artifact named `generated-content`.
-4. Pushes [generated/github-profile.md](./generated/github-profile.md) to `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME` as `README.md`.
-5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io` as `src/data/about-page-data.json`.
+4. Pushes [generated/github-profile.md](./generated/github-profile.md) to repo `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME` as `README.md`.
+5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to repo `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io` as `src/data/about-page-data.json`.
 
 > Generated files are visible/downloadable from the [workflow run page](../../actions/workflows/workflow.yml).
 
