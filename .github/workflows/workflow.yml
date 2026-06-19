@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 env:
   GITHUB_USERNAME: ${{ github.repository_owner }}
@@ -40,6 +40,22 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Generate technology icon assets
+        run: npm run generate:technology-icons
+
+      - name: Commit technology icon assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ -z "$(git status --porcelain -- public/media/technology-icons)" ]; then
+            echo "Technology icon assets already up to date."
+          else
+            git add public/media/technology-icons
+            git commit -m "Update generated technology icons"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
 
       - name: Generate markdown files
         run: npm run generate:markdown

@@ -2,7 +2,7 @@
   "technology": {
     "name": "Express.js",
     "slug": "expressjs",
-    "iconUrl": "/media/technology-icons/expressjs.svg",
+    "iconUrl": "https://cdn.simpleicons.org/express/000000",
     "twitterUsername": "expressjs",
     "githubUsername": "expressjs",
     "redditUsername": "node",

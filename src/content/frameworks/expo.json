@@ -2,7 +2,7 @@
   "technology": {
     "name": "Expo",
     "slug": "expo",
-    "iconUrl": "/media/technology-icons/expo.svg",
+    "iconUrl": "https://cdn.simpleicons.org/expo/000020",
     "twitterUsername": "expo",
     "githubUsername": "expo",
     "redditUsername": "expo",

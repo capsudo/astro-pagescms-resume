@@ -12,6 +12,7 @@
     "netlify:login": "netlify login",
     "netlify:link": "netlify init",
     "netlify:admin": "netlify open",
+    "generate:technology-icons": "node scripts/generate-technology-icon-assets.mjs",
     "generate:markdown": "node scripts/generate-markdown-files.mjs",
     "generate:blog-data": "node scripts/generate-blog-about-data.mjs"
   },

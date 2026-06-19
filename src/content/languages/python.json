@@ -2,7 +2,7 @@
   "technology": {
     "name": "Python",
     "slug": "python",
-    "iconUrl": "/media/technology-icons/python.svg",
+    "iconUrl": "https://cdn.simpleicons.org/python/3776AB",
     "twitterUsername": "ThePSF",
     "githubUsername": "python",
     "redditUsername": "Python",

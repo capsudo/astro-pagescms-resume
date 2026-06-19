@@ -29,7 +29,7 @@ export type Social = {
   sortOrder: number;
 };
 
-export type Technology = {
+export type TechnologySource = {
   name: string;
   slug: string;
   iconUrl: string;
@@ -42,8 +42,12 @@ export type Technology = {
   level: number;
 };
 
-export type TechnologyContent = Technology | {
-  technology: Technology;
+export type Technology = TechnologySource & {
+  localIconUrl: string;
+};
+
+export type TechnologyContent = TechnologySource | {
+  technology: TechnologySource;
 };
 
 export type Project = {
@@ -103,11 +107,17 @@ function convertTechnologyJsonModuleRecordToSortedArray(jsonModuleRecord: Record
 }
 
 function normalizeTechnologyContent(technologyContent: TechnologyContent): Technology {
-  if ("technology" in technologyContent) {
-    return technologyContent.technology;
-  }
+  const technology = "technology" in technologyContent ? technologyContent.technology : technologyContent;
 
-  return technologyContent;
+  // Keep CDN iconUrl for generated files; add local path for Astro page.
+  return {
+    ...technology,
+    localIconUrl: createLocalTechnologyIconUrl(technology.slug),
+  };
+}
+
+export function createLocalTechnologyIconUrl(technologySlug: string): string {
+  return `/media/technology-icons/${technologySlug}.svg`;
 }
 
 export const identity = identityDataFromJson as Identity;

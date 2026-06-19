@@ -172,7 +172,7 @@ function collectProjectTechnologies(project: Project) {
                       {technologyGroup.items.map((technology) => (
                         <li>
                           <a class="flex items-center gap-3 text-sm text-foreground no-underline hover:underline" href={technology.githubProjectUrl}>
-                            <img class="stack-icon" src={technology.iconUrl} alt="" loading="lazy" />
+                            <img class="stack-icon" src={technology.localIconUrl} alt="" loading="lazy" />
                             <span>{technology.name}</span>
                           </a>
                         </li>
@@ -233,7 +233,7 @@ function collectProjectTechnologies(project: Project) {
                         <div class="technology-strip -mx-1 mt-4 flex gap-3 overflow-x-auto px-1 pb-1 text-xs text-foreground">
                           {collectProjectTechnologies(project).map((technology) => (
                             <a class="inline-flex shrink-0 items-center gap-1.5 underline decoration-border underline-offset-4" href={technology?.githubProjectUrl}>
-                              <img class="h-3.5 w-3.5 rounded-[2px]" src={technology?.iconUrl} alt="" loading="lazy" />
+                              <img class="h-3.5 w-3.5 rounded-[2px]" src={technology?.localIconUrl} alt="" loading="lazy" />
                               <span>{technology?.name}</span>
                             </a>
                           ))}

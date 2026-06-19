@@ -2,7 +2,7 @@
   "technology": {
     "name": "VS Code",
     "slug": "vscode",
-    "iconUrl": "/media/technology-icons/vscode.svg",
+    "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/visualstudiocode.svg",
     "twitterUsername": "code",
     "githubUsername": "microsoft",
     "redditUsername": "vscode",

@@ -2,7 +2,7 @@
   "technology": {
     "name": "NixOS",
     "slug": "nixos",
-    "iconUrl": "/media/technology-icons/nixos.svg",
+    "iconUrl": "https://cdn.simpleicons.org/nixos/5277C3",
     "twitterUsername": "nixos_org",
     "githubUsername": "NixOS",
     "redditUsername": "NixOS",

@@ -15,8 +15,9 @@ components:
         required: true
         pattern: "^[a-z0-9-]+$"
       - name: iconUrl
-        label: Icon URL
-        type: image
+        label: CDN icon URL
+        type: string
+        required: true
       - name: twitterUsername
         label: Twitter username
         type: string

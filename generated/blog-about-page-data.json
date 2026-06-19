@@ -4,7 +4,7 @@
       {
         "name": "Astro",
         "slug": "astro",
-        "iconUrl": "/media/technology-icons/astro.svg",
+        "iconUrl": "https://cdn.simpleicons.org/astro/BC52EE",
         "twitterUsername": "astrodotbuild",
         "githubUsername": "withastro",
         "redditUsername": "astrojs",
@@ -16,7 +16,7 @@
       {
         "name": "Flutter",
         "slug": "flutter",
-        "iconUrl": "/media/technology-icons/flutter.svg",
+        "iconUrl": "https://cdn.simpleicons.org/flutter/02569B",
         "twitterUsername": "flutterdev",
         "githubUsername": "flutter",
         "redditUsername": "FlutterDev",
@@ -28,7 +28,7 @@
       {
         "name": "Expo",
         "slug": "expo",
-        "iconUrl": "/media/technology-icons/expo.svg",
+        "iconUrl": "https://cdn.simpleicons.org/expo/000020",
         "twitterUsername": "expo",
         "githubUsername": "expo",
         "redditUsername": "expo",
@@ -40,7 +40,7 @@
       {
         "name": "Express.js",
         "slug": "expressjs",
-        "iconUrl": "/media/technology-icons/expressjs.svg",
+        "iconUrl": "https://cdn.simpleicons.org/express/000000",
         "twitterUsername": "expressjs",
         "githubUsername": "expressjs",
         "redditUsername": "node",
@@ -52,7 +52,7 @@
       {
         "name": "React",
         "slug": "react",
-        "iconUrl": "/media/technology-icons/react.svg",
+        "iconUrl": "https://cdn.simpleicons.org/react/087EA4",
         "twitterUsername": "reactjs",
         "githubUsername": "",
         "redditUsername": "reactjs",
@@ -64,7 +64,7 @@
       {
         "name": "Redux",
         "slug": "redux",
-        "iconUrl": "/media/technology-icons/redux.svg",
+        "iconUrl": "https://cdn.simpleicons.org/redux/764ABC",
         "twitterUsername": "reduxjs",
         "githubUsername": "reduxjs",
         "redditUsername": "reactjs",
@@ -76,7 +76,7 @@
       {
         "name": "Firebase",
         "slug": "firebase",
-        "iconUrl": "/media/technology-icons/firebase.svg",
+        "iconUrl": "https://cdn.simpleicons.org/firebase/FFCA28",
         "twitterUsername": "firebase",
         "githubUsername": "firebase",
         "redditUsername": "Firebase",
@@ -90,7 +90,7 @@
       {
         "name": "TypeScript / JavaScript",
         "slug": "typescript-javascript",
-        "iconUrl": "/media/technology-icons/typescript.svg",
+        "iconUrl": "https://cdn.simpleicons.org/typescript/3178C6",
         "twitterUsername": "typescript",
         "githubUsername": "microsoft",
         "redditUsername": "typescript",
@@ -102,7 +102,7 @@
       {
         "name": "Dart",
         "slug": "dart",
-        "iconUrl": "/media/technology-icons/dart.svg",
+        "iconUrl": "https://cdn.simpleicons.org/dart/0175C2",
         "twitterUsername": "dart_lang",
         "githubUsername": "dart-lang",
         "redditUsername": "dartlang",
@@ -114,7 +114,7 @@
       {
         "name": "Rust",
         "slug": "rust",
-        "iconUrl": "/media/technology-icons/rust.svg",
+        "iconUrl": "https://cdn.simpleicons.org/rust/000000",
         "twitterUsername": "rustlang",
         "githubUsername": "rust-lang",
         "redditUsername": "rust",
@@ -126,7 +126,7 @@
       {
         "name": "Python",
         "slug": "python",
-        "iconUrl": "/media/technology-icons/python.svg",
+        "iconUrl": "https://cdn.simpleicons.org/python/3776AB",
         "twitterUsername": "ThePSF",
         "githubUsername": "python",
         "redditUsername": "Python",
@@ -140,7 +140,7 @@
       {
         "name": "NixOS",
         "slug": "nixos",
-        "iconUrl": "/media/technology-icons/nixos.svg",
+        "iconUrl": "https://cdn.simpleicons.org/nixos/5277C3",
         "twitterUsername": "nixos_org",
         "githubUsername": "NixOS",
         "redditUsername": "NixOS",
@@ -152,7 +152,7 @@
       {
         "name": "GNOME",
         "slug": "gnome",
-        "iconUrl": "/media/technology-icons/gnome.svg",
+        "iconUrl": "https://cdn.simpleicons.org/gnome/4A86CF",
         "twitterUsername": "gnome",
         "githubUsername": "GNOME",
         "redditUsername": "gnome",
@@ -164,7 +164,7 @@
       {
         "name": "VS Code",
         "slug": "vscode",
-        "iconUrl": "/media/technology-icons/vscode.svg",
+        "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/visualstudiocode.svg",
         "twitterUsername": "code",
         "githubUsername": "microsoft",
         "redditUsername": "vscode",

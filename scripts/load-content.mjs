@@ -46,7 +46,16 @@ async function readJsonDirectory(relativeDirectoryPath, normalizeJsonObject = (j
 }
 
 function normalizeTechnologyContent(technologyContent) {
-  return technologyContent.technology ?? technologyContent;
+  const technology = technologyContent.technology ?? technologyContent;
+
+  return {
+    ...technology,
+    localIconUrl: createLocalTechnologyIconUrl(technology.slug),
+  };
+}
+
+export function createLocalTechnologyIconUrl(technologySlug) {
+  return `/media/technology-icons/${technologySlug}.svg`;
 }
 
 async function readJsonFile(relativeFilePath) {

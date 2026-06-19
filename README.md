@@ -162,11 +162,13 @@ They are also built automatically and pushed to respective repos by the GitHub w
 
 This workflow:
 
-1. Generates markdown files.
-2. Generates blog about-page JSON.
-3. Uploads all generated files as workflow artifact named `generated-content`.
-4. Pushes [generated/github-profile.md](./generated/github-profile.md) to repo `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME` as `README.md`.
-5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to repo `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io` as `src/data/about-page-data.json`.
+1. Downloads technology CDN icons to `public/media/technology-icons/{slug}.svg`.
+2. Commits generated technology icon assets back to this repo if needed.
+3. Generates markdown files.
+4. Generates blog about-page JSON.
+5. Uploads all generated files as workflow artifact named `generated-content`.
+6. Pushes [generated/github-profile.md](./generated/github-profile.md) to repo `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME` as `README.md`.
+7. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to repo `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io` as `src/data/about-page-data.json`.
 
 > Generated files are visible/downloadable from the [workflow run page](../../actions/workflows/workflow.yml).
 
@@ -238,6 +240,7 @@ npm run build
 **Build [Generated Content](#generated-content):**
 
 ```bash
+npm run generate:technology-icons
 npm run generate:markdown
 npm run generate:blog-data
 ```
@@ -358,6 +361,7 @@ Local Astro components (in [src/components/ui](./src/components/ui)) are used in
 Generation scripts live in [scripts](./scripts).
 
 - [load-content.mjs](./scripts/load-content.mjs): Node content loader for [generated content](#generated-content).
+- [generate-technology-icon-assets.mjs](./scripts/generate-technology-icon-assets.mjs): downloads technology CDN icons to local site assets.
 - [generate-markdown-files.mjs](./scripts/generate-markdown-files.mjs): writes markdown/profile bio outputs
 - [generate-blog-about-data.mjs](./scripts/generate-blog-about-data.mjs): writes blog about-page JSON
 
@@ -377,3 +381,6 @@ Short version:
 [public/media](./public/media) is media folder configured for Pages CMS uploads.
 
 Files in `public/` are served from site root. For example, `public/media/avatar.png` becomes `/media/avatar.png`.
+
+Technology `iconUrl` fields stay public CDN URLs for generated files shared with other repos.  
+The resume site uses generated local assets at `/media/technology-icons/{slug}.svg`.
