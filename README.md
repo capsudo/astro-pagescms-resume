@@ -4,18 +4,24 @@ Astro resume website using content editable through [Pages CMS](https://pagescms
 
 ## Getting started
 
-### Installation
+### Fork and clone
 
-**Fork this repository:**
+**Fork and clone using GitHub CLI:**
+
+```bash
+gh repo fork capsudo/astro-pagescms-resume --clone --remote=true
+cd astro-pagescms-resume
+```
+
+**Fork and clone manually:**
 
 [![Fork this repo](https://img.shields.io/badge/Fork_this_repo-181717?logo=github&logoColor=white)](https://github.com/capsudo/astro-pagescms-resume/fork)
 
-> This is required in order to connect Pages CMS to the repo later, repo needs to live inside your github account.
-
-**Clone the repository:**
+Then:
 
 ```bash
-git clone https://github.com/capsudo/astro-pagescms-resume
+git clone https://github.com/YOUR_GITHUB_USERNAME/astro-pagescms-resume
+git remote add upstream https://github.com/capsudo/astro-pagescms-resume
 cd astro-pagescms-resume
 ```
 
