@@ -7,6 +7,8 @@
     "githubUsername": "facebook",
     "redditUsername": "reactjs",
     "githubProjectUrl": "https://github.com/facebook/react",
-    "sortOrder": 40
+    "sortOrder": 40,
+    "featured": true,
+    "level": 4
   }
 }

@@ -7,6 +7,8 @@
     "githubUsername": "GNOME",
     "redditUsername": "gnome",
     "githubProjectUrl": "https://github.com/GNOME",
-    "sortOrder": 20
+    "sortOrder": 20,
+    "featured": true,
+    "level": 3
   }
 }

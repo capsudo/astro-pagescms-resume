@@ -33,5 +33,7 @@ function createPublicTechnologyData(technology) {
     redditUsername: technology.redditUsername,
     githubProjectUrl: technology.githubProjectUrl,
     sortOrder: technology.sortOrder,
+    featured: technology.featured ?? false,
+    level: technology.level,
   };
 }

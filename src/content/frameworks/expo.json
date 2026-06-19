@@ -7,6 +7,8 @@
     "githubUsername": "expo",
     "redditUsername": "expo",
     "githubProjectUrl": "https://github.com/expo/expo",
-    "sortOrder": 20
+    "sortOrder": 20,
+    "featured": true,
+    "level": 3
   }
 }

@@ -30,6 +30,8 @@ export type Technology = {
   redditUsername: string;
   githubProjectUrl: string;
   sortOrder: number;
+  featured?: boolean;
+  level: number;
 };
 
 export type TechnologyContent = Technology | {

@@ -32,6 +32,11 @@ components:
       - name: sortOrder
         label: Sort order
         type: number
+      - name: featured
+        type: boolean
+      - name: level
+        type: number
+        required: true
 
 content:
   - name: identity

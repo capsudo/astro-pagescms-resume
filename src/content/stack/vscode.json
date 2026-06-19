@@ -7,6 +7,8 @@
     "githubUsername": "microsoft",
     "redditUsername": "vscode",
     "githubProjectUrl": "https://github.com/microsoft/vscode",
-    "sortOrder": 30
+    "sortOrder": 30,
+    "featured": true,
+    "level": 4
   }
 }

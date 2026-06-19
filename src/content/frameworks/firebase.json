@@ -7,6 +7,8 @@
     "githubUsername": "firebase",
     "redditUsername": "Firebase",
     "githubProjectUrl": "https://github.com/firebase/firebase-js-sdk",
-    "sortOrder": 60
+    "sortOrder": 60,
+    "featured": false,
+    "level": 3
   }
 }

@@ -14,7 +14,9 @@
         "githubUsername": "withastro",
         "redditUsername": "astrojs",
         "githubProjectUrl": "https://github.com/withastro/astro",
-        "sortOrder": 5
+        "sortOrder": 5,
+        "featured": true,
+        "level": 4
       },
       {
         "name": "Flutter",
@@ -24,7 +26,9 @@
         "githubUsername": "flutter",
         "redditUsername": "FlutterDev",
         "githubProjectUrl": "https://github.com/flutter/flutter",
-        "sortOrder": 10
+        "sortOrder": 10,
+        "featured": true,
+        "level": 4
       },
       {
         "name": "Expo",
@@ -34,7 +38,9 @@
         "githubUsername": "expo",
         "redditUsername": "expo",
         "githubProjectUrl": "https://github.com/expo/expo",
-        "sortOrder": 20
+        "sortOrder": 20,
+        "featured": true,
+        "level": 3
       },
       {
         "name": "Express.js",
@@ -44,7 +50,9 @@
         "githubUsername": "expressjs",
         "redditUsername": "node",
         "githubProjectUrl": "https://github.com/expressjs/express",
-        "sortOrder": 30
+        "sortOrder": 30,
+        "featured": true,
+        "level": 4
       },
       {
         "name": "React",
@@ -54,7 +62,9 @@
         "githubUsername": "facebook",
         "redditUsername": "reactjs",
         "githubProjectUrl": "https://github.com/facebook/react",
-        "sortOrder": 40
+        "sortOrder": 40,
+        "featured": true,
+        "level": 4
       },
       {
         "name": "Redux",
@@ -64,7 +74,9 @@
         "githubUsername": "reduxjs",
         "redditUsername": "reactjs",
         "githubProjectUrl": "https://github.com/reduxjs/redux",
-        "sortOrder": 50
+        "sortOrder": 50,
+        "featured": false,
+        "level": 3
       },
       {
         "name": "Firebase",
@@ -74,7 +86,9 @@
         "githubUsername": "firebase",
         "redditUsername": "Firebase",
         "githubProjectUrl": "https://github.com/firebase/firebase-js-sdk",
-        "sortOrder": 60
+        "sortOrder": 60,
+        "featured": false,
+        "level": 3
       }
     ],
     "languages": [
@@ -86,7 +100,9 @@
         "githubUsername": "microsoft",
         "redditUsername": "typescript",
         "githubProjectUrl": "https://github.com/microsoft/TypeScript",
-        "sortOrder": 10
+        "sortOrder": 10,
+        "featured": true,
+        "level": 5
       },
       {
         "name": "Dart",
@@ -96,7 +112,9 @@
         "githubUsername": "dart-lang",
         "redditUsername": "dartlang",
         "githubProjectUrl": "https://github.com/dart-lang/sdk",
-        "sortOrder": 20
+        "sortOrder": 20,
+        "featured": true,
+        "level": 4
       },
       {
         "name": "Rust",
@@ -106,7 +124,9 @@
         "githubUsername": "rust-lang",
         "redditUsername": "rust",
         "githubProjectUrl": "https://github.com/rust-lang/rust",
-        "sortOrder": 30
+        "sortOrder": 30,
+        "featured": false,
+        "level": 2
       },
       {
         "name": "Python",
@@ -116,7 +136,9 @@
         "githubUsername": "python",
         "redditUsername": "Python",
         "githubProjectUrl": "https://github.com/python/cpython",
-        "sortOrder": 40
+        "sortOrder": 40,
+        "featured": true,
+        "level": 3
       }
     ],
     "stack": [
@@ -128,7 +150,9 @@
         "githubUsername": "NixOS",
         "redditUsername": "NixOS",
         "githubProjectUrl": "https://github.com/NixOS/nixpkgs",
-        "sortOrder": 10
+        "sortOrder": 10,
+        "featured": true,
+        "level": 3
       },
       {
         "name": "GNOME",
@@ -138,7 +162,9 @@
         "githubUsername": "GNOME",
         "redditUsername": "gnome",
         "githubProjectUrl": "https://github.com/GNOME",
-        "sortOrder": 20
+        "sortOrder": 20,
+        "featured": true,
+        "level": 3
       },
       {
         "name": "VS Code",
@@ -148,7 +174,9 @@
         "githubUsername": "microsoft",
         "redditUsername": "vscode",
         "githubProjectUrl": "https://github.com/microsoft/vscode",
-        "sortOrder": 30
+        "sortOrder": 30,
+        "featured": true,
+        "level": 4
       }
     ]
   }

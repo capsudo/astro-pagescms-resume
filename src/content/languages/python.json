@@ -7,6 +7,8 @@
     "githubUsername": "python",
     "redditUsername": "Python",
     "githubProjectUrl": "https://github.com/python/cpython",
-    "sortOrder": 40
+    "sortOrder": 40,
+    "featured": true,
+    "level": 3
   }
 }

@@ -7,6 +7,8 @@
     "githubUsername": "reduxjs",
     "redditUsername": "reactjs",
     "githubProjectUrl": "https://github.com/reduxjs/redux",
-    "sortOrder": 50
+    "sortOrder": 50,
+    "featured": false,
+    "level": 3
   }
 }

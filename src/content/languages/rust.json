@@ -7,6 +7,8 @@
     "githubUsername": "rust-lang",
     "redditUsername": "rust",
     "githubProjectUrl": "https://github.com/rust-lang/rust",
-    "sortOrder": 30
+    "sortOrder": 30,
+    "featured": false,
+    "level": 2
   }
 }

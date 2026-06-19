@@ -7,6 +7,8 @@
     "githubUsername": "NixOS",
     "redditUsername": "NixOS",
     "githubProjectUrl": "https://github.com/NixOS/nixpkgs",
-    "sortOrder": 10
+    "sortOrder": 10,
+    "featured": true,
+    "level": 3
   }
 }
