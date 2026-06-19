@@ -18,7 +18,12 @@ cd astro-pagescms-resume
 
 <details>
 <summary><strong>Fork and clone manually:</strong></summary>
-[![Fork this repo](https://img.shields.io/badge/Fork_this_repo-181717?logo=github&logoColor=white)](https://github.com/capsudo/astro-pagescms-resume/fork)
+
+<p>
+  <a href="https://github.com/capsudo/astro-pagescms-resume/fork">
+    <img src="https://img.shields.io/badge/Fork_this_repo-181717?logo=github&logoColor=white" alt="Fork this repo">
+  </a>
+</p>
 
 Then:
 
