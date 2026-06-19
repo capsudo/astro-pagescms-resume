@@ -24,8 +24,11 @@ git clone https://github.com/YOUR_GITHUB_USERNAME/astro-pagescms-resume
 git remote add upstream https://github.com/capsudo/astro-pagescms-resume
 cd astro-pagescms-resume
 ```
+> This is required in order to connect Pages CMS to the repo later, repo needs to live inside your github account.
 
-**Install required tooling:**
+### Install required tooling
+
+**Using Nix shell:**
 
 ```bash
 nix develop
@@ -35,7 +38,21 @@ The Nix shell provides Node, npm, Git, GitHub CLI, and Netlify CLI.
 
 _Nix needs to be installed, see [Install Nix](https://nix.dev/install-nix.html)_
 
-> If Nix not used, Node, npm, Git, GitHub CLI (optional), and Netlify CLI need to be installed.
+**Not using Nix shell:**
+
+If Nix is not used, Node, npm, Git, Netlify CLI and GitHub CLI (optional) need to be installed.
+
+1. [Install Node and npm using nvm](https://nodejs.org/en/download)
+
+2. [Instal Git](https://git-scm.com/install/)
+
+3. Install Netlify CLI
+
+   ```bash
+   npm install netlify-cli -g
+   ```
+
+4. [Install GitHub CLI](https://github.com/cli/cli?ref_product=cli&ref_type=engagement&ref_style=text#installation) (optional)
 
 ### Link Netlify site
 
