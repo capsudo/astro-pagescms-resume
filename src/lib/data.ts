@@ -1,18 +1,23 @@
 import identityDataFromJson from "../content/identity.json";
+import bioDataFromJson from "../content/bio.json";
 import socialDataFromJson from "../content/social.json";
 
 export type TechnologyCategoryName = "frameworks" | "languages" | "stack";
 
 export type Identity = {
   name: string;
-  headline: string;
-  shortDescription: string;
-  longDescription: string;
   email: string;
   phone: string;
   location: string;
   availability: string;
-  profileImageUrl: string;
+  photoUrl: string;
+};
+
+export type Bio = {
+  headline: string;
+  shortDescription: string;
+  longDescription: string;
+  avatarUrl: string;
 };
 
 export type Social = {
@@ -102,6 +107,7 @@ function normalizeTechnologyContent(technologyContent: TechnologyContent): Techn
 }
 
 export const identity = identityDataFromJson as Identity;
+export const bio = bioDataFromJson as Bio;
 export const social = socialDataFromJson as Social;
 export const frameworks = convertTechnologyJsonModuleRecordToSortedArray(frameworkJsonModules);
 export const languages = convertTechnologyJsonModuleRecordToSortedArray(languageJsonModules);

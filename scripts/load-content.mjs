@@ -6,6 +6,7 @@ const repositoryRootDirectory = new URL("..", import.meta.url);
 // One loader feeds markdown and blog exports. Astro has own Vite loader.
 export async function loadCompleteContent() {
   const identity = await readJsonFile("src/content/identity.json");
+  const bio = await readJsonFile("src/content/bio.json");
   const social = await readJsonFile("src/content/social.json");
   const frameworks = await readJsonDirectory("src/content/frameworks", normalizeTechnologyContent);
   const languages = await readJsonDirectory("src/content/languages", normalizeTechnologyContent);
@@ -19,6 +20,7 @@ export async function loadCompleteContent() {
 
   return {
     identity,
+    bio,
     social,
     frameworks,
     languages,

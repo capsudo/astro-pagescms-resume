@@ -48,6 +48,24 @@ content:
       - name: name
         type: string
         required: true
+      - name: email
+        type: string
+      - name: phone
+        type: string
+      - name: location
+        type: string
+      - name: availability
+        type: string
+      - name: photoUrl
+        label: Photo URL
+        type: image
+
+  - name: bio
+    label: Bio
+    type: file
+    path: src/content/bio.json
+    format: json
+    fields:
       - name: headline
         type: string
         required: true
@@ -59,16 +77,8 @@ content:
         label: Long description
         type: text
         required: true
-      - name: email
-        type: string
-      - name: phone
-        type: string
-      - name: location
-        type: string
-      - name: availability
-        type: string
-      - name: profileImageUrl
-        label: Profile image URL
+      - name: avatarUrl
+        label: Avatar URL
         type: image
 
   - name: social

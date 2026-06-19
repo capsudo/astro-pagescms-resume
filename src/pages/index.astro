@@ -20,6 +20,7 @@ import Card from "../components/ui/Card.astro";
 import Separator from "../components/ui/Separator.astro";
 import {
   createReadablePeriodLabel,
+  bio,
   experiences,
   findTechnologyBySlug,
   identity,
@@ -31,6 +32,7 @@ import {
 import "../styles/global.css";
 
 const coverImageUrl = "/media/notion-mountains-cover.png";
+const avatarImageUrl = identity.photoUrl || bio.avatarUrl;
 const initials = identity.name
   .split(" ")
   .map((namePart) => namePart[0])
@@ -81,14 +83,14 @@ function collectProjectTechnologies(project: Project) {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={identity.shortDescription} />
+    <meta name="description" content={bio.shortDescription} />
     <title>{identity.name} - Resume</title>
   </head>
   <body>
     <main class="page-shell">
       <nav class="flex h-11 items-center justify-between px-4 text-sm text-foreground" aria-label="Page toolbar">
         <div class="flex items-center gap-2">
-          <Avatar class="h-5 w-5 border-0 text-[0.6rem]" imageUrl={identity.profileImageUrl} initials={initials} name={identity.name} />
+          <Avatar class="h-5 w-5 border-0 text-[0.6rem]" imageUrl={avatarImageUrl} initials={initials} name={identity.name} />
           <span>{identity.name}</span>
         </div>
         <div class="flex items-center gap-4 text-muted-foreground">
@@ -104,7 +106,7 @@ function collectProjectTechnologies(project: Project) {
         <header class="relative pt-0">
           <Avatar
             class="-mt-[72px] h-28 w-28 shadow-sm sm:-mt-[76px] sm:h-32 sm:w-32"
-            imageUrl={identity.profileImageUrl}
+            imageUrl={avatarImageUrl}
             initials={initials}
             name={identity.name}
           />
@@ -113,7 +115,7 @@ function collectProjectTechnologies(project: Project) {
             <div class="min-w-0">
               <h1 class="text-4xl font-bold tracking-normal text-foreground sm:text-5xl">{identity.name}</h1>
               <div class="mt-6 grid gap-3 text-base sm:grid-cols-[180px_1fr]">
-                <p class="italic text-foreground">{identity.headline}</p>
+                <p class="italic text-foreground">{bio.headline}</p>
                 <a class="text-foreground no-underline hover:underline" href={`https://github.com/${social.githubUsername}`}>
                   @{social.githubUsername}
                 </a>
@@ -123,8 +125,8 @@ function collectProjectTechnologies(project: Project) {
           </div>
 
           <div class="mt-10 max-w-2xl space-y-3 text-base leading-7 text-foreground">
-            <p>{identity.shortDescription}</p>
-            <p>{identity.longDescription}</p>
+            <p>{bio.shortDescription}</p>
+            <p>{bio.longDescription}</p>
           </div>
         </header>
 

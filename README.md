@@ -206,6 +206,7 @@ npm run generate:blog-data
 │   ├── components/
 │   │   └── ui/
 │   ├── content/
+│   │   ├── bio.json
 │   │   ├── identity.json
 │   │   ├── social.json
 │   │   ├── experiences/
@@ -237,7 +238,8 @@ npm run generate:blog-data
 
 Editable resume data lives in [src/content](./src/content).
 
-- [identity.json](./src/content/identity.json): resume identity, description, contact info, location [personal]
+- [identity.json](./src/content/identity.json): resume identity, contact info, location [personal]
+- [bio.json](./src/content/bio.json): public headline, descriptions, and avatar [shareable]
 - [social.json](./src/content/social.json): social usernames [shareable]
 - [experiences](./src/content/experiences): work timeline entries [personal]
 - [projects](./src/content/projects): project cards and project metadata [personal]
