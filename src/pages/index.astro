@@ -25,7 +25,7 @@ import {
   findTechnologyBySlug,
   identity,
   projects,
-  social,
+  socials,
   technologyGroups,
   type Project,
 } from "../lib/data";
@@ -43,18 +43,18 @@ const initials = identity.name
 const socialLinks = [
   {
     label: "GitHub",
-    value: `@${social.githubUsername}`,
-    href: `https://github.com/${social.githubUsername}`,
+    value: `@${socials.github.username}`,
+    href: `https://github.com/${socials.github.username}`,
   },
   {
     label: "Twitter",
-    value: `@${social.twitterUsername}`,
-    href: `https://twitter.com/${social.twitterUsername}`,
+    value: `@${socials.twitter.username}`,
+    href: `https://twitter.com/${socials.twitter.username}`,
   },
   {
     label: "Reddit",
-    value: `u/${social.redditUsername}`,
-    href: `https://www.reddit.com/user/${social.redditUsername}`,
+    value: `u/${socials.reddit.username}`,
+    href: `https://www.reddit.com/user/${socials.reddit.username}`,
   },
 ];
 
@@ -116,8 +116,8 @@ function collectProjectTechnologies(project: Project) {
               <h1 class="text-4xl font-bold tracking-normal text-foreground sm:text-5xl">{identity.name}</h1>
               <div class="mt-6 grid gap-3 text-base sm:grid-cols-[180px_1fr]">
                 <p class="italic text-foreground">{bio.headline}</p>
-                <a class="text-foreground no-underline hover:underline" href={`https://github.com/${social.githubUsername}`}>
-                  @{social.githubUsername}
+                <a class="text-foreground no-underline hover:underline" href={`https://github.com/${socials.github.username}`}>
+                  @{socials.github.username}
                 </a>
               </div>
             </div>

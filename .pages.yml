@@ -81,21 +81,36 @@ content:
         label: Avatar URL
         type: image
 
-  - name: social
-    label: Social usernames
+  - name: socials
+    label: Social accounts
     type: file
-    path: src/content/social.json
+    path: src/content/socials.json
     format: json
     fields:
-      - name: githubUsername
-        label: GitHub username
-        type: string
-      - name: redditUsername
-        label: Reddit username
-        type: string
-      - name: twitterUsername
-        label: Twitter username
-        type: string
+      - name: github
+        label: GitHub
+        type: object
+        fields:
+          - name: username
+            type: string
+          - name: name
+            type: string
+      - name: reddit
+        label: Reddit
+        type: object
+        fields:
+          - name: username
+            type: string
+          - name: name
+            type: string
+      - name: twitter
+        label: Twitter
+        type: object
+        fields:
+          - name: username
+            type: string
+          - name: name
+            type: string
 
   - name: frameworks
     label: Frameworks

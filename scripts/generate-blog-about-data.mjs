@@ -6,11 +6,7 @@ const content = await loadCompleteContent();
 
 // Public export only. Do not add identity, projects, experiences, email, or phone.
 const blogAboutPageData = {
-  social: {
-    githubUsername: content.social.githubUsername,
-    redditUsername: content.social.redditUsername,
-    twitterUsername: content.social.twitterUsername,
-  },
+  socials: content.socials,
   technologies: {
     frameworks: content.frameworks.map(createPublicTechnologyData),
     languages: content.languages.map(createPublicTechnologyData),
