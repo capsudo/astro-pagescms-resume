@@ -141,7 +141,7 @@ This allows to quickly update in one go all your public info.
 - Short bios for social profiles  
    => open [social-bios](./generated/social-bios.md) and copy-paste blocks to Github, Twitter and Reddit profiles
 
-- Long bio visible on top of [your Github user page](../)  
+- Long bio visible on top of [your Github user page](https://github.com/YOUR_GITHUB_USERNAME/)  
    => [github-profile](./generated/github-profile.md) is pushed automatically to [GitHub "profile README"](https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME/blob/main/README.md)
 
    > Repo named YOUR_GITHUB_USERNAME must be setup, (ie. repo URL = `https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME`).  
@@ -149,7 +149,7 @@ This allows to quickly update in one go all your public info.
 
 ### JSON Data
 
-- [astro-pagescms-blog](../astro-pagescms-blog)'s About page content  
+- [astro-pagescms-blog](https://github.com/YOUR_GITHUB_USERNAME/astro-pagescms-blog)'s About page content  
    => [blog-about-page-data.json](./generated/blog-about-page-data.json) pushed automatically to [GitHub Pages user site repo](https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io/blob/master/src/data/about-page-data.json).
 
    > Blog must be setup as a [GitHub Pages user site](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages), (ie. repo URL = `https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io`).  
