@@ -2,7 +2,7 @@
   "technology": {
     "name": "Firebase",
     "slug": "firebase",
-    "iconUrl": "https://cdn.simpleicons.org/firebase/FFCA28",
+    "iconUrl": "/media/technology-icons/firebase.svg",
     "twitterUsername": "firebase",
     "githubUsername": "firebase",
     "redditUsername": "Firebase",

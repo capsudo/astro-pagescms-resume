@@ -2,7 +2,7 @@
   "technology": {
     "name": "React",
     "slug": "react",
-    "iconUrl": "https://cdn.simpleicons.org/react/087EA4",
+    "iconUrl": "/media/technology-icons/react.svg",
     "twitterUsername": "reactjs",
     "githubUsername": "",
     "redditUsername": "reactjs",

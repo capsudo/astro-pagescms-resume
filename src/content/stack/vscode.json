@@ -2,7 +2,7 @@
   "technology": {
     "name": "VS Code",
     "slug": "vscode",
-    "iconUrl": "https://cdn.simpleicons.org/visualstudiocode/007ACC",
+    "iconUrl": "/media/technology-icons/vscode.svg",
     "twitterUsername": "code",
     "githubUsername": "microsoft",
     "redditUsername": "vscode",

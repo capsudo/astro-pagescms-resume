@@ -2,7 +2,7 @@
   "technology": {
     "name": "Dart",
     "slug": "dart",
-    "iconUrl": "https://cdn.simpleicons.org/dart/0175C2",
+    "iconUrl": "/media/technology-icons/dart.svg",
     "twitterUsername": "dart_lang",
     "githubUsername": "dart-lang",
     "redditUsername": "dartlang",

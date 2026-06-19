@@ -2,7 +2,7 @@
   "technology": {
     "name": "Astro",
     "slug": "astro",
-    "iconUrl": "https://cdn.simpleicons.org/astro/BC52EE",
+    "iconUrl": "/media/technology-icons/astro.svg",
     "twitterUsername": "astrodotbuild",
     "githubUsername": "withastro",
     "redditUsername": "astrojs",

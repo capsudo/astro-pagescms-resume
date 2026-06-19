@@ -2,7 +2,7 @@
   "technology": {
     "name": "GNOME",
     "slug": "gnome",
-    "iconUrl": "https://cdn.simpleicons.org/gnome/4A86CF",
+    "iconUrl": "/media/technology-icons/gnome.svg",
     "twitterUsername": "gnome",
     "githubUsername": "GNOME",
     "redditUsername": "gnome",

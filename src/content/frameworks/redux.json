@@ -2,7 +2,7 @@
   "technology": {
     "name": "Redux",
     "slug": "redux",
-    "iconUrl": "https://cdn.simpleicons.org/redux/764ABC",
+    "iconUrl": "/media/technology-icons/redux.svg",
     "twitterUsername": "reduxjs",
     "githubUsername": "reduxjs",
     "redditUsername": "reactjs",

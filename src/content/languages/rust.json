@@ -2,7 +2,7 @@
   "technology": {
     "name": "Rust",
     "slug": "rust",
-    "iconUrl": "https://cdn.simpleicons.org/rust/000000",
+    "iconUrl": "/media/technology-icons/rust.svg",
     "twitterUsername": "rustlang",
     "githubUsername": "rust-lang",
     "redditUsername": "rust",

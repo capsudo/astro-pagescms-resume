@@ -2,7 +2,7 @@
   "technology": {
     "name": "Flutter",
     "slug": "flutter",
-    "iconUrl": "https://cdn.simpleicons.org/flutter/02569B",
+    "iconUrl": "/media/technology-icons/flutter.svg",
     "twitterUsername": "flutterdev",
     "githubUsername": "flutter",
     "redditUsername": "FlutterDev",
