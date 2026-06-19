@@ -1,5 +1,5 @@
 import { writeFile } from "node:fs/promises";
-import { loadCompleteContent, createReadablePeriodLabel } from "./load-content.mjs";
+import { loadCompleteContent } from "./load-content.mjs";
 
 const outputDirectory = new URL("../generated/", import.meta.url);
 
@@ -16,52 +16,35 @@ await writeFile(new URL("github-bio.md", outputDirectory), githubBioMarkdown);
 
 console.log("Generated markdown files in generated/.");
 
-function createGithubProfileMarkdown({ identity, social, projects, experiences, technologiesBySlug }) {
-  const projectLines = projects
-    .slice(0, 4)
-    .map((project) => {
-      const technologyNames = collectProjectTechnologyNames(project, technologiesBySlug).join(", ");
-      const periodLabel = createReadablePeriodLabel(project.periodStartDate, project.periodEndDate);
+function createGithubProfileMarkdown({ bio, socials, frameworks, languages, stack }) {
+  const featuredFrameworkLines = createFeaturedTechnologyMarkdownList(frameworks, 5);
+  const featuredLanguageLines = createFeaturedTechnologyMarkdownList(languages, 3);
+  const featuredStackLines = createFeaturedTechnologyMarkdownList(stack, 5);
 
-      return `- **${project.name}** (${periodLabel}) - ${project.description} _${technologyNames}_`;
-    })
-    .join("\n");
+  return `# ${socials.github.name}
 
-  const experienceLines = experiences
-    .slice(0, 3)
-    .map((experience) => `- **${experience.name}**, ${experience.company} - ${createReadablePeriodLabel(experience.periodStartDate, experience.periodEndDate)}`)
-    .join("\n");
+${bio.shortDescription}
 
-  return `# ${identity.name}
+## Frameworks handled
 
-${identity.shortDescription}
+${featuredFrameworkLines}
 
-## Current
+## Languages spoken
 
-${identity.availability}
+${featuredLanguageLines}
 
-## Selected projects
+## Toolchain used
 
-${projectLines}
-
-## Experience
-
-${experienceLines}
-
-## Links
-
-- GitHub: https://github.com/${social.githubUsername}
-- Twitter: https://twitter.com/${social.twitterUsername}
-- Reddit: https://www.reddit.com/user/${social.redditUsername}
+${featuredStackLines}
 `;
 }
 
-function createShortBioMarkdown({ identity, languages, frameworks }, maximumCharacterCount) {
+function createShortBioMarkdown({ bio, languages, frameworks }, maximumCharacterCount) {
   const coreTechnologies = [...languages, ...frameworks]
     .slice(0, 5)
     .map((technology) => technology.name)
     .join(", ");
-  const rawBio = `${identity.headline}. ${identity.shortDescription} ${coreTechnologies}.`;
+  const rawBio = `${bio.headline}. ${bio.shortDescription} ${coreTechnologies}.`;
 
   if (rawBio.length <= maximumCharacterCount) {
     return `${rawBio}\n`;
@@ -70,8 +53,24 @@ function createShortBioMarkdown({ identity, languages, frameworks }, maximumChar
   return `${rawBio.slice(0, maximumCharacterCount - 3).trim()}...\n`;
 }
 
-function collectProjectTechnologyNames(project, technologiesBySlug) {
-  return [...project.languageSlugs, ...project.frameworkSlugs, ...project.stackSlugs]
-    .map((technologySlug) => technologiesBySlug.get(technologySlug)?.name)
-    .filter(Boolean);
+function createFeaturedTechnologyMarkdownList(technologies, maximumFeaturedTechnologyCount) {
+  return technologies
+    .filter((technology) => technology.featured)
+    .slice(0, maximumFeaturedTechnologyCount)
+    .map((technology) => createTechnologyMarkdownListItem(technology))
+    .join("\n");
+}
+
+function createTechnologyMarkdownListItem(technology) {
+  const levelStars = createLevelStars(technology.level);
+
+  return `- <a href="${technology.githubProjectUrl}"><img src="${technology.iconUrl}" alt="" width="16" height="16" /> <strong>${technology.name}</strong></a> ${levelStars}`;
+}
+
+function createLevelStars(level) {
+  const clampedLevel = Math.max(1, Math.min(5, level));
+  const filledStars = "★".repeat(clampedLevel);
+  const emptyStars = "☆".repeat(5 - clampedLevel);
+
+  return `${filledStars}${emptyStars}`;
 }
