@@ -47,7 +47,7 @@ jobs:
       - name: Generate blog about-page data
         run: npm run generate:blog-data
 
-      # Short bio files are still manual copy-paste for now.
+      # Social bios are still manual copy-paste for now.
       - name: Upload generated content artifact
         uses: actions/upload-artifact@v4
         with:

@@ -5,14 +5,10 @@ const outputDirectory = new URL("../generated/", import.meta.url);
 
 const content = await loadCompleteContent();
 const githubProfileMarkdown = createGithubProfileMarkdown(content);
-const twitterBioMarkdown = createSocialBioMarkdown(content, "twitter", 160);
-const redditBioMarkdown = createSocialBioMarkdown(content, "reddit", 420);
-const githubBioMarkdown = createSocialBioMarkdown(content, "github", 300);
+const socialBiosMarkdown = createSocialBiosMarkdown(content);
 
 await writeFile(new URL("github-profile.md", outputDirectory), githubProfileMarkdown);
-await writeFile(new URL("twitter-bio.md", outputDirectory), twitterBioMarkdown);
-await writeFile(new URL("reddit-bio.md", outputDirectory), redditBioMarkdown);
-await writeFile(new URL("github-bio.md", outputDirectory), githubBioMarkdown);
+await writeFile(new URL("social-bios.md", outputDirectory), socialBiosMarkdown);
 
 console.log("Generated markdown files in generated/.");
 
@@ -36,6 +32,33 @@ ${featuredLanguageLines}
 ## Toolchain used
 
 ${featuredStackLines}
+`;
+}
+
+function createSocialBiosMarkdown(content) {
+  const githubBioMarkdown = createSocialBioMarkdown(content, "github", 300);
+  const twitterBioMarkdown = createSocialBioMarkdown(content, "twitter", 160);
+  const redditBioMarkdown = createSocialBioMarkdown(content, "reddit", 420);
+
+  return `# Social bios
+
+## GitHub
+
+\`\`\`text
+${githubBioMarkdown.trimEnd()}
+\`\`\`
+
+## Twitter
+
+\`\`\`text
+${twitterBioMarkdown.trimEnd()}
+\`\`\`
+
+## Reddit
+
+\`\`\`text
+${redditBioMarkdown.trimEnd()}
+\`\`\`
 `;
 }
 

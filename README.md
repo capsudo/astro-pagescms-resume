@@ -73,18 +73,16 @@ This repo contains a workflow that pushes [generated content](#generated-content
 
 ## Generated Content
 
-This repo also produces content generated from the same JSON data: markdown files and JSON data used by another blog page (external).  
-This allows to quickly update in one go all your public info defined in Pages CMS.
+This repo also produces markdown files and data generated from the Pages CMS content. 
+This allows to quickly update in one go all your public info.
 
 ### Markdown files
 
-Long bio visible on top of [Github user page](https://github.com/capsudo):
-- [generated/github-profile](./generated/github-profile.md) => pushed automatically to [GitHub "profile" README](https://github.com/capsudo/capsudo/README.md)
+Long bio visible on top of your [Github user page](https://github.com/capsudo):
+- [github-profile](./generated/github-profile.md) => pushed automatically to [GitHub "profile" README](https://github.com/capsudo/capsudo/README.md)
 
 Short bios for social profiles:
-- [generated/github-bio](./generated/github-bio.md) => copy-paste it to [Github settings profile](https://github.com/settings/profile)
-- [generated/twitter-bio](./generated/twitter-bio.md) => copy-paste it to [Twitter settings profile](https://x.com/settings/profile)
-- [generated/reddit-bio](./generated/reddit-bio.md) => copy-paste it to [Reddit settings profile](https://www.reddit.com/settings/profile)
+- [social-bios](./generated/social-bios.md) => copy-paste blocks for [Github](https://github.com/settings/profile), [Twitter](https://x.com/settings/profile), and [Reddit](https://www.reddit.com/settings/profile)
 
 ### Blog About page data
  
@@ -192,9 +190,7 @@ npm run generate:blog-data
 ├── flake.nix
 ├── generated/
 │   ├── github-profile.md
-│   ├── github-bio.md
-│   ├── twitter-bio.md
-│   ├── reddit-bio.md
+│   ├── social-bios.md
 │   └── blog-about-page-data.json
 ├── public/
 │   └── media/
@@ -276,9 +272,7 @@ Local Astro components (in [src/components/ui](./src/components/ui)) are used in
 [generated/](./generated) contains files derived from source content used outside the resume site, see [Generated Content](#generated-content).
 
 - [generated/github-profile.md](./generated/github-profile.md): generated GitHub profile README
-- [generated/github-bio.md](./generated/github-bio.md): short GitHub profile bio
-- [generated/twitter-bio.md](./generated/twitter-bio.md): short Twitter profile bio
-- [generated/reddit-bio.md](./generated/reddit-bio.md): short Reddit profile bio
+- [generated/social-bios.md](./generated/social-bios.md): copy-paste social profile bios
 - [generated/blog-about-page-data.json](./generated/blog-about-page-data.json): public blog's About page data
 
 Generation scripts live in [scripts](./scripts).
