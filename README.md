@@ -98,14 +98,14 @@ This repo contains a workflow that pushes [generated content](#generated-content
 
 **Create required repos**
 
-1. Create repo named `YOUR_GITHUB_USERNAME` (ie. repo URL = <https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME>).  
+1. Create repo named `YOUR_GITHUB_USERNAME` (ie. repo URL = `https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME`).  
 
-2. Create repo named `YOUR_GITHUB_USERNAME.github.io` (ie. repo URL = <https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io>).
+2. Create repo named `YOUR_GITHUB_USERNAME.github.io` (ie. repo URL = `https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io`).
 
 **Create the GitHub App**
 
 1. Go to <https://github.com/settings/apps/new>.
-2. Name it something like `astro-pagescms-resume-allow-push`. Homepage URL = https://github.com/YOUR_GITHUB_USERNAME/astro-pagescms-resume
+2. Name it something like `astro-pagescms-resume-allow-push`. Homepage URL = `https://github.com/YOUR_GITHUB_USERNAME/astro-pagescms-resume`
 3. Disable webhook if GitHub allows it (uncheck Active), or leave webhook URL empty if not needed.
 4. Set repository permission **Contents** to **Read and write**.
 5. Keep default **Metadata** read permission.
@@ -141,10 +141,10 @@ This allows to quickly update in one go all your public info.
 - Short bios for social profiles  
    => open [social-bios](./generated/social-bios.md) and copy-paste blocks to Github, Twitter and Reddit profiles
 
-- Long bio visible on top of your [Github user page](..)  
+- Long bio visible on top of [your Github user page](../)  
    => [github-profile](./generated/github-profile.md) is pushed automatically to [GitHub "profile README"](https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME/blob/main/README.md)
 
-   > Repo named YOUR_GITHUB_USERNAME must be setup, (ie. repo URL = <https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME>).  
+   > Repo named YOUR_GITHUB_USERNAME must be setup, (ie. repo URL = `https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME`).  
    See [GitHub profile README](https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme).
 
 ### JSON Data
@@ -152,7 +152,7 @@ This allows to quickly update in one go all your public info.
 - [astro-pagescms-blog](../astro-pagescms-blog)'s About page content  
    => [blog-about-page-data.json](./generated/blog-about-page-data.json) pushed automatically to [GitHub Pages user site repo](https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io/blob/master/src/data/about-page-data.json).
 
-   > Blog must be setup as a [GitHub Pages user site](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages), (ie. repo URL = <https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io>).  
+   > Blog must be setup as a [GitHub Pages user site](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages), (ie. repo URL = `https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io`).  
    See [astro-pagescms-blog's doc](https://github.com/capsudo/astro-pagescms-blog#github-page-user-site).
 
 ### Content generation
