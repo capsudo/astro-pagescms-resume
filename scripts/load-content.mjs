@@ -7,7 +7,7 @@ const repositoryRootDirectory = new URL("..", import.meta.url);
 export async function loadCompleteContent() {
   const identity = await readJsonFile("src/content/identity.json");
   const bio = await readJsonFile("src/content/bio.json");
-  const social = await readJsonFile("src/content/social.json");
+  const socials = await readJsonFile("src/content/socials.json");
   const frameworks = await readJsonDirectory("src/content/frameworks", normalizeTechnologyContent);
   const languages = await readJsonDirectory("src/content/languages", normalizeTechnologyContent);
   const stack = await readJsonDirectory("src/content/stack", normalizeTechnologyContent);
@@ -21,7 +21,7 @@ export async function loadCompleteContent() {
   return {
     identity,
     bio,
-    social,
+    socials,
     frameworks,
     languages,
     stack,

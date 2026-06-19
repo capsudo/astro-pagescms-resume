@@ -5,9 +5,9 @@ const outputDirectory = new URL("../generated/", import.meta.url);
 
 const content = await loadCompleteContent();
 const githubProfileMarkdown = createGithubProfileMarkdown(content);
-const twitterBioMarkdown = createShortBioMarkdown(content, 160);
-const redditBioMarkdown = createShortBioMarkdown(content, 420);
-const githubBioMarkdown = createShortBioMarkdown(content, 300);
+const twitterBioMarkdown = createSocialBioMarkdown(content, "twitter", 160);
+const redditBioMarkdown = createSocialBioMarkdown(content, "reddit", 420);
+const githubBioMarkdown = createSocialBioMarkdown(content, "github", 300);
 
 await writeFile(new URL("github-profile.md", outputDirectory), githubProfileMarkdown);
 await writeFile(new URL("twitter-bio.md", outputDirectory), twitterBioMarkdown);
@@ -39,18 +39,47 @@ ${featuredStackLines}
 `;
 }
 
-function createShortBioMarkdown({ bio, languages, frameworks }, maximumCharacterCount) {
-  const coreTechnologies = [...languages, ...frameworks]
-    .slice(0, 5)
-    .map((technology) => technology.name)
-    .join(", ");
-  const rawBio = `${bio.headline}. ${bio.shortDescription} ${coreTechnologies}.`;
+function createSocialBioMarkdown({ bio, frameworks }, socialName, maximumCharacterCount) {
+  const featuredFrameworkSocialLabels = frameworks
+    .filter((technology) => technology.featured)
+    .map((technology) => createTechnologySocialLabel(technology, socialName));
 
-  if (rawBio.length <= maximumCharacterCount) {
-    return `${rawBio}\n`;
+  // Keep two-line bio. Trim full labels only if platform limit needs it.
+  return `${createLimitedSocialBioText(bio.headline, featuredFrameworkSocialLabels, maximumCharacterCount)}\n`;
+}
+
+function createLimitedSocialBioText(headline, socialLabels, maximumCharacterCount) {
+  const socialLabelsToUse = [...socialLabels];
+  let socialBioText = createSocialBioText(headline, socialLabelsToUse);
+
+  while (socialLabelsToUse.length > 0 && socialBioText.length > maximumCharacterCount) {
+    socialLabelsToUse.pop();
+    socialBioText = createSocialBioText(headline, socialLabelsToUse);
   }
 
-  return `${rawBio.slice(0, maximumCharacterCount - 3).trim()}...\n`;
+  return socialBioText;
+}
+
+function createSocialBioText(headline, socialLabels) {
+  return `${headline}\n${socialLabels.join(" ")}`;
+}
+
+function createTechnologySocialLabel(technology, socialName) {
+  const socialUsername = technology[`${socialName}Username`];
+
+  if (socialUsername) {
+    return createPrefixedSocialUsername(socialUsername, socialName);
+  }
+
+  return technology.name;
+}
+
+function createPrefixedSocialUsername(socialUsername, socialName) {
+  if (socialName === "reddit") {
+    return `r/${socialUsername}`;
+  }
+
+  return `@${socialUsername}`;
 }
 
 function createFeaturedTechnologyMarkdownList(technologies, maximumFeaturedTechnologyCount) {

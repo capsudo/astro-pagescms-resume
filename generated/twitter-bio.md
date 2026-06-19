@@ -1,1 +1,2 @@
-Product-minded software engineer. I build calm, practical software across web, mobile, desktop, and open source systems. TypeScript / JavaScript, Dart, Rust,...
+Product-minded software engineer
+@astrodotbuild @flutterdev @expo @expressjs @reactjs
