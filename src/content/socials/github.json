@@ -1,0 +1,10 @@
+{
+  "name": "GitHub",
+  "slug": "github",
+  "displayName": "Ethan",
+  "iconUrl": "/media/social-icons/github.svg",
+  "profileBaseUrl": "https://github.com/",
+  "username": "ethan",
+  "featured": true,
+  "sortOrder": 10
+}

@@ -1,18 +1,4 @@
 {
-  "socials": {
-    "github": {
-      "username": "ethan",
-      "name": "Ethan"
-    },
-    "reddit": {
-      "username": "ethan",
-      "name": "Ethan"
-    },
-    "twitter": {
-      "username": "ethan",
-      "name": "Ethan"
-    }
-  },
   "technologies": {
     "frameworks": [
       {
@@ -68,7 +54,7 @@
         "slug": "react",
         "iconUrl": "https://cdn.simpleicons.org/react/087EA4",
         "twitterUsername": "reactjs",
-        "githubUsername": "facebook",
+        "githubUsername": "",
         "redditUsername": "reactjs",
         "githubProjectUrl": "https://github.com/facebook/react",
         "sortOrder": 40,

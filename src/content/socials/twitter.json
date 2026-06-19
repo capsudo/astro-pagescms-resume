@@ -1,0 +1,9 @@
+{
+  "name": "Twitter",
+  "slug": "twitter",
+  "iconUrl": "/media/social-icons/x.svg",
+  "profileBaseUrl": "https://twitter.com/",
+  "username": "ethan",
+  "featured": false,
+  "sortOrder": 50
+}

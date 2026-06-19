@@ -1,0 +1,9 @@
+{
+  "name": "Stack Overflow",
+  "slug": "stackoverflow",
+  "iconUrl": "/media/social-icons/stackoverflow.svg",
+  "profileBaseUrl": "https://stackoverflow.com/users/",
+  "username": "123456/ethan",
+  "featured": true,
+  "sortOrder": 30
+}

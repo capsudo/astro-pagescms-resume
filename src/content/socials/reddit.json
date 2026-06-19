@@ -1,0 +1,9 @@
+{
+  "name": "Reddit",
+  "slug": "reddit",
+  "iconUrl": "/media/social-icons/reddit.svg",
+  "profileBaseUrl": "https://www.reddit.com/user/",
+  "username": "ethan",
+  "featured": false,
+  "sortOrder": 40
+}

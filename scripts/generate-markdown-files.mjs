@@ -13,11 +13,13 @@ await writeFile(new URL("social-bios.md", outputDirectory), socialBiosMarkdown);
 console.log("Generated markdown files in generated/.");
 
 function createGithubProfileMarkdown({ bio, socials, frameworks, languages, stack }) {
+  const githubSocial = findRequiredSocialBySlug(socials, "github");
+  const githubProfileDisplayName = githubSocial.displayName ?? githubSocial.username;
   const featuredFrameworkLines = createFeaturedTechnologyMarkdownList(frameworks, 5);
   const featuredLanguageLines = createFeaturedTechnologyMarkdownList(languages, 3);
   const featuredStackLines = createFeaturedTechnologyMarkdownList(stack, 5);
 
-  return `# ${socials.github.name}
+  return `# ${githubProfileDisplayName}
 
 ${bio.shortDescription}
 
@@ -33,6 +35,16 @@ ${featuredLanguageLines}
 
 ${featuredStackLines}
 `;
+}
+
+function findRequiredSocialBySlug(socials, socialSlug) {
+  const matchingSocial = socials.find((social) => social.slug === socialSlug);
+
+  if (!matchingSocial) {
+    throw new Error(`Missing required social: ${socialSlug}`);
+  }
+
+  return matchingSocial;
 }
 
 function createSocialBiosMarkdown(content) {

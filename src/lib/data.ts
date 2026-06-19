@@ -1,7 +1,5 @@
 import identityDataFromJson from "../content/identity.json";
 import bioDataFromJson from "../content/bio.json";
-import socialsDataFromJson from "../content/socials.json";
-
 export type TechnologyCategoryName = "frameworks" | "languages" | "stack";
 
 export type Identity = {
@@ -20,15 +18,15 @@ export type Bio = {
   avatarUrl: string;
 };
 
-export type SocialAccount = {
-  username: string;
+export type Social = {
   name: string;
-};
-
-export type Socials = {
-  github: SocialAccount;
-  reddit: SocialAccount;
-  twitter: SocialAccount;
+  slug: string;
+  displayName?: string;
+  iconUrl: string;
+  profileBaseUrl: string;
+  username: string;
+  featured: boolean;
+  sortOrder: number;
 };
 
 export type Technology = {
@@ -87,6 +85,7 @@ type TechnologyGroup = {
 const frameworkJsonModules = import.meta.glob<JsonModule<TechnologyContent>>("../content/frameworks/*.json", { eager: true });
 const languageJsonModules = import.meta.glob<JsonModule<TechnologyContent>>("../content/languages/*.json", { eager: true });
 const stackJsonModules = import.meta.glob<JsonModule<TechnologyContent>>("../content/stack/*.json", { eager: true });
+const socialJsonModules = import.meta.glob<JsonModule<Social>>("../content/socials/*.json", { eager: true });
 const projectJsonModules = import.meta.glob<JsonModule<Project>>("../content/projects/*.json", { eager: true });
 const experienceJsonModules = import.meta.glob<JsonModule<Experience>>("../content/experiences/*.json", { eager: true });
 
@@ -113,7 +112,7 @@ function normalizeTechnologyContent(technologyContent: TechnologyContent): Techn
 
 export const identity = identityDataFromJson as Identity;
 export const bio = bioDataFromJson as Bio;
-export const socials = socialsDataFromJson as Socials;
+export const socials = convertJsonModuleRecordToSortedArray(socialJsonModules);
 export const frameworks = convertTechnologyJsonModuleRecordToSortedArray(frameworkJsonModules);
 export const languages = convertTechnologyJsonModuleRecordToSortedArray(languageJsonModules);
 export const stack = convertTechnologyJsonModuleRecordToSortedArray(stackJsonModules);
@@ -144,6 +143,10 @@ const technologiesBySlug = new Map<string, Technology>(
 
 export function findTechnologyBySlug(technologySlug: string): Technology | undefined {
   return technologiesBySlug.get(technologySlug);
+}
+
+export function createSocialProfileUrl(social: Social): string {
+  return `${social.profileBaseUrl}${social.username}`;
 }
 
 export function createReadablePeriodLabel(periodStartDate: string, periodEndDate: string): string {

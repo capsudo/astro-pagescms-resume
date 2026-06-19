@@ -19,6 +19,7 @@ import Badge from "../components/ui/Badge.astro";
 import Card from "../components/ui/Card.astro";
 import Separator from "../components/ui/Separator.astro";
 import {
+  createSocialProfileUrl,
   createReadablePeriodLabel,
   bio,
   experiences,
@@ -40,23 +41,8 @@ const initials = identity.name
   .slice(0, 2)
   .toUpperCase();
 
-const socialLinks = [
-  {
-    label: "GitHub",
-    iconUrl: "https://cdn.simpleicons.org/github/000000",
-    href: `https://github.com/${socials.github.username}`,
-  },
-  {
-    label: "Twitter",
-    iconUrl: "https://cdn.simpleicons.org/x/000000",
-    href: `https://twitter.com/${socials.twitter.username}`,
-  },
-  {
-    label: "Reddit",
-    iconUrl: "https://cdn.simpleicons.org/reddit/000000",
-    href: `https://www.reddit.com/user/${socials.reddit.username}`,
-  },
-];
+const featuredSocials = socials.filter((social) => social.featured);
+const githubSocial = socials.find((social) => social.slug === "github");
 
 const projectGroups = Object.entries(
   projects.reduce<Record<string, Project[]>>((projectsByYear, project) => {
@@ -116,9 +102,13 @@ function collectProjectTechnologies(project: Project) {
               <h1 class="text-4xl font-bold tracking-normal text-foreground sm:text-5xl">{identity.name}</h1>
               <div class="mt-6 grid gap-3 text-base sm:grid-cols-[180px_1fr]">
                 <p class="italic text-foreground">{bio.headline}</p>
-                <a class="text-foreground no-underline hover:underline" href={`https://github.com/${socials.github.username}`}>
-                  @{socials.github.username}
-                </a>
+                {
+                  githubSocial && (
+                    <a class="text-foreground no-underline hover:underline" href={createSocialProfileUrl(githubSocial)}>
+                      @{githubSocial.username}
+                    </a>
+                  )
+                }
               </div>
             </div>
             <Menu class="mt-2 h-7 w-7 shrink-0 text-muted-foreground" aria-hidden="true" />
@@ -154,16 +144,16 @@ function collectProjectTechnologies(project: Project) {
               </address>
 
               <div class="mt-5 flex flex-wrap items-center gap-3">
-                {socialLinks.map((socialLink) => (
+                {featuredSocials.map((social) => (
                   <a
                     class="inline-flex h-6 w-6 items-center justify-center no-underline opacity-95 transition-opacity hover:opacity-65 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
-                    href={socialLink.href}
-                    aria-label={socialLink.label}
-                    title={socialLink.label}
+                    href={createSocialProfileUrl(social)}
+                    aria-label={social.name}
+                    title={social.name}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <img class="h-5 w-5" src={socialLink.iconUrl} alt="" loading="lazy" />
+                    <img class="h-5 w-5" src={social.iconUrl} alt="" loading="lazy" />
                   </a>
                 ))}
               </div>

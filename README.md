@@ -288,11 +288,11 @@ Generated content such as Blog's About page, social bios and Github profile use 
 │   ├── content/
 │   │   ├── bio.json
 │   │   ├── identity.json
-│   │   ├── socials.json
 │   │   ├── experiences/
 │   │   ├── frameworks/
 │   │   ├── languages/
 │   │   ├── projects/
+│   │   ├── socials/
 │   │   └── stack/
 │   ├── lib/
 │   │   └── data.ts
@@ -320,11 +320,11 @@ Editable resume data lives in [src/content](./src/content).
 
 - [identity.json](./src/content/identity.json): resume identity, contact info, location [personal]
 - [bio.json](./src/content/bio.json): public headline, descriptions, and avatar [shareable]
-- [socials.json](./src/content/socials.json): social account usernames and display names [shareable]
 - [experiences](./src/content/experiences): work timeline entries [personal]
 - [projects](./src/content/projects): project cards and project metadata [personal]
 - [frameworks](./src/content/frameworks): frameworks shown in stack and project tags [shareable]
 - [languages](./src/content/languages): languages shown in stack and project tags [shareable]
+- [socials](./src/content/socials): social network links and featured icons [personal]
 - [stack](./src/content/stack): tools and desktop/dev environment items [shareable]
 
 Each collection item is a JSON file. `slug` is stable ID used by other content files.

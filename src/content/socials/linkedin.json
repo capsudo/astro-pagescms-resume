@@ -1,0 +1,9 @@
+{
+  "name": "LinkedIn",
+  "slug": "linkedin",
+  "iconUrl": "/media/social-icons/linkedin.svg",
+  "profileBaseUrl": "https://www.linkedin.com/in/",
+  "username": "ethan",
+  "featured": true,
+  "sortOrder": 20
+}

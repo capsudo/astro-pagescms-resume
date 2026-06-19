@@ -4,9 +4,8 @@ import { loadCompleteContent } from "./load-content.mjs";
 const outputDirectory = new URL("../generated/", import.meta.url);
 const content = await loadCompleteContent();
 
-// Public export only. Do not add identity, projects, experiences, email, or phone.
+// Public export only. Do not add identity, socials, projects, experiences, email, or phone.
 const blogAboutPageData = {
-  socials: content.socials,
   technologies: {
     frameworks: content.frameworks.map(createPublicTechnologyData),
     languages: content.languages.map(createPublicTechnologyData),

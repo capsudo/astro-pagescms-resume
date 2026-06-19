@@ -82,35 +82,39 @@ content:
         type: image
 
   - name: socials
-    label: Social accounts
-    type: file
-    path: src/content/socials.json
+    label: Social networks
+    type: collection
+    path: src/content/socials
     format: json
+    filename: "{slug}.json"
+    view:
+      primary: name
+      sort: sortOrder
     fields:
-      - name: github
-        label: GitHub
-        type: object
-        fields:
-          - name: username
-            type: string
-          - name: name
-            type: string
-      - name: reddit
-        label: Reddit
-        type: object
-        fields:
-          - name: username
-            type: string
-          - name: name
-            type: string
-      - name: twitter
-        label: Twitter
-        type: object
-        fields:
-          - name: username
-            type: string
-          - name: name
-            type: string
+      - name: name
+        type: string
+        required: true
+      - name: slug
+        type: string
+        required: true
+        pattern: "^[a-z0-9-]+$"
+      - name: displayName
+        label: Display name
+        type: string
+      - name: iconUrl
+        label: Icon URL
+        type: image
+      - name: profileBaseUrl
+        label: Profile base URL
+        type: string
+      - name: username
+        label: Username
+        type: string
+      - name: featured
+        type: boolean
+      - name: sortOrder
+        label: Sort order
+        type: number
 
   - name: frameworks
     label: Frameworks
