@@ -3,6 +3,10 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { loadCompleteContent } from "./load-content.mjs";
 
 const technologyIconAssetDirectory = new URL("../public/media/technology-icons/", import.meta.url);
+const svgIconRequestHeaders = {
+  accept: "image/svg+xml,text/plain;q=0.9,*/*;q=0.8",
+  "user-agent": "astro-pagescms-resume icon generator",
+};
 
 const content = await loadCompleteContent();
 const technologies = collectUniqueTechnologies([
@@ -49,20 +53,108 @@ async function downloadSvgIcon(technology) {
     throw new Error(`Technology iconUrl must be public HTTPS URL: ${technology.slug}`);
   }
 
-  const iconResponse = await fetch(technology.iconUrl);
+  const primaryIconDownloadResult = await tryDownloadSvgIconFromUrl(technology.iconUrl);
 
-  if (!iconResponse.ok) {
-    throw new Error(`Could not download ${technology.slug} icon: ${iconResponse.status} ${iconResponse.statusText}`);
+  if (primaryIconDownloadResult.ok) {
+    return primaryIconDownloadResult.iconBuffer;
   }
 
-  const iconBuffer = Buffer.from(await iconResponse.arrayBuffer());
+  const fallbackIconUrl = createSimpleIconsJsdelivrFallbackUrl(technology.iconUrl);
+
+  if (fallbackIconUrl) {
+    const fallbackIconDownloadResult = await tryDownloadSvgIconFromUrl(fallbackIconUrl);
+
+    if (fallbackIconDownloadResult.ok) {
+      return addSimpleIconsCdnColorToFallbackSvg(fallbackIconDownloadResult.iconBuffer, technology.iconUrl);
+    }
+
+    throw new Error(
+      `Could not download ${technology.slug} icon: ${primaryIconDownloadResult.errorMessage}; fallback failed: ${fallbackIconDownloadResult.errorMessage}`,
+    );
+  }
+
+  throw new Error(`Could not download ${technology.slug} icon: ${primaryIconDownloadResult.errorMessage}`);
+}
+
+async function tryDownloadSvgIconFromUrl(iconUrl) {
+  try {
+    const iconResponse = await fetch(iconUrl, { headers: svgIconRequestHeaders });
+
+    if (!iconResponse.ok) {
+      return {
+        ok: false,
+        errorMessage: `${iconUrl} returned ${iconResponse.status} ${iconResponse.statusText}`,
+      };
+    }
+
+    const iconBuffer = Buffer.from(await iconResponse.arrayBuffer());
+
+    if (!isSvgIconBuffer(iconBuffer)) {
+      return {
+        ok: false,
+        errorMessage: `${iconUrl} did not return SVG`,
+      };
+    }
+
+    return {
+      ok: true,
+      iconBuffer,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      errorMessage: `${iconUrl} failed: ${error.message}`,
+    };
+  }
+}
+
+function isSvgIconBuffer(iconBuffer) {
   const iconTextPreview = iconBuffer.toString("utf8", 0, 200);
 
-  if (!iconTextPreview.includes("<svg")) {
-    throw new Error(`Downloaded technology icon is not SVG: ${technology.slug}`);
+  return iconTextPreview.includes("<svg");
+}
+
+function createSimpleIconsJsdelivrFallbackUrl(iconUrl) {
+  const parsedIconUrl = new URL(iconUrl);
+
+  if (parsedIconUrl.hostname !== "cdn.simpleicons.org") {
+    return undefined;
   }
 
-  return iconBuffer;
+  const [simpleIconsSlug] = parsedIconUrl.pathname.split("/").filter(Boolean);
+
+  if (!simpleIconsSlug) {
+    return undefined;
+  }
+
+  return `https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${simpleIconsSlug}.svg`;
+}
+
+function addSimpleIconsCdnColorToFallbackSvg(iconBuffer, sourceIconUrl) {
+  const colorHex = createSimpleIconsCdnColorHex(sourceIconUrl);
+
+  if (!colorHex) {
+    return iconBuffer;
+  }
+
+  const iconSvgText = iconBuffer.toString("utf8");
+
+  if (iconSvgText.includes(" fill=")) {
+    return iconBuffer;
+  }
+
+  return Buffer.from(iconSvgText.replace("<svg ", `<svg fill="#${colorHex}" `));
+}
+
+function createSimpleIconsCdnColorHex(iconUrl) {
+  const parsedIconUrl = new URL(iconUrl);
+  const [, colorPathPart] = parsedIconUrl.pathname.split("/").filter(Boolean);
+
+  if (!colorPathPart || !/^[a-fA-F0-9]{3,8}$/.test(colorPathPart)) {
+    return undefined;
+  }
+
+  return colorPathPart;
 }
 
 async function readOptionalFile(fileUrl) {
