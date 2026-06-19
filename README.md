@@ -6,6 +6,8 @@ Astro resume website using content editable through [Pages CMS](https://pagescms
 
 ### Fork and clone
 
+> This is required in order to connect Pages CMS to the repo later, repo needs to live inside your github account.
+
 **Fork and clone using GitHub CLI:**
 
 ```bash
@@ -13,7 +15,8 @@ gh repo fork capsudo/astro-pagescms-resume --clone --remote=true
 cd astro-pagescms-resume
 ```
 
-**Fork and clone manually:**
+<details>
+<summary><strong>Fork and clone manually:</strong></summary>
 
 [![Fork this repo](https://img.shields.io/badge/Fork_this_repo-181717?logo=github&logoColor=white)](https://github.com/capsudo/astro-pagescms-resume/fork)
 
@@ -24,7 +27,8 @@ git clone https://github.com/YOUR_GITHUB_USERNAME/astro-pagescms-resume
 git remote add upstream https://github.com/capsudo/astro-pagescms-resume
 cd astro-pagescms-resume
 ```
-> This is required in order to connect Pages CMS to the repo later, repo needs to live inside your github account.
+
+</details>
 
 ### Install required tooling
 
@@ -38,7 +42,8 @@ The Nix shell provides Node, npm, Git, GitHub CLI, and Netlify CLI.
 
 _Nix needs to be installed, see [Install Nix](https://nix.dev/install-nix.html)_
 
-**Not using Nix shell:**
+<details>
+<summary><strong>Not using Nix shell:</strong></summary>
 
 If Nix is not used, Node, npm, Git, Netlify CLI and GitHub CLI (optional) need to be installed.
 
@@ -53,6 +58,8 @@ If Nix is not used, Node, npm, Git, Netlify CLI and GitHub CLI (optional) need t
    ```
 
 4. [Install GitHub CLI](https://github.com/cli/cli?ref_product=cli&ref_type=engagement&ref_style=text#installation) (optional)
+
+</details>
 
 ### Link Netlify site
 
