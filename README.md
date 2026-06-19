@@ -180,6 +180,25 @@ npm run generate:markdown
 npm run generate:blog-data
 ```
 
+## Deployment
+
+### Set production URL
+
+Site name, production URL, deploy hooks, and connected Git repository are configured in Netlify admin, not in `netlify.toml`.
+
+```bash
+npm run netlify:admin
+```
+
+> All of this is already configured by `npm run netlify:link`. This is only to update it later.
+
+### Privacy
+
+Deployed resume site uses shareable + personal data.  
+Generated content such as Blog's About page, social bios and Github profile use only shareable data.
+
+> Beware that if you make this repo public your personal data will be exposed since the content lives here.
+
 ## Project Structure
 
 ```text
@@ -245,10 +264,6 @@ Editable resume data lives in [src/content](./src/content).
 - [frameworks](./src/content/frameworks): frameworks shown in stack and project tags [shareable]
 - [languages](./src/content/languages): languages shown in stack and project tags [shareable]
 - [stack](./src/content/stack): tools and desktop/dev environment items [shareable]
-
-> Deployed site uses shareable + personal data.  
-> Generated content such as Blog's About page, social bios and Github profile use only shareable data.  
-> Beware that if you make this repo public your personal data will be exposed since the content lives here.
 
 Each collection item is a JSON file. `slug` is stable ID used by other content files.
 
