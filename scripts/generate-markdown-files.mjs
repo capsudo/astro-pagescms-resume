@@ -48,17 +48,23 @@ function createSocialBiosMarkdown(content) {
 ${githubBioMarkdown.trimEnd()}
 \`\`\`
 
+Copy-paste this to [Github profile > Bio](https://github.com/settings/profile)
+
 ## Twitter
 
 \`\`\`text
 ${twitterBioMarkdown.trimEnd()}
 \`\`\`
 
+Copy-paste this to [Twitter profile](https://x.com/settings/profile)
+
 ## Reddit
 
 \`\`\`text
 ${redditBioMarkdown.trimEnd()}
 \`\`\`
+
+Copy-paste this to [Reddit profile > About description](https://www.reddit.com/settings/profile)
 `;
 }
 

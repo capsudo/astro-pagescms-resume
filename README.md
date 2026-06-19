@@ -71,23 +71,26 @@ This repo contains a workflow that pushes [generated content](#generated-content
 
 > Using GitHub App token instead of personal access token lets one app push generated files to selected repos with narrow permissions.
 
-## Generated Content
+## Generated Content (optional)
 
 This repo also produces markdown files and data generated from the Pages CMS content. 
 This allows to quickly update in one go all your public info.
 
 ### Markdown files
 
-Long bio visible on top of your [Github user page](https://github.com/capsudo):
-- [github-profile](./generated/github-profile.md) => pushed automatically to [GitHub "profile" README](https://github.com/capsudo/capsudo/README.md)
+- Long bio visible on top of your [Github user page](https://github.com/capsudo)  
+   => [github-profile](./generated/github-profile.md) is pushed automatically to [GitHub "profile" README](https://github.com/capsudo/capsudo/README.md)
 
-Short bios for social profiles:
-- [social-bios](./generated/social-bios.md) => copy-paste blocks for [Github](https://github.com/settings/profile), [Twitter](https://x.com/settings/profile), and [Reddit](https://www.reddit.com/settings/profile)
+- Short bios for social profiles  
+   => open [social-bios](./generated/social-bios.md) and copy-paste blocks to Github, Twitter and Reddit profiles
 
-### Blog About page data
- 
-JSON data for the About page of another astro site : [astro-pagescms-blog](https://github.com/capsudo/astro-pagescms-blog), hosted at <https://github.com/capsudo/capsudo.github.io>
-- [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) => pushed automatically to [github.com/capsudo/capsudo.github.io/src/data/about-page-data.json](https://github.com/capsudo/capsudo.github.io/src/data/about-page-data.json).
+### JSON Data
+
+- [astro-pagescms-blog](https://github.com/capsudo/astro-pagescms-blog)'s About page content  
+   => [blog-about-page-data.json](./generated/blog-about-page-data.json) pushed automatically to [GitHub Pages user site repo](https://github.com/capsudo/capsudo.github.io/src/data/about-page-data.json).
+
+> Blog must be setup as a [GitHub Pages user site](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages), (ie. repo named <https://github.com/capsudo/capsudo.github.io>).  
+See [astro-pagescms-blog's doc](https://github.com/capsudo/astro-pagescms-blog#github-page-user-site).
 
 ### Content generation
 
