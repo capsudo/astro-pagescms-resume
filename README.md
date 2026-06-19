@@ -81,8 +81,11 @@ _Netlify CLI is provided by the [Nix shell](./flake.nix), if not used it needs t
 Page CMS is the "UI admin page" where the content can be updated.
 
 1. Go to <https://app.pagescms.org>
-2. Click cog icon "Manage Github App" then give access to this repo. It should open [Pages CMS admin](https://app.pagescms.org/capsudo/astro-pagescms-resume/master)
-3. Update content: change name (identity), add projects you worked on, etc...
+2. Click cog icon "Manage Github App" then give access to this repo.
+3. Select `astro-pagescms-resume` under your GitHub account.
+4. It should open Pages CMS admin (<https://app.pagescms.org/YOUR_GITHUB_USERNAME/astro-pagescms-resume/master>)
+
+You can now update content: change name (identity), add projects you worked on, etc...
 
 ### GitHub App Sync Setup (optional)
 
@@ -90,7 +93,7 @@ This repo contains a workflow that pushes [generated content](#generated-content
 
 **Create the GitHub App**
 1. Go to <https://github.com/settings/apps/new>.
-2. Name it something like `astro-pagescms-resume-allow-push`. Homepage URL = https://github.com/capsudo/astro-pagescms-resume
+2. Name it something like `astro-pagescms-resume-allow-push`. Homepage URL = https://github.com/YOUR_GITHUB_USERNAME/astro-pagescms-resume
 3. Disable webhook if GitHub allows it (uncheck Active), or leave webhook URL empty if not needed.
 4. Set repository permission **Contents** to **Read and write**.
 5. Keep default **Metadata** read permission.
@@ -102,16 +105,16 @@ This repo contains a workflow that pushes [generated content](#generated-content
 1. Click "Install the app" (left menu on the top)
 2. Chose current user
 3. Chose "Only select repositories" and select those repositories:
-   - `capsudo/astro-pagescms-resume`
-   - `capsudo/capsudo`
-   - `capsudo/capsudo.github.io`
+   - `YOUR_GITHUB_USERNAME/astro-pagescms-resume`
+   - `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME`
+   - `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io`
 4. Click Install.
 
 **Add repository variables and secrets**
 
-1. Go to [`Settings > Secrets and variables > Actions`](https://github.com/capsudo/astro-pagescms-resume/settings/secrets/actions)
-3. In "Secrets" tab click "Add repository secret" `APP_PRIVATE_KEY` with full `.pem` private key content.
-2. Select "Variables" tab then click "Add repository variable" `APP_CLIENT_ID` with GitHub App client ID.
+1. Go to [`Settings > Secrets and variables > Actions`](../../settings/secrets/actions)
+2. In "Secrets" tab click "Add repository secret" `APP_PRIVATE_KEY` with full `.pem` private key content.
+3. Select "Variables" tab then click "Add repository variable" `APP_CLIENT_ID` with GitHub App client ID.
 
 > Using GitHub App token instead of personal access token lets one app push generated files to selected repos with narrow permissions.
 
@@ -122,18 +125,18 @@ This allows to quickly update in one go all your public info.
 
 ### Markdown files
 
-- Long bio visible on top of your [Github user page](https://github.com/capsudo)  
-   => [github-profile](./generated/github-profile.md) is pushed automatically to [GitHub "profile" README](https://github.com/capsudo/capsudo/README.md)
+- Long bio visible on top of your [Github user page](..)  
+   => [github-profile](./generated/github-profile.md) is pushed automatically to [GitHub "profile" README](../YOUR_GITHUB_USERNAME/README.md)
 
 - Short bios for social profiles  
    => open [social-bios](./generated/social-bios.md) and copy-paste blocks to Github, Twitter and Reddit profiles
 
 ### JSON Data
 
-- [astro-pagescms-blog](https://github.com/capsudo/astro-pagescms-blog)'s About page content  
-   => [blog-about-page-data.json](./generated/blog-about-page-data.json) pushed automatically to [GitHub Pages user site repo](https://github.com/capsudo/capsudo.github.io/src/data/about-page-data.json).
+- [astro-pagescms-blog](../astro-pagescms-blog)'s About page content  
+   => [blog-about-page-data.json](./generated/blog-about-page-data.json) pushed automatically to [GitHub Pages user site repo](../YOUR_GITHUB_USERNAME.github.io/src/data/about-page-data.json).
 
-> Blog must be setup as a [GitHub Pages user site](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages), (ie. repo named <https://github.com/capsudo/capsudo.github.io>).  
+> Blog must be setup as a [GitHub Pages user site](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages), (ie. repo named <https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io>).  
 See [astro-pagescms-blog's doc](https://github.com/capsudo/astro-pagescms-blog#github-page-user-site).
 
 ### Content generation
@@ -146,10 +149,10 @@ This workflow:
 1. Generates markdown files.
 2. Generates blog about-page JSON.
 3. Uploads all generated files as workflow artifact named `generated-content`.
-4. Pushes [generated/github-profile.md](./generated/github-profile.md) to `capsudo/capsudo` as `README.md`.
-5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to `capsudo/capsudo.github.io` as `src/data/about-page-data.json`.
+4. Pushes [generated/github-profile.md](./generated/github-profile.md) to `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME` as `README.md`.
+5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io` as `src/data/about-page-data.json`.
 
-> Generated files are visible/downloadable from the workflow run page <https://github.com/capsudo/astro-pagescms-resume/actions/workflows/workflow.yml>.
+> Generated files are visible/downloadable from the [workflow run page](../../actions/workflows/workflow.yml).
 
 ## How it works
 
@@ -174,12 +177,12 @@ Netlify deploys are visible at <https://app.netlify.com/projects/astro-pagescms-
 
 ### Check Github workflow
 
-Github workflows are visible at <https://github.com/capsudo/astro-pagescms-resume/actions>.
+Github workflows are visible at [astro-pagescms-resume/actions](../../actions).
 
 ### Set Netlify production branch
 
 > This repo uses `master` as production branch, if Netlify defaults to `main`, change **Production branch** to `master`.  
-> This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/capsudo/configuration/deploys#branches-and-deploy-contexts).
+> This is configured under [#branches-and-deploy-contexts](https://app.netlify.com/projects/astro-pagescms-resume/configuration/deploys#branches-and-deploy-contexts).
 
 ### Set GitHub Workflow Scope
 
