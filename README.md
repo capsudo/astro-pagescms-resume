@@ -1,6 +1,6 @@
 # Astro Pages CMS Resume
 
-Astro resume website backed by JSON content files and editable through [Pages CMS](https://pagescms.org), plus external generated content using the same data.
+Astro resume website using content editable through [Pages CMS](https://pagescms.org). Also updates [social-bios](./generated/social-bios.md), [GitHub "profile"](https://github.com/capsudo/capsudo/README.md) and [astro-pagescms-blog](https://github.com/capsudo/astro-pagescms-blog)'s About page.
 
 ## Getting started
 
