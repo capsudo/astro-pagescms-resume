@@ -1,7 +1,7 @@
 # Astro Pages CMS Resume
 
 Astro resume website using content editable through [Pages CMS](https://pagescms.org).  
-Also updates [social-bios](./generated/social-bios.md), [GitHub "profile"](https://github.com/capsudo/capsudo/blob/main/README.md) and [astro-pagescms-blog](https://github.com/capsudo/astro-pagescms-blog)'s About page.
+Also updates [social-bios](./generated/social-bios.md), [GitHub "profile"](https://github.com/capsudo/capsudo/blob/master/README.md) and [astro-pagescms-blog](https://github.com/capsudo/astro-pagescms-blog)'s About page.
 
 ## Getting started
 
@@ -142,7 +142,7 @@ This allows to quickly update in one go all your public info.
    => open [social-bios](./generated/social-bios.md) and copy-paste blocks to Github, Twitter and Reddit profiles
 
 - Long bio visible on top of [your Github user page](https://github.com/YOUR_GITHUB_USERNAME/)  
-   => [github-profile](./generated/github-profile.md) is pushed automatically to [GitHub "profile README"](https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME/blob/main/README.md)
+   => [github-profile](./generated/github-profile.md) is pushed automatically to [GitHub "profile README"](https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME/blob/master/README.md)
 
    > Repo named YOUR_GITHUB_USERNAME must be setup, (ie. repo URL = `https://github.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME`).  
    See [GitHub profile README](https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme).
