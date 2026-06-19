@@ -4,17 +4,28 @@ Astro resume website using content editable through [Pages CMS](https://pagescms
 
 ## Getting started
 
+### Installation
+
 Fork, then
 
-**Clone and enter the Nix shell:**
+**Clone the repository:**
 
 ```bash
 git clone https://github.com/capsudo/astro-pagescms-resume
 cd astro-pagescms-resume
+```
+
+**Install required tooling:**
+
+```bash
 nix develop
 ```
 
-The shell provides Node, npm, Git, GitHub CLI, and Netlify CLI.
+The Nix shell provides Node, npm, Git, GitHub CLI, and Netlify CLI.
+
+_Nix needs to be installed, see [Install Nix](https://nix.dev/install-nix.html)_
+
+> If Nix not used, Node, npm, Git, GitHub CLI (optional), and Netlify CLI need to be installed.
 
 ### Link Netlify site
 
@@ -23,11 +34,10 @@ This site is deployed via Netlify as a static Astro site.
 **Link this local repository to a Netlify site:**
 
 ```bash
-nix develop
 npm run netlify:login
 npm run netlify:link
 ```
-_Netlify CLI is provided by [flake.nix](./flake.nix) so it does not need to be installed globally with npm._
+_Netlify CLI is provided by the [Nix shell](./flake.nix), if not used it needs to be installed globally with npm._
 
 > netlify:link can create a new site or connect to an existing one, set up continuous deployment from GitHub, and write local Netlify state under `.netlify/`.  
 > Use defaults when asked since [netlify.toml](./netlify.toml) already tells Netlify how to build the site.
@@ -146,11 +156,10 @@ If using git through GitHub authentication, GitHub will reject pushes that creat
 **Refresh auth:**
 
 ```bash
-nix develop
 npm run github:scope
 ```
 
-_`gh` is provided by [flake.nix](./flake.nix), so it does not need to be installed globally._
+_`gh` is provided by the [Nix shell](./flake.nix), if not used it needs to be installed globally._
 
 > No need to `gh login` again.
 
