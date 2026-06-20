@@ -6,15 +6,17 @@ on:
       - master
     paths:
       - "src/content/**"
-      - "scripts/**"
+      - "scripts/load-content.mjs"
+      - "scripts/generate-markdown-files.mjs"
+      - "scripts/generate-blog-about-data.mjs"
       - ".pages.yml"
       - "package.json"
       - "package-lock.json"
-      - ".github/workflows/workflow.yml"
+      - ".github/workflows/generate-and-push-content.yml"
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 env:
   GITHUB_USERNAME: ${{ github.repository_owner }}
@@ -40,22 +42,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Generate technology icon assets
-        run: npm run generate:technology-icons
-
-      - name: Commit technology icon assets
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          if [ -z "$(git status --porcelain -- public/media/technology-icons)" ]; then
-            echo "Technology icon assets already up to date."
-          else
-            git add public/media/technology-icons
-            git commit -m "Update generated technology icons"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
-          fi
 
       - name: Generate markdown files
         run: npm run generate:markdown

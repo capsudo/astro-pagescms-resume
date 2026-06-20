@@ -142,7 +142,7 @@ It uses [.pages.yml](./.pages.yml) to:
 
 Each update on Page CMS produces a commit that modifies the JSON data. This itself triggers:
 - Netlify deploy
-- GitHub workflow that produces and syncs generated content
+- GitHub workflows that sync static assets and generated content
 
 Deploys are handled by Netlify CI/CD from GitHub. This means that website is published everytime a commit is pushed to the production branch.
 
@@ -162,7 +162,7 @@ The site does not render those CDN URLs directly. It uses local icon assets at `
 When Pages CMS adds or changes a technology:
 
 1. Pages CMS commits JSON content with CDN `iconUrl`.
-2. GitHub workflow downloads icon to `public/media/technology-icons/{slug}.svg`.
+2. [Sync static assets workflow](.github/workflows/sync-static-assets.yml) downloads icon to `public/media/technology-icons/{slug}.svg`.
 3. Workflow creates second commit only if local asset changed.
 
 ## Generated Content (optional)
@@ -192,7 +192,7 @@ This allows to quickly update in one go all your public info.
 ### Content generation
 
 Those files can be generated locally (see [Development](#development)).
-They are also built automatically and pushed to respective repos by the GitHub workflow [workflow.yml](.github/workflows/workflow.yml).
+They are also built automatically and pushed to respective repos by [generate-and-push-content.yml](.github/workflows/generate-and-push-content.yml).
 
 This workflow:
 
@@ -202,7 +202,7 @@ This workflow:
 4. Pushes [generated/github-profile.md](./generated/github-profile.md) to repo `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME` as `README.md`.
 5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to repo `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io` as `src/data/about-page-data.json`.
 
-> Generated files are visible/downloadable from the [workflow run page](../../actions/workflows/workflow.yml).
+> Generated files are visible/downloadable from the [workflow run page](../../actions/workflows/generate-and-push-content.yml).
 
 ## Troubleshooting
 

@@ -1,0 +1,52 @@
+name: Sync static assets
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "src/content/frameworks/**"
+      - "src/content/languages/**"
+      - "src/content/stack/**"
+      - "scripts/load-content.mjs"
+      - "scripts/generate-technology-icon-assets.mjs"
+      - ".pages.yml"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/sync-static-assets.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-static-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout resume source
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate technology icon assets
+        run: npm run generate:technology-icons
+
+      - name: Commit technology icon assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ -z "$(git status --porcelain -- public/media/technology-icons)" ]; then
+            echo "Technology icon assets already up to date."
+          else
+            git add public/media/technology-icons
+            git commit -m "Update generated technology icons"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
