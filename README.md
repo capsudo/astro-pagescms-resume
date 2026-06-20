@@ -131,6 +131,40 @@ This repo contains a workflow that pushes [generated content](#generated-content
 
 > Using GitHub App token instead of personal access token lets one app push generated files to selected repos with narrow permissions.
 
+## How it works
+
+Pages CMS reads and writes same JSON files Astro uses to render website.
+
+It uses [.pages.yml](./.pages.yml) to:
+- derive the collections and fields to display: content.name/label/fields
+- find/load the data (editable content): content.type/path/format
+- where uploaded media should be stored: media.output
+
+Each update on Page CMS produces a commit that modifies the JSON data. This itself triggers:
+- Netlify deploy
+- GitHub workflow that produces and syncs generated content
+
+Deploys are handled by Netlify CI/CD from GitHub. This means that website is published everytime a commit is pushed to the production branch.
+
+## Static Assets
+
+This site uses static assets instead of CDN URLs so icons load from same deployed site, without extra third-party requests on page render.
+
+Astro publishes files from [public/](./public) as static site assets.
+For example, `public/media/avatar.png` is served as `/media/avatar.png`.
+
+Some content added via Pages CMS has an `iconUrl` field. Technologies, ie. frameworks, languages, and stack items, use it for icon source.
+
+The site does not render those CDN URLs directly. It uses local icon assets at `/media/technology-icons/{slug}.svg` so deployed pages serve icons from same site build.
+
+> Public CDN `iconUrl` is kept in content because generated files can be copied to other repositories, such as GitHub profile README and blog data. Those files cannot load assets from this repo when it is private.
+
+When Pages CMS adds or changes a technology:
+
+1. Pages CMS commits JSON content with CDN `iconUrl`.
+2. GitHub workflow downloads icon to `public/media/technology-icons/{slug}.svg`.
+3. Workflow creates second commit only if local asset changed.
+
 ## Generated Content (optional)
 
 This repo also produces markdown files and data generated from the Pages CMS content. 
@@ -162,30 +196,13 @@ They are also built automatically and pushed to respective repos by the GitHub w
 
 This workflow:
 
-1. Downloads technology CDN icons to `public/media/technology-icons/{slug}.svg`.
-2. Commits generated technology icon assets back to this repo if needed.
-3. Generates markdown files.
-4. Generates blog about-page JSON.
-5. Uploads all generated files as workflow artifact named `generated-content`.
-6. Pushes [generated/github-profile.md](./generated/github-profile.md) to repo `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME` as `README.md`.
-7. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to repo `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io` as `src/data/about-page-data.json`.
+1. Generates markdown files.
+2. Generates blog about-page JSON.
+3. Uploads all generated files as workflow artifact named `generated-content`.
+4. Pushes [generated/github-profile.md](./generated/github-profile.md) to repo `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME` as `README.md`.
+5. Pushes [generated/blog-about-page-data.json](./generated/blog-about-page-data.json) to repo `YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME.github.io` as `src/data/about-page-data.json`.
 
 > Generated files are visible/downloadable from the [workflow run page](../../actions/workflows/workflow.yml).
-
-## How it works
-
-Pages CMS reads and writes same JSON files Astro uses to render website.
-
-It uses [.pages.yml](./.pages.yml) to:
-- derive the collections and fields to display: content.name/label/fields
-- find/load the data (editable content): content.type/path/format
-- where uploaded media should be stored: media.output
-
-Each update on Page CMS produces a commit that modifies the JSON data. This itself triggers:
-- Netlify deploy
-- GitHub workflow that produces and syncs generated content
-
-Deploys are handled by Netlify CI/CD from GitHub. This means that website is published everytime a commit is pushed to the production branch.
 
 ## Troubleshooting
 
@@ -237,7 +254,7 @@ Open <http://127.0.0.1:4321/>.
 npm run build
 ```
 
-**Build [Generated Content](#generated-content):**
+**Build static assets and [Generated Content](#generated-content):**
 
 ```bash
 npm run generate:technology-icons
@@ -381,6 +398,3 @@ Short version:
 [public/media](./public/media) is media folder configured for Pages CMS uploads.
 
 Files in `public/` are served from site root. For example, `public/media/avatar.png` becomes `/media/avatar.png`.
-
-Technology `iconUrl` fields stay public CDN URLs for generated files shared with other repos.  
-The resume site uses generated local assets at `/media/technology-icons/{slug}.svg`.
