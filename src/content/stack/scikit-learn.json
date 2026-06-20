@@ -1,0 +1,12 @@
+{
+  "technology": {
+    "name": "scikit-learn",
+    "slug": "scikit-learn",
+    "iconUrl": "https://cdn.simpleicons.org/scikitlearn",
+    "twitterUsername": "scikit_learn",
+    "githubUsername": "scikit-learn",
+    "githubProjectUrl": "https://github.com/scikit-learn/scikit-learn",
+    "featured": false,
+    "level": 0
+  }
+}
