@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="360"
-     viewBox="0 0 1600 360" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1540" height="360"
+     viewBox="0 0 1540 360" role="img" aria-labelledby="title desc">
   <title id="title">Layered grayscale mountain landscape</title>
   <desc id="desc">Seven independently editable mountain layers, ordered from back to front.</desc>
-  <g id="background"><rect width="1600" height="360" fill="#ffffff"/></g>
+  <g id="background"><rect width="1540" height="360" fill="#ffffff"/></g>
   <g id="mountain-layer-1" data-depth="1">
     <path id="mountain-1" fill="#fafafa" d="M0 84 L120 63 L240 48 L480 48 L720 42 L840 76 L960 93 L1080 66 L1200 40 L1320 40 L1440 63 L1560 79 L1600 360 L0 360 Z"/>
   </g>
