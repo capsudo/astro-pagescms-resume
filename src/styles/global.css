@@ -83,7 +83,10 @@
   }
 
   .cover-image {
-    @apply h-[210px] w-full object-cover sm:h-[250px] lg:h-[280px];
+    /* Full-bleed cover: image spans viewport while content stays readable width. */
+    @apply h-[210px] max-w-none object-cover sm:h-[250px] lg:h-[280px];
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
   }
 
   .stack-icon {

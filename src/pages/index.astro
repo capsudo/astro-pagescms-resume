@@ -32,7 +32,7 @@ import {
 } from "../lib/data";
 import "../styles/global.css";
 
-const coverImageUrl = "/media/layered-mountains.svg";
+const coverImageUrl = "/media/layered_mountains.svg";
 const avatarImageUrl = identity.photoUrl || bio.avatarUrl;
 const initials = identity.name
   .split(" ")
@@ -121,7 +121,7 @@ function collectProjectTechnologies(project: Project) {
         </header>
 
         <div class="mt-12 grid items-start gap-12 lg:grid-cols-[240px_minmax(0,1fr)]">
-          <aside class="space-y-10">
+          <aside class="min-w-0 space-y-10">
             <section aria-labelledby="contact-title">
               <h2 id="contact-title" class="flex items-center gap-2 text-3xl font-bold tracking-normal">
                 Contact
@@ -184,7 +184,7 @@ function collectProjectTechnologies(project: Project) {
             </section>
           </aside>
 
-          <section aria-labelledby="showcase-title">
+          <section class="min-w-0" aria-labelledby="showcase-title">
             <div class="flex items-center justify-between gap-4">
               <h2 id="showcase-title" class="flex items-center gap-2 text-3xl font-bold tracking-normal">
                 Showcase
