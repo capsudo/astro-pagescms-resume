@@ -1,17 +1,18 @@
 ---
 type Props = {
   class?: string;
+  imageFilterCss?: string;
   imageUrl?: string;
   initials: string;
   name: string;
 };
 
-const { class: className = "", imageUrl = "", initials, name } = Astro.props;
+const { class: className = "", imageFilterCss = "", imageUrl = "", initials, name } = Astro.props;
 ---
 
 <div class:list={["relative flex shrink-0 overflow-hidden rounded-full border-4 border-background bg-muted", className]}>
   {imageUrl ? (
-    <img class="aspect-square h-full w-full object-cover" src={imageUrl} alt={name} />
+    <img class="aspect-square h-full w-full object-cover" style={imageFilterCss ? `filter: ${imageFilterCss};` : undefined} src={imageUrl} alt={name} />
   ) : (
     <span class="flex h-full w-full items-center justify-center bg-muted text-2xl font-semibold text-muted-foreground">
       {initials}

@@ -34,6 +34,8 @@ import "../styles/global.css";
 
 const coverImageUrl = "/media/layered_mountains.svg";
 const avatarImageUrl = identity.photoUrl || bio.avatarUrl;
+// User photo filter
+const avatarImageFilterCss = "grayscale(100%) brightness(1.12) contrast(1.04)";
 const initials = identity.name
   .split(" ")
   .map((namePart) => namePart[0])
@@ -76,7 +78,7 @@ function collectProjectTechnologies(project: Project) {
     <main class="page-shell">
       <nav class="flex h-11 items-center justify-between px-4 text-sm text-foreground" aria-label="Page toolbar">
         <div class="flex items-center gap-2">
-          <Avatar class="h-5 w-5 border-0 text-[0.6rem]" imageUrl={avatarImageUrl} initials={initials} name={identity.name} />
+          <Avatar class="h-5 w-5 border-0 text-[0.6rem]" imageFilterCss={avatarImageFilterCss} imageUrl={avatarImageUrl} initials={initials} name={identity.name} />
           <span>{identity.name}</span>
         </div>
         <div class="flex items-center gap-4 text-muted-foreground">
@@ -92,6 +94,7 @@ function collectProjectTechnologies(project: Project) {
         <header class="relative pt-0">
           <Avatar
             class="-mt-[72px] h-28 w-28 shadow-sm sm:-mt-[76px] sm:h-32 sm:w-32"
+            imageFilterCss={avatarImageFilterCss}
             imageUrl={avatarImageUrl}
             initials={initials}
             name={identity.name}
