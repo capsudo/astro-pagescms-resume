@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="360"
+     viewBox="0 0 1600 360" role="img" aria-labelledby="title desc">
+  <title id="title">Layered grayscale mountain landscape</title>
+  <desc id="desc">Seven independently editable mountain layers, ordered from back to front.</desc>
+  <g id="background"><rect width="1600" height="360" fill="#ffffff"/></g>
+  <g id="mountain-layer-1" data-depth="1">
+    <path id="mountain-1" fill="#fafafa" d="M0 84 L120 63 L240 48 L480 48 L720 42 L840 76 L960 93 L1080 66 L1200 40 L1320 40 L1440 63 L1560 79 L1600 360 L0 360 Z"/>
+  </g>
+  <g id="mountain-layer-2" data-depth="2">
+    <path id="mountain-2" fill="#ebebeb" d="M0 86 L237 50 L442 51 L597 42 L721 45 L842 78 L950 94 L1200 41 L1319 41 L1437 56 L1557 82 L1599 334 L1600 360 L0 360 Z"/>
+  </g>
+  <g id="mountain-layer-3" data-depth="3">
+    <path id="mountain-3" fill="#dbdbdb" d="M0 110 L119 84 L249 83 L345 90 L599 87 L843 130 L963 110 L1080 68 L1202 57 L1437 126 L1558 122 L1593 321 L1600 360 L0 360 Z"/>
+  </g>
+  <g id="mountain-layer-4" data-depth="4">
+    <path id="mountain-4" fill="#c0c0c0" d="M0 122 L130 115 L238 129 L349 135 L483 133 L728 163 L840 153 L963 113 L1083 96 L1202 126 L1319 167 L1440 169 L1558 140 L1590 309 L1600 360 L0 360 Z"/>
+  </g>
+  <g id="mountain-layer-5" data-depth="5">
+    <path id="mountain-5" fill="#7e7e7e" d="M0 163 L233 197 L481 198 L607 211 L723 207 L838 176 L964 154 L1079 176 L1201 221 L1312 230 L1558 171 L1591 325 L1600 360 L0 360 Z"/>
+  </g>
+  <g id="mountain-layer-6" data-depth="6">
+    <path id="mountain-6" fill="#2e2e2e" d="M0 230 L126 257 L252 260 L371 253 L602 258 L850 214 L958 227 L1080 271 L1206 287 L1439 220 L1558 220 L1593 344 L1600 360 L0 360 Z"/>
+  </g>
+  <g id="mountain-layer-7" data-depth="7">
+    <path id="mountain-7" fill="#0d0d0d" d="M0 302 L123 313 L353 293 L490 295 L740 265 L842 271 L959 309 L1083 332 L1198 308 L1320 264 L1442 257 L1558 285 L1600 360 L0 360 Z"/>
+  </g>
+</svg>
