@@ -153,10 +153,10 @@ content:
       - name: technology
         component: technology
 
-  - name: stack
-    label: Stack
+  - name: tools
+    label: Tools
     type: collection
-    path: src/content/stack
+    path: src/content/tools
     format: json
     filename: "{fields.technology.slug}.json"
     view:
@@ -216,11 +216,11 @@ content:
           search: "fields.technology.name,fields.technology.slug"
           value: "{fields.technology.slug}"
           label: "{fields.technology.name}"
-      - name: stackSlugs
-        label: Stack
+      - name: toolSlugs
+        label: Tools
         type: reference
         options:
-          collection: stack
+          collection: tools
           multiple: true
           search: "fields.technology.name,fields.technology.slug"
           value: "{fields.technology.slug}"

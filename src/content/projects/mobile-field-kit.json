@@ -7,7 +7,7 @@
   "description": "Offline-first mobile workflow for structured field notes, device sync, and fast review loops.",
   "languageSlugs": ["dart", "typescript-javascript"],
   "frameworkSlugs": ["flutter", "firebase"],
-  "stackSlugs": ["vscode"],
+  "toolSlugs": ["vscode"],
   "projectUrl": "",
   "featured": true,
   "sortOrder": 20

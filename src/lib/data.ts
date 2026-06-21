@@ -1,6 +1,6 @@
 import identityDataFromJson from "../content/identity.json";
 import bioDataFromJson from "../content/bio.json";
-export type TechnologyCategoryName = "frameworks" | "languages" | "stack";
+export type TechnologyCategoryName = "frameworks" | "languages" | "tools";
 
 export type Identity = {
   name: string;
@@ -59,7 +59,7 @@ export type Project = {
   description: string;
   languageSlugs: string[];
   frameworkSlugs: string[];
-  stackSlugs: string[];
+  toolSlugs: string[];
   projectUrl: string;
   featured: boolean;
   sortOrder: number;
@@ -88,7 +88,7 @@ type TechnologyGroup = {
 
 const frameworkJsonModules = import.meta.glob<JsonModule<TechnologyContent>>("../content/frameworks/*.json", { eager: true });
 const languageJsonModules = import.meta.glob<JsonModule<TechnologyContent>>("../content/languages/*.json", { eager: true });
-const stackJsonModules = import.meta.glob<JsonModule<TechnologyContent>>("../content/stack/*.json", { eager: true });
+const toolJsonModules = import.meta.glob<JsonModule<TechnologyContent>>("../content/tools/*.json", { eager: true });
 const socialJsonModules = import.meta.glob<JsonModule<Social>>("../content/socials/*.json", { eager: true });
 const projectJsonModules = import.meta.glob<JsonModule<Project>>("../content/projects/*.json", { eager: true });
 const experienceJsonModules = import.meta.glob<JsonModule<Experience>>("../content/experiences/*.json", { eager: true });
@@ -125,7 +125,7 @@ export const bio = bioDataFromJson as Bio;
 export const socials = convertJsonModuleRecordToSortedArray(socialJsonModules);
 export const frameworks = convertTechnologyJsonModuleRecordToSortedArray(frameworkJsonModules);
 export const languages = convertTechnologyJsonModuleRecordToSortedArray(languageJsonModules);
-export const stack = convertTechnologyJsonModuleRecordToSortedArray(stackJsonModules);
+export const tools = convertTechnologyJsonModuleRecordToSortedArray(toolJsonModules);
 export const projects = convertJsonModuleRecordToSortedArray(projectJsonModules);
 export const experiences = convertJsonModuleRecordToSortedArray(experienceJsonModules);
 
@@ -141,14 +141,14 @@ export const technologyGroups: TechnologyGroup[] = [
     items: languages,
   },
   {
-    categoryLabel: "Stack",
-    categoryName: "stack",
-    items: stack,
+    categoryLabel: "Tools",
+    categoryName: "tools",
+    items: tools,
   },
 ];
 
 const technologiesBySlug = new Map<string, Technology>(
-  [...frameworks, ...languages, ...stack].map((technology) => [technology.slug, technology]),
+  [...frameworks, ...languages, ...tools].map((technology) => [technology.slug, technology]),
 );
 
 export function findTechnologyBySlug(technologySlug: string): Technology | undefined {

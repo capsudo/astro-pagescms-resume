@@ -9,7 +9,7 @@ const blogAboutPageData = {
   technologies: {
     frameworks: content.frameworks.map(createPublicTechnologyData),
     languages: content.languages.map(createPublicTechnologyData),
-    stack: content.stack.map(createPublicTechnologyData),
+    tools: content.tools.map(createPublicTechnologyData),
   },
 };
 

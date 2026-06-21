@@ -59,7 +59,7 @@ const projectGroups = Object.entries(
 ).sort(([leftYear], [rightYear]) => Number(rightYear) - Number(leftYear));
 
 function collectProjectTechnologies(project: Project) {
-  const allTechnologySlugs = [...project.languageSlugs, ...project.frameworkSlugs, ...project.stackSlugs];
+  const allTechnologySlugs = [...project.languageSlugs, ...project.frameworkSlugs, ...project.toolSlugs];
 
   return allTechnologySlugs
     .map((technologySlug) => findTechnologyBySlug(technologySlug))

@@ -7,7 +7,7 @@
   "description": "Astro resume backed by Git content, Pages CMS, generated profile markdown, and portable about-page data for the blog.",
   "languageSlugs": ["typescript-javascript"],
   "frameworkSlugs": ["astro", "react"],
-  "stackSlugs": ["vscode", "nixos"],
+  "toolSlugs": ["vscode", "nixos"],
   "projectUrl": "https://github.com/capsudo/resume",
   "featured": true,
   "sortOrder": 10

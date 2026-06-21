@@ -153,7 +153,7 @@ This site uses static assets instead of CDN URLs so icons load from same deploye
 Astro publishes files from [public/](./public) as static site assets.
 For example, `public/media/avatar.png` is served as `/media/avatar.png`.
 
-Some content added via Pages CMS has an `iconUrl` field. Technologies, ie. frameworks, languages, and stack items, use it for icon source.
+Some content added via Pages CMS has an `iconUrl` field. Technologies, ie. frameworks, languages, and tools, use it for icon source.
 
 The site does not render those CDN URLs directly. It uses local icon assets at `/media/technology-icons/{slug}.svg` so deployed pages serve icons from same site build.
 
@@ -313,7 +313,7 @@ Generated content such as Blog's About page, social bios and Github profile use 
 │   │   ├── languages/
 │   │   ├── projects/
 │   │   ├── socials/
-│   │   └── stack/
+│   │   └── tools/
 │   ├── lib/
 │   │   └── data.ts
 │   ├── pages/
@@ -345,11 +345,11 @@ Editable resume data lives in [src/content](./src/content).
 - [frameworks](./src/content/frameworks): frameworks shown in stack and project tags [shareable]
 - [languages](./src/content/languages): languages shown in stack and project tags [shareable]
 - [socials](./src/content/socials): social network links and featured icons [personal]
-- [stack](./src/content/stack): tools and desktop/dev environment items [shareable]
+- [tools](./src/content/tools): tools and desktop/dev environment items [shareable]
 
 Each collection item is a JSON file. `slug` is stable ID used by other content files.
 
->Framework, language, and stack entries use a nested `technology` object because when using [components](https://pagescms.org/docs/configuration/components/), Pages CMS produces named object fields like `{ "technology": { "name": "React", "slug": "react" } }` instead if a flat `{ "name": "React", "slug": "react" }`.  
+>Framework, language, and tool entries use a nested `technology` object because when using [components](https://pagescms.org/docs/configuration/components/), Pages CMS produces named object fields like `{ "technology": { "name": "React", "slug": "react" } }` instead if a flat `{ "name": "React", "slug": "react" }`.  
 > Astro and [Node loader](./scripts/load-content.mjs) normalize this nested CMS shape back to flat `Technology` objects.
 
 ### Website Code

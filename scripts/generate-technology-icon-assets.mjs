@@ -12,7 +12,7 @@ const content = await loadCompleteContent();
 const technologies = collectUniqueTechnologies([
   ...content.frameworks,
   ...content.languages,
-  ...content.stack,
+  ...content.tools,
 ]);
 
 await mkdir(technologyIconAssetDirectory, { recursive: true });

@@ -10,12 +10,12 @@ export async function loadCompleteContent() {
   const socials = await readJsonDirectory("src/content/socials");
   const frameworks = await readJsonDirectory("src/content/frameworks", normalizeTechnologyContent);
   const languages = await readJsonDirectory("src/content/languages", normalizeTechnologyContent);
-  const stack = await readJsonDirectory("src/content/stack", normalizeTechnologyContent);
+  const tools = await readJsonDirectory("src/content/tools", normalizeTechnologyContent);
   const projects = await readJsonDirectory("src/content/projects");
   const experiences = await readJsonDirectory("src/content/experiences");
 
   const technologiesBySlug = new Map(
-    [...frameworks, ...languages, ...stack].map((technology) => [technology.slug, technology]),
+    [...frameworks, ...languages, ...tools].map((technology) => [technology.slug, technology]),
   );
 
   return {
@@ -24,7 +24,7 @@ export async function loadCompleteContent() {
     socials,
     frameworks,
     languages,
-    stack,
+    tools,
     projects,
     experiences,
     technologiesBySlug,

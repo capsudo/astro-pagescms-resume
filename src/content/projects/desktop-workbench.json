@@ -7,7 +7,7 @@
   "description": "GNOME-friendly desktop utility for keeping local developer scripts visible, searchable, and repeatable.",
   "languageSlugs": ["typescript-javascript", "python"],
   "frameworkSlugs": ["expressjs", "react", "redux"],
-  "stackSlugs": ["gnome", "nixos"],
+  "toolSlugs": ["gnome", "nixos"],
   "projectUrl": "",
   "featured": false,
   "sortOrder": 30

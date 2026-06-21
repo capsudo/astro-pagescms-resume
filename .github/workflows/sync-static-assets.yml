@@ -7,7 +7,7 @@ on:
     paths:
       - "src/content/frameworks/**"
       - "src/content/languages/**"
-      - "src/content/stack/**"
+      - "src/content/tools/**"
       - "scripts/load-content.mjs"
       - "scripts/generate-technology-icon-assets.mjs"
       - ".pages.yml"
