@@ -1,11 +1,12 @@
 ---
 import {
-  BriefcaseBusiness,
+  Boxes,
   CalendarRange,
   ChevronDown,
   Ellipsis,
   ExternalLink,
   Globe,
+  Languages,
   Mail,
   MapPin,
   Menu,
@@ -13,6 +14,7 @@ import {
   Phone,
   Search,
   Share,
+  Wrench,
 } from "@lucide/astro";
 import Avatar from "../components/ui/Avatar.astro";
 import Badge from "../components/ui/Badge.astro";
@@ -168,7 +170,9 @@ function collectProjectTechnologies(project: Project) {
                 {technologyGroups.map((technologyGroup) => (
                   <section aria-labelledby={`${technologyGroup.categoryName}-title`}>
                     <Badge class="gap-1.5 rounded-full px-3 py-1 text-sm" variant="secondary">
-                      <BriefcaseBusiness class="h-4 w-4" aria-hidden="true" />
+                      {technologyGroup.categoryName === "frameworks" && <Boxes class="h-4 w-4" aria-hidden="true" />}
+                      {technologyGroup.categoryName === "languages" && <Languages class="h-4 w-4" aria-hidden="true" />}
+                      {technologyGroup.categoryName === "tools" && <Wrench class="h-4 w-4" aria-hidden="true" />}
                       <span id={`${technologyGroup.categoryName}-title`}>{technologyGroup.categoryLabel}</span>
                     </Badge>
                     <ul class="mt-4 space-y-3">
