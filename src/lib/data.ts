@@ -65,7 +65,7 @@ export type Project = {
   sortOrder: number;
 };
 
-export type Experience = {
+export type Job = {
   name: string;
   slug: string;
   location: string;
@@ -91,7 +91,7 @@ const languageJsonModules = import.meta.glob<JsonModule<TechnologyContent>>("../
 const toolJsonModules = import.meta.glob<JsonModule<TechnologyContent>>("../content/tools/*.json", { eager: true });
 const socialJsonModules = import.meta.glob<JsonModule<Social>>("../content/socials/*.json", { eager: true });
 const projectJsonModules = import.meta.glob<JsonModule<Project>>("../content/projects/*.json", { eager: true });
-const experienceJsonModules = import.meta.glob<JsonModule<Experience>>("../content/experiences/*.json", { eager: true });
+const jobJsonModules = import.meta.glob<JsonModule<Job>>("../content/jobs/*.json", { eager: true });
 
 // JSON imports keep Pages CMS and Astro reading same source files.
 function convertJsonModuleRecordToSortedArray<T extends { name: string; sortOrder: number }>(jsonModuleRecord: Record<string, JsonModule<T>>): T[] {
@@ -127,7 +127,7 @@ export const frameworks = convertTechnologyJsonModuleRecordToSortedArray(framewo
 export const languages = convertTechnologyJsonModuleRecordToSortedArray(languageJsonModules);
 export const tools = convertTechnologyJsonModuleRecordToSortedArray(toolJsonModules);
 export const projects = convertJsonModuleRecordToSortedArray(projectJsonModules);
-export const experiences = convertJsonModuleRecordToSortedArray(experienceJsonModules);
+export const jobs = convertJsonModuleRecordToSortedArray(jobJsonModules);
 
 export const technologyGroups: TechnologyGroup[] = [
   {

@@ -308,7 +308,7 @@ Generated content such as Blog's About page, social bios and Github profile use 
 │   ├── content/
 │   │   ├── bio.json
 │   │   ├── identity.json
-│   │   ├── experiences/
+│   │   ├── jobs/
 │   │   ├── frameworks/
 │   │   ├── languages/
 │   │   ├── projects/
@@ -340,7 +340,7 @@ Editable resume data lives in [src/content](./src/content).
 
 - [identity.json](./src/content/identity.json): resume identity, contact info, location [personal]
 - [bio.json](./src/content/bio.json): public headline, descriptions, and avatar [shareable]
-- [experiences](./src/content/experiences): work timeline entries [personal]
+- [jobs](./src/content/jobs): work timeline entries [personal]
 - [projects](./src/content/projects): project cards and project metadata [personal]
 - [frameworks](./src/content/frameworks): frameworks shown in stack and project tags [shareable]
 - [languages](./src/content/languages): languages shown in stack and project tags [shareable]

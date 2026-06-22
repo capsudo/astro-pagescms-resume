@@ -234,10 +234,10 @@ content:
         label: Sort order
         type: number
 
-  - name: experiences
-    label: Experiences
+  - name: jobs
+    label: Jobs
     type: collection
-    path: src/content/experiences
+    path: src/content/jobs
     format: json
     filename: "{slug}.json"
     view:
