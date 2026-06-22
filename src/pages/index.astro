@@ -5,16 +5,18 @@ import {
   ChevronDown,
   Ellipsis,
   ExternalLink,
-  Globe,
+  Sparkles,
   Languages,
   Mail,
   MapPin,
   Menu,
-  MessageCircle,
+  IdCard,
   Phone,
   Search,
   Share,
   Wrench,
+  Layers,
+  BriefcaseBusiness,
 } from "@lucide/astro";
 import Avatar from "../components/ui/Avatar.astro";
 import Badge from "../components/ui/Badge.astro";
@@ -128,9 +130,9 @@ function collectProjectTechnologies(project: Project) {
         <div class="mt-12 grid items-start gap-12 lg:grid-cols-[240px_minmax(0,1fr)]">
           <aside class="min-w-0 space-y-10">
             <section aria-labelledby="contact-title">
-              <h2 id="contact-title" class="flex items-center gap-2 text-3xl font-bold tracking-normal">
+              <h2 id="contact-title" class="title">
                 Contact
-                <MessageCircle class="h-7 w-7 text-muted-foreground" aria-hidden="true" />
+                <IdCard class="title-icon title-icon-bigger" aria-hidden="true" />
               </h2>
 
               <address class="mt-4 space-y-3 text-sm not-italic text-muted-foreground">
@@ -165,7 +167,10 @@ function collectProjectTechnologies(project: Project) {
             </section>
 
             <section aria-labelledby="stack-title">
-              <h2 id="stack-title" class="text-3xl font-bold tracking-normal">Stack</h2>
+              <h2 id="stack-title" class="title">
+                Stack
+                <Layers class="title-icon" aria-hidden="true" />
+              </h2>
               <div class="mt-5 space-y-7">
                 {technologyGroups.map((technologyGroup) => (
                   <section aria-labelledby={`${technologyGroup.categoryName}-title`}>
@@ -193,9 +198,9 @@ function collectProjectTechnologies(project: Project) {
 
           <section class="min-w-0" aria-labelledby="showcase-title">
             <div class="flex items-center justify-between gap-4">
-              <h2 id="showcase-title" class="flex items-center gap-2 text-3xl font-bold tracking-normal">
+              <h2 id="showcase-title" class="title">
                 Showcase
-                <Globe class="h-7 w-7 text-sky-500" aria-hidden="true" />
+                <Sparkles class="title-icon" aria-hidden="true" />
               </h2>
             </div>
 
@@ -257,7 +262,10 @@ function collectProjectTechnologies(project: Project) {
             <Separator class="my-10" />
 
             <section aria-labelledby="experience-title">
-              <h2 id="experience-title" class="text-3xl font-bold tracking-normal">Experience</h2>
+              <h2 id="experience-title" class="title">
+                Experience
+                <BriefcaseBusiness class="title-icon" aria-hidden="true" />
+              </h2>
               <div class="mt-6 space-y-4">
                 {experiences.map((experience) => (
                   <Card class="p-4">

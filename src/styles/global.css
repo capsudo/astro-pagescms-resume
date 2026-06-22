@@ -89,6 +89,18 @@
     margin-left: calc(50% - 50vw);
   }
 
+  .title {
+    @apply flex items-center gap-2 text-3xl font-bold tracking-normal;
+  }
+
+  .title-icon {
+    @apply h-7 w-7 [stroke-width:1] text-sky-500 translate-y-[0.08em] shrink-0;
+  }
+
+  .title-icon-bigger {
+    @apply h-8 w-8 [stroke-width:0.8] translate-y-[0.08em];
+  }
+
   .stack-icon {
     @apply h-4 w-4 shrink-0 rounded-[3px];
   }
